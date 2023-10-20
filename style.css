@@ -1,0 +1,75 @@
+body {
+    /* background: black; */
+    border-collapse: collapse;
+    margin: 0;
+}
+
+table {
+    height: 100%;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+
+td {
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+
+#layout-table-2-el {
+    height: 60vh;
+}
+
+#main-menu-el {
+    width: 20vw;
+}
+
+#items-menu-el {
+    width: 74.9vw;
+}
+
+/* Composter */
+#composter-queue-el {
+    width: 5vw;
+}
+
+#composter-el {
+    height: 10vh;
+    width: 5.1vw;
+    background-image: url('./resources/composter.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* Images */
+#defend-image-el {
+    width: 10vw;
+    background-image: url('./resources/students.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#attack-image-el {
+    width: 15vw;
+    background-image: url('./resources/attack-image.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+
+/* Board */
+#game-board-td-el {
+    background-image: url('./resources/game-board-background.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#road-el {
+    width: 100%;
+    height: 29.6vh;
+    background-image: url('./resources/road.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
