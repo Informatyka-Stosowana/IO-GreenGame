@@ -6,14 +6,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-
+    <script type="module" src="src/Main.js"></script>
 </head>
 
 <body>
     <table id="layout-table-1-el">
         <tr>
             <td id="composter-el">composter-el</td>
-            <td id="items-menu-el">items-menu-el</td>
+            <td id="items-menu-td-el">
+                <table>
+                    <tr>
+                        <td id="compost-amount-el">compost-amount</td>
+                        <td class="shop-el">Plant1</td>
+                        <td class="shop-el">Plant2</td>
+                        <td class="shop-el">Plant3</td>
+                        <td class="shop-el">Plant4</td>
+                        <td class="shop-el">Box</td>
+                        <td class="shop-el">Fork</td>
+                        <td>Some empty space</td>
+                    </tr>
+                </table>
+            </td>
             <td id="main-menu-el">main-menu-el</td>
         </tr>
 
@@ -93,7 +106,6 @@
         </tr>
 
     </table>
-    <script src="js.js"></script>
 </body>
 
 </html>

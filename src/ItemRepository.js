@@ -1,6 +1,4 @@
-let MAIN_LOOP_INTERVAL = 1000; // speed of everything
-
-class ItemRepository {
+export class ItemRepository {
     constructor() {
         this._compost = 0;
         this._forks = 0;
@@ -54,46 +52,3 @@ class ItemRepository {
         }
     }
 }
-
-class GameManager {
-    constructor() {
-        this._updateGame = false;
-        this._score = 0;
-
-        // TODO delete
-        this.testState = true;
-        this.intervalId = undefined;
-    }
-
-    startGame() {
-        this._updateGame = true;
-        this.intervalId = setInterval(() => this.gameLoop(), MAIN_LOOP_INTERVAL);
-    }
-
-    // TODO delete
-    test() {
-        if (this.testState) {
-            document.title = "1";
-            console.log("1")
-            this.testState = false;
-        }
-        else {
-            document.title = "2";
-            console.log("2")
-            this.testState = true;
-        }
-    }
-
-    gameLoop() {
-        this.test();
-    }
-
-    stopTest() {
-        clearInterval(this.intervalId);
-    }
-}
-
-let gm = new GameManager();
-gm.startGame();
-
-document.getElementById('composter-el').onclick = () => gm.stopTest();

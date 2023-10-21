@@ -23,11 +23,20 @@ td {
 }
 
 #main-menu-el {
-    width: 20vw;
+    width: 15vw;
 }
 
-#items-menu-el {
-    width: 74.9vw;
+/* Items menu*/
+#items-menu-td-el {
+    width: 75vw;
+}
+
+#compost-amount-el {
+    width: 10vw;
+}
+
+.shop-el {
+    width: 5vw;
 }
 
 /* Composter */
@@ -37,7 +46,7 @@ td {
 
 #composter-el {
     height: 10vh;
-    width: 5.1vw;
+    width: 5vw;
     background-image: url('./resources/composter.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
