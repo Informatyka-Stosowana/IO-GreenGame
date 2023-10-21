@@ -1,9 +1,10 @@
-import {ItemRepository} from "./ItemRepository.js";
+import {ItemRepository} from "./ItemRepository.mjs";
+export {GameManager}
 
 let GAME_LOOP_INTERVAL = 10; // speed of everything
-let SCORE_INCREMENT_DIV = 100; // how many ticks it takes to increment score
+let SCORE_INCREMENT_DIV = 500; // how many ticks it takes to increment score
 
-export class GameManager {
+class GameManager {
     constructor() {
         this._gamePaused = true;
         this._score = 0;
@@ -42,7 +43,7 @@ export class GameManager {
             if (this._scoreIncrementInterval === SCORE_INCREMENT_DIV) {
                 this._score++;
                 this._scoreIncrementInterval = 0;
-                console.log(this._score)
+                console.log('Score: ', this._score)
             }
             else this._scoreIncrementInterval++;
         }
