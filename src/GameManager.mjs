@@ -1,6 +1,7 @@
 import {ItemRepository} from "./ItemRepository.mjs";
 import {ShopManager} from "./ShopManager.mjs";
 import {BoardManager} from "./BoardManager.mjs";
+import {ComposterManager} from "./ComposterManager.mjs";
 export {GameManager}
 
 let GAME_LOOP_INTERVAL = 10; // speed of everything
@@ -16,17 +17,25 @@ class GameManager {
         this._gamePaused = true;
         this._score = 0;
         this._scoreIncrementInterval = 0;
-        this._intervalId = undefined;
-        this._itemRepository = undefined;
-        this._shopManager = undefined;
-        this._boardManager = undefined;
+        this._intervalId = null;
+        this._itemRepository = null;
+        this._shopManager = null;
+        this._boardManager = null;
+        this._composterManager = null;
+    }
+
+    forTesting() {
+        this._itemRepository.addCompost(9999);
+        this._itemRepository.addBoxes(9999);
+        this._itemRepository.addForks(9999);
     }
 
     startGame() {
         this.resetGame();
         this._gamePaused = false;
         this._intervalId = setInterval(() => this.gameLoop(), GAME_LOOP_INTERVAL);
-        this._shopManager._addShopEventListeners();
+
+        this.forTesting();
     }
 
     stopGame() {
@@ -52,11 +61,13 @@ class GameManager {
         this._itemRepository = new ItemRepository();
         this._boardManager = new BoardManager();
         this._shopManager = new ShopManager(this._itemRepository, this._boardManager);
+        this._composterManager = new ComposterManager(this._itemRepository);
     }
 
     gameLoop() {
         if (!this._gamePaused) {
             // TODO add other things that need updating
+            this._composterManager.update();
 
             // Increment score over time
             if (this._scoreIncrementInterval === SCORE_INCREMENT_DIV) {

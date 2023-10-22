@@ -9,10 +9,12 @@ class ShopManager {
         this._itemRepository = itemRepository;
         this._boardManager = boardManager;
 
-        this._index = undefined;
+        this._thing = null;
 
         this._handleClick = this._handleClick.bind(this);
         this._handleShopClick = this._handleShopClick.bind(this);
+
+        this._addShopEventListeners();
     }
 
     _addShopEventListeners() {
@@ -36,62 +38,74 @@ class ShopManager {
     }
 
     _handleShopClick(event) {
-        console.log(event.target.id)
-        if (event.target.id === "plant-1-shop-el") this._index = 1;
-        if (event.target.id === "plant-2-shop-el") this._index = 2;
-        if (event.target.id === "plant-3-shop-el") this._index = 3;
-        if (event.target.id === "plant-4-shop-el") this._index = 4;
-        if (event.target.id === "plant-4-shop-el") this._index = 5;
-        if (event.target.id === "plant-4-shop-el") this._index = 6;
+        console.log('[INFO] Buying: ', event.target.id)
+        if (event.target.id === "plant-1-shop-el") {
+            this._thing = new Plant(1);
+            if (this._itemRepository.compost < this._thing.price) {
+                console.log('[INFO] Insufficient compost')
+                return;
+            }
+        }
+        if (event.target.id === "plant-2-shop-el") {
+            this._thing = new Plant(2);
+            if (this._itemRepository.compost < this._thing.price) {
+                console.log('[INFO] Insufficient compost')
+                return;
+            }
+        }
+        if (event.target.id === "plant-3-shop-el") {
+            this._thing = new Plant(3);
+            if (this._itemRepository.compost < this._thing.price) {
+                console.log('[INFO] Insufficient compost')
+                return;
+            }
+        }
+        if (event.target.id === "plant-4-shop-el") {
+            this._thing = new Plant(4);
+            if (this._itemRepository.compost < this._thing.price) {
+                console.log('[INFO] Insufficient compost')
+                return;
+            }
+        }
+        if (event.target.id === "box-shop-el") {
+            this._thing = new Box();
+            if (this._itemRepository.boxes <= 0) {
+                console.log('[INFO] Insufficient boxes')
+                return;
+            }
+        }
+        if (event.target.id === "fork-shop-el") {
+            this._thing = new Fork();
+            if (this._itemRepository.forks <= 0) {
+                console.log('[INFO] Insufficient forks')
+                return;
+            }
+        }
+
         this._removeShopEventListeners();
         this._addCellEventListeners();
     }
 
     _finalize(cell) {
-        console.log(cell);
+        console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex,',', cell.cellIndex,']');
         cell.style.backgroundColor = '';
         this._removeCellEventListeners();
         this._addShopEventListeners();
 
-        let thing = undefined;
-        switch (this._index) {
-            case 1:
-                thing = new Plant(1);
-                if (this._itemRepository.compost < thing.price) return;
-                // TODO add plant to BoardManager
-                this._itemRepository.removeCompost(thing.price);
-                break;
-            case 2:
-                thing = new Plant(2);
-                if (this._itemRepository.compost < thing.price) return;
-                // TODO add plant to BoardManager
-                this._itemRepository.removeCompost(thing.price);
-                break;
-            case 3:
-                thing = new Plant(3);
-                if (this._itemRepository.compost < thing.price) return;
-                // TODO add plant to BoardManager
-                this._itemRepository.removeCompost(thing.price);
-                break;
-            case 4:
-                thing = new Plant(4);
-                if (this._itemRepository.compost < thing.price) return;
-                // TODO add plant to BoardManager
-                this._itemRepository.removeCompost(thing.price);
-                break;
-            case 5:
-                if (this._itemRepository.boxes === 0) return;
-                thing = new Box();
-                // TODO add box to BoardManager
-                this._itemRepository.removeBoxes(1);
-                break;
-            case 6:
-                if (this._itemRepository.forks === 0) return;
-                thing = new Fork();
-                // TODO add fork to BoardManager
-                this._itemRepository.removeForks(1);
-                break;
+        if (this._thing instanceof Plant) {
+            this._itemRepository.removeCompost(this._thing.price);
+            console.log('[INFO] Compost left: ', this._itemRepository.compost)
         }
+        if (this._thing instanceof Box) {
+            this._itemRepository.removeBoxes(1);
+            console.log('[INFO] Boxes left: ', this._itemRepository.boxes)
+        }
+        if (this._thing instanceof Fork) {
+            this._itemRepository.removeForks(1);
+            console.log('[INFO] Forks left: ', this._itemRepository.forks)
+        }
+
+        // TODO add thing to board manager
     }
 
     _addCellEventListeners() {

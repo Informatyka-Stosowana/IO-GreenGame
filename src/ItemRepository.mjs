@@ -32,7 +32,7 @@ class ItemRepository {
     }
 
     addBoxes(value) {
-        this._forks += value;
+        this._boxes += value;
     }
 
     removeBoxes(value) {
