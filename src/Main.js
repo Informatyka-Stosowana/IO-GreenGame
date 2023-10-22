@@ -1,6 +1,6 @@
 import {GameManager} from "./GameManager.mjs";
 
-let gameManager = new GameManager();
-gameManager.startGame();
+let gm = new GameManager();
+gm.startGame();
 
-document.getElementById('composter-el').onclick = () => gameManager.pauseGame();
+document.getElementById('composter-el').onclick = () => gm.pauseGame();

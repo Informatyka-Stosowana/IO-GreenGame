@@ -1,4 +1,5 @@
-export class ItemRepository {
+export {ItemRepository}
+class ItemRepository {
     constructor() {
         this._compost = 0;
         this._forks = 0;
@@ -11,9 +12,11 @@ export class ItemRepository {
     }
 
     removeCompost(value) {
-        if (this._compost - value < 0) return false;
         this._compost -= value;
-        return true;
+    }
+
+    get compost() {
+        return this._compost;
     }
 
     addForks(value) {
@@ -21,9 +24,11 @@ export class ItemRepository {
     }
 
     removeForks(value) {
-        if (this._forks - value < 0) return false;
         this._forks -= value;
-        return true;
+    }
+
+    get forks() {
+        return this._forks;
     }
 
     addBoxes(value) {
@@ -31,13 +36,19 @@ export class ItemRepository {
     }
 
     removeBoxes(value) {
-        if (this._boxes - value < 0) return false;
         this._boxes -= value;
-        return true;
     }
 
-    getCompostableTrashSize(index) {
+    get boxes() {
+        return this._boxes;
+    }
+
+    getCompostableTrash(index) {
         return this._compostableTrash.length[index];
+    }
+
+    getCompostableTrashSize() {
+        return this._compostableTrash.length;
     }
 
     addCompostableTrash(trash) {

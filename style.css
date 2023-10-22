@@ -70,9 +70,9 @@ td {
 
 /* Board */
 #game-board-td-el {
-    background-image: url('./resources/game-board-background.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    /*background-image: url('./resources/game-board-background.png');*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: 100% 100%;*/
 }
 
 #road-el {
