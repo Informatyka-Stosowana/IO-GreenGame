@@ -8,21 +8,52 @@ class ShopManager {
     constructor(itemRepository, boardManager) {
         this._itemRepository = itemRepository;
         this._boardManager = boardManager;
+
         this._index = undefined;
+
         this._handleClick = this._handleClick.bind(this);
+        this._handleShopClick = this._handleShopClick.bind(this);
     }
 
-    buy(index) {
-        this._index = index;
-        this._addEventListeners();
+    _addShopEventListeners() {
+        let shopCells = document.getElementsByClassName('shop-el');
+
+        for (let i = 0; i < shopCells.length; i++) {
+            // shopCells[i].addEventListener('mouseover', this._highlightCell);
+            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
+            shopCells[i].addEventListener('click', this._handleShopClick);
+        }
+    }
+
+    _removeShopEventListeners() {
+        let shopCells = document.getElementsByClassName('shop-el');
+
+        for (let i = 0; i < shopCells.length; i++) {
+            // shopCells[i].addEventListener('mouseover', this._highlightCell);
+            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
+            shopCells[i].removeEventListener('click', this._handleShopClick);
+        }
+    }
+
+    _handleShopClick(event) {
+        console.log(event.target.id)
+        if (event.target.id === "plant-1-shop-el") this._index = 1;
+        if (event.target.id === "plant-2-shop-el") this._index = 2;
+        if (event.target.id === "plant-3-shop-el") this._index = 3;
+        if (event.target.id === "plant-4-shop-el") this._index = 4;
+        if (event.target.id === "plant-4-shop-el") this._index = 5;
+        if (event.target.id === "plant-4-shop-el") this._index = 6;
+        this._removeShopEventListeners();
+        this._addCellEventListeners();
     }
 
     _finalize(cell) {
         console.log(cell);
         cell.style.backgroundColor = '';
-        this._removeEventListeners();
-        let thing = undefined;
+        this._removeCellEventListeners();
+        this._addShopEventListeners();
 
+        let thing = undefined;
         switch (this._index) {
             case 1:
                 thing = new Plant(1);
@@ -63,26 +94,24 @@ class ShopManager {
         }
     }
 
-    _addEventListeners() {
+    _addCellEventListeners() {
         let table = document.getElementById('game-board-table-el');
         let cells = table.getElementsByTagName('td');
-        let shopManager = this;
 
         for (let i = 0; i < cells.length; i++) {
             cells[i].addEventListener('mouseover', this._highlightCell);
-            cells[i].addEventListener('mouseout', this._clearHighlight);
+            cells[i].addEventListener('mouseout', this._clearCellHighlight);
             cells[i].addEventListener('click', this._handleClick);
         }
     }
 
-    _removeEventListeners() {
+    _removeCellEventListeners() {
         let table = document.getElementById('game-board-table-el');
         let cells = table.getElementsByTagName('td');
-        let shopManager = this;
 
         for (let i = 0; i < cells.length; i++) {
             cells[i].removeEventListener('mouseover', this._highlightCell);
-            cells[i].removeEventListener('mouseout', this._clearHighlight);
+            cells[i].removeEventListener('mouseout', this._clearCellHighlight);
             cells[i].removeEventListener('click',  this._handleClick);
         }
     }
@@ -90,7 +119,7 @@ class ShopManager {
         event.target.style.backgroundColor = 'yellow';
     }
 
-    _clearHighlight(event) {
+    _clearCellHighlight(event) {
         event.target.style.backgroundColor = '';
     }
 

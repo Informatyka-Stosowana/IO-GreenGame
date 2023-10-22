@@ -26,7 +26,7 @@ class GameManager {
         this.resetGame();
         this._gamePaused = false;
         this._intervalId = setInterval(() => this.gameLoop(), GAME_LOOP_INTERVAL);
-        this._shopManager.buy(1);
+        this._shopManager._addShopEventListeners();
     }
 
     stopGame() {
