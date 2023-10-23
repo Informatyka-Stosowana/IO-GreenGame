@@ -11,10 +11,13 @@ class ComposterManager {
 
     _processTrash() {
         if (this._currentCompostableTrash) {
-            console.info('[INFO] Trash is being currently processed')
+            console.info('[INFO] Trash is being currently processed');
             return;
         }
-        if (this._itemRepository.getCompostableTrashSize() === 0) return;
+        if (this._itemRepository.getCompostableTrashSize() === 0) {
+            console.info('[INFO] No trash to process');
+            return;
+        }
         this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
         this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
 
