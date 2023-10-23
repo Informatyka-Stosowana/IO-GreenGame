@@ -1,5 +1,5 @@
-
 export {ObjectRepository}
+
 class ObjectRepository {
     constructor() {
         this._trash = [];
@@ -9,6 +9,20 @@ class ObjectRepository {
         this._forks = [];
     }
 
+    update() {
+        this._updateArray(this._trash);
+        this._updateArray(this._enemies);
+        this._updateArray(this._plants);
+        // this._updateArray(this._boxes);
+        this._updateArray(this._forks);
+    }
+
+    _updateArray(array) {
+        for (let i = 0; i < array.length; i++) {
+            array[i].update();
+        }
+    }
+
     addTrash(trash) {
         this._trash.push(trash);
         console.info('[INFO] Trash added: ', trash);
@@ -16,8 +30,7 @@ class ObjectRepository {
 
     removeTrash(trash) {
         for (let i = 0; i < this._trash.length; i++) {
-            if (this._trash[i] === trash)
-            {
+            if (this._trash[i] === trash) {
                 this._trash.splice(i, 1);
                 console.info('[INFO] Trash removed: ', trash);
                 return;
@@ -33,8 +46,7 @@ class ObjectRepository {
 
     removeEnemy(enemy) {
         for (let i = 0; i < this._enemies.length; i++) {
-            if (this._enemies[i] === enemy)
-            {
+            if (this._enemies[i] === enemy) {
                 this._enemies.splice(i, 1);
                 console.info('[INFO] Enemy removed: ', enemy);
                 return;
@@ -49,8 +61,7 @@ class ObjectRepository {
 
     removePlant(plant) {
         for (let i = 0; i < this._plants.length; i++) {
-            if (this._plants[i] === plant)
-            {
+            if (this._plants[i] === plant) {
                 this._plants.splice(i, 1);
                 console.info('[INFO] Plant removed: ', plant);
                 return;
@@ -65,8 +76,7 @@ class ObjectRepository {
 
     removeBox(box) {
         for (let i = 0; i < this._boxes.length; i++) {
-            if (this._boxes[i] === box)
-            {
+            if (this._boxes[i] === box) {
                 this._boxes.splice(i, 1);
                 console.info('[INFO] Box removed: ', box);
                 return;
@@ -81,8 +91,7 @@ class ObjectRepository {
 
     removeFork(fork) {
         for (let i = 0; i < this._forks.length; i++) {
-            if (this._forks[i] === fork)
-            {
+            if (this._forks[i] === fork) {
                 this._forks.splice(i, 1);
                 console.info('[INFO] Fork removed: ', fork);
                 return;

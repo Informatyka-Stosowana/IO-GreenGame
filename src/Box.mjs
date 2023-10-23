@@ -12,9 +12,9 @@ class Box {
 
     createImg() {
         let img = document.createElement("img");
-        // let img = document.createTextNode('BOX');
         img.src = './resources/box.png';
         img.className = 'box-img';
+        img.style.pointerEvents = 'none';
         this._cell.appendChild(img);
     }
 }

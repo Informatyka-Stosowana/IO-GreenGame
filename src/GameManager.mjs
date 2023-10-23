@@ -60,8 +60,7 @@ class GameManager {
         if (this._gamePaused) {
             document.title = "Green Game - PAUSED";
             // TODO show pause screen
-        }
-        else {
+        } else {
             document.title = "Green Game";
             // TODO hide pause screen
         }
@@ -81,15 +80,14 @@ class GameManager {
         if (!this._gamePaused) {
             // TODO add other things that need updating
             this._composterManager.update();
-
+            this._objectRepository.update();
 
             // Increment score over time
             if (this._scoreIncrementInterval === SCORE_INCREMENT_DIV) {
                 this._score++;
                 this._scoreIncrementInterval = 0;
                 // console.log('Score: ', this._score)
-            }
-            else this._scoreIncrementInterval++;
+            } else this._scoreIncrementInterval++;
         }
     }
 }

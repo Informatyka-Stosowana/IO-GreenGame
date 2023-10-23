@@ -96,6 +96,10 @@ td {
     text-align: center;
 }
 
+.mouse-trap-fork-td-element, .enemy-td-element {
+    width: 0 !important;
+}
+
 /* Road */
 #road-el {
     width: 100%;

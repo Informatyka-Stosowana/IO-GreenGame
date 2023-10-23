@@ -42,4 +42,8 @@ class Plant {
     get attackPower() {
         return this._attackPower;
     }
+
+    update() {
+
+    }
 }

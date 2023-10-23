@@ -4,107 +4,117 @@
 <head>
     <title>Green Game</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="src/Main.mjs"></script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="style.css" rel="stylesheet">
+    <script src="src/Main.mjs" type="module"></script>
 </head>
 
 <body>
-    <table id="layout-table-1-el">
-        <tr>
-            <td id="composter-el">composter-el</td>
-            <td id="items-menu-td-el">
-                <table>
-                    <tr>
-                        <td id="compost-amount-el">compost-amount</td>
-                        <td class="shop-el" id="plant-1-shop-el">Plant1</td>
-                        <td class="shop-el" id="plant-2-shop-el">Plant2</td>
-                        <td class="shop-el" id="plant-3-shop-el">Plant3</td>
-                        <td class="shop-el" id="plant-4-shop-el">Plant4</td>
-                        <td class="shop-el" id="box-shop-el">Box</td>
-                        <td class="shop-el" id="fork-shop-el">Fork</td>
-                        <td>Some empty space - maybe info about the wave?</td>
-                    </tr>
-                </table>
-            </td>
-            <td id="main-menu-el">main-menu-el</td>
-        </tr>
-        <tr>
-            <td colspan="3">
-                <table id="layout-table-2-el">
-                        <tr>
-                            <td id="composter-queue-el">composter-queue-el</td>
-                            <td id="defend-image-el">defend-image-el</td>
-                            <td id="game-board-td-el">
-                                <table id="game-board-table-el">
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </td>
-                            <td id="attack-image-el">attack-image-el</td>
-                        </tr>
-                </table>
-            </td>
-        </tr>
+<table id="layout-table-1-el">
+    <tr>
+        <td id="composter-el">composter-el</td>
+        <td id="items-menu-td-el">
+            <table>
+                <tr>
+                    <td id="compost-amount-el">compost-amount</td>
+                    <td class="shop-el" id="plant-1-shop-el">Plant1</td>
+                    <td class="shop-el" id="plant-2-shop-el">Plant2</td>
+                    <td class="shop-el" id="plant-3-shop-el">Plant3</td>
+                    <td class="shop-el" id="plant-4-shop-el">Plant4</td>
+                    <td class="shop-el" id="box-shop-el">Box</td>
+                    <td class="shop-el" id="fork-shop-el">Fork</td>
+                    <td>Some empty space - maybe info about the wave?</td>
+                </tr>
+            </table>
+        </td>
+        <td id="main-menu-el">main-menu-el</td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <table id="layout-table-2-el">
+                <tr>
+                    <td id="composter-queue-el">composter-queue-el</td>
+                    <td id="defend-image-el">defend-image-el</td>
+                    <td id="game-board-td-el">
+                        <table id="game-board-table-el">
+                            <tr>
+                                <td class="mouse-trap-fork-td-element"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="enemy-td-element"></td>
+                            </tr>
+                            <tr>
+                                <td class="mouse-trap-fork-td-element"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="enemy-td-element"></td>
+                            </tr>
+                            <tr>
+                                <td class="mouse-trap-fork-td-element"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="enemy-td-element"></td>
+                            </tr>
+                            <tr>
+                                <td class="mouse-trap-fork-td-element"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="enemy-td-element"></td>
+                            </tr>
+                            <tr>
+                                <td class="mouse-trap-fork-td-element"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="enemy-td-element"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td id="attack-image-el">attack-image-el</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 
-        <tr id="road-td-el">
-            <td id="road-el" colspan="3">road-el</td>
-        </tr>
+    <tr id="road-td-el">
+        <td colspan="3" id="road-el">road-el</td>
+    </tr>
 
-    </table>
+</table>
 </body>
 
 </html>

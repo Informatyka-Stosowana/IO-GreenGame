@@ -12,6 +12,9 @@ class ShopManager {
         this._thing = null;
 
         this._handleClick = this._handleClick.bind(this);
+        this._clearCellHighlight = this._clearCellHighlight.bind(this);
+        this._highlightCell = this._highlightCell.bind(this);
+
         this._handleShopClick = this._handleShopClick.bind(this);
 
         this._addShopEventListeners();
@@ -145,19 +148,24 @@ class ShopManager {
         }
     }
 
-    // TODO repair event listener so it does not add event listener to ant other elements
     _highlightCell(event) {
-        if (event.target.tagName !== 'TD') return; // temporary fix
+        if (event.target.className === 'mouse-trap-td-element') return;
+        if (event.target.className === 'enemy-td-element') return;
+        if (event.target.childNodes.length !== 0 && !(this._thing instanceof Fork)) return;
         event.target.style.backgroundColor = 'yellow';
     }
 
     _clearCellHighlight(event) {
-        if (event.target.tagName !== 'TD') return;
+        if (event.target.className === 'mouse-trap-td-element') return;
+        if (event.target.className === 'enemy-td-element') return;
+        if (event.target.childNodes.length !== 0 && !(this._thing instanceof Fork)) return;
         event.target.style.backgroundColor = '';
     }
 
     _handleClick(event) {
-        if (event.target.tagName !== 'TD') return;
+        if (event.target.className === 'mouse-trap-td-element') return;
+        if (event.target.className === 'enemy-td-element') return;
+        if (event.target.childNodes.length !== 0 && !(this._thing instanceof Fork)) return;
         this._finalize(event.target);
     }
 }

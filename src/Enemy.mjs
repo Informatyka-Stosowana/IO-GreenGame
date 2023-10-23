@@ -1,10 +1,10 @@
-export {Fork}
+export {Enemy}
 
-class Fork {
+class Enemy {
     constructor() {
     }
 
     update() {
-        
+
     }
 }
