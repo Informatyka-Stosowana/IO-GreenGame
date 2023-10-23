@@ -1,5 +1,4 @@
-
-
+export {CompostableTrash}
 class CompostableTrash {
     /*
     composting time in number of tics needed to process
@@ -13,15 +12,15 @@ class CompostableTrash {
         switch (type) {
             case 1:
                 this._compost_amount = 5;
-                this._composting_time = 100;
+                this._composting_time = 500;
                 break;
             case 2:
-                this.compost_amount = 10;
-                this.composting_time = 150;
+                this._compost_amount = 15;
+                this._composting_time = 1000;
                 break;
             case 3:
-                this._compost_amount = 15;
-                this._composting_time = 200;
+                this._compost_amount = 25;
+                this._composting_time = 2000;
                 break;
         }
     }

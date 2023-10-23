@@ -9,10 +9,12 @@ class ItemRepository {
 
     addCompost(value) {
         this._compost += value;
+        console.info('[INFO] Compost added, total: ', this.compost);
     }
 
     removeCompost(value) {
         this._compost -= value;
+        console.info('[INFO] Compost removed, total: ', this.compost);
     }
 
     get compost() {
@@ -21,10 +23,12 @@ class ItemRepository {
 
     addForks(value) {
         this._forks += value;
+        console.info('[INFO] Forks added, total: ', this.forks);
     }
 
     removeForks(value) {
         this._forks -= value;
+        console.info('[INFO] Forks removed, total: ', this.forks);
     }
 
     get forks() {
@@ -33,10 +37,12 @@ class ItemRepository {
 
     addBoxes(value) {
         this._boxes += value;
+        console.info('[INFO] Boxes added, total: ', this.boxes);
     }
 
     removeBoxes(value) {
         this._boxes -= value;
+        console.info('[INFO] Boxes removed, total: ', this.boxes);
     }
 
     get boxes() {
@@ -44,7 +50,7 @@ class ItemRepository {
     }
 
     getCompostableTrash(index) {
-        return this._compostableTrash.length[index];
+        return this._compostableTrash[index];
     }
 
     getCompostableTrashSize() {
@@ -53,13 +59,11 @@ class ItemRepository {
 
     addCompostableTrash(trash) {
         this._compostableTrash.push(trash);
+        console.info('[INFO] Compostable trash added, total: ', this.getCompostableTrashSize());
     }
 
     removeCompostableTrash(trash) {
-        for (let i = 0; i < this._compostableTrash.length; i++) {
-            if (trash === this._compostableTrash[i]) {
-                this._compostableTrash.splice(i, 1);
-            }
-        }
+        this._compostableTrash.splice(0, 1);
+        console.info('[INFO] Compostable trash removed, total: ', this.getCompostableTrashSize());
     }
 }

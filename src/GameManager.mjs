@@ -2,6 +2,9 @@ import {ItemRepository} from "./ItemRepository.mjs";
 import {ShopManager} from "./ShopManager.mjs";
 import {BoardManager} from "./BoardManager.mjs";
 import {ComposterManager} from "./ComposterManager.mjs";
+// for testing
+import {CompostableTrash} from "./CompostableTrash.mjs";
+
 export {GameManager}
 
 let GAME_LOOP_INTERVAL = 10; // speed of everything
@@ -24,10 +27,17 @@ class GameManager {
         this._composterManager = null;
     }
 
+    // TODO remove this
     forTesting() {
-        this._itemRepository.addCompost(9999);
-        this._itemRepository.addBoxes(9999);
-        this._itemRepository.addForks(9999);
+        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(2));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(3));
+    }
+
+    _setStartingResources() {
+        this._itemRepository.addCompost(100);
+        this._itemRepository.addBoxes(1);
+        this._itemRepository.addForks(1);
     }
 
     startGame() {
@@ -35,6 +45,7 @@ class GameManager {
         this._gamePaused = false;
         this._intervalId = setInterval(() => this.gameLoop(), GAME_LOOP_INTERVAL);
 
+        // TODO remove this
         this.forTesting();
     }
 
@@ -62,6 +73,8 @@ class GameManager {
         this._boardManager = new BoardManager();
         this._shopManager = new ShopManager(this._itemRepository, this._boardManager);
         this._composterManager = new ComposterManager(this._itemRepository);
+
+        this._setStartingResources();
     }
 
     gameLoop() {

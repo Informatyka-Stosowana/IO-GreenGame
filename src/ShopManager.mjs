@@ -15,6 +15,7 @@ class ShopManager {
         this._handleShopClick = this._handleShopClick.bind(this);
 
         this._addShopEventListeners();
+        this._isInBuyingMode = false;
     }
 
     _addShopEventListeners() {
@@ -38,71 +39,84 @@ class ShopManager {
     }
 
     _handleShopClick(event) {
-        console.log('[INFO] Buying: ', event.target.id)
+        if (this._isInBuyingMode) {
+            console.info('[INFO] Buying cancelled')
+            this._isInBuyingMode = false;
+            this._removeCellEventListeners();
+            return;
+        }
+        this._isInBuyingMode = true;
+        console.info('[INFO] Buying: ', event.target.id)
+
+
+
         if (event.target.id === "plant-1-shop-el") {
             this._thing = new Plant(1);
             if (this._itemRepository.compost < this._thing.price) {
-                console.log('[INFO] Insufficient compost')
+                console.info('[INFO] Insufficient compost')
+                this._isInBuyingMode = false;
                 return;
             }
         }
         if (event.target.id === "plant-2-shop-el") {
             this._thing = new Plant(2);
             if (this._itemRepository.compost < this._thing.price) {
-                console.log('[INFO] Insufficient compost')
+                console.info('[INFO] Insufficient compost')
+                this._isInBuyingMode = false;
                 return;
             }
         }
         if (event.target.id === "plant-3-shop-el") {
             this._thing = new Plant(3);
             if (this._itemRepository.compost < this._thing.price) {
-                console.log('[INFO] Insufficient compost')
+                console.info('[INFO] Insufficient compost')
+                this._isInBuyingMode = false;
                 return;
             }
         }
         if (event.target.id === "plant-4-shop-el") {
             this._thing = new Plant(4);
             if (this._itemRepository.compost < this._thing.price) {
-                console.log('[INFO] Insufficient compost')
+                console.info('[INFO] Insufficient compost')
+                this._isInBuyingMode = false;
                 return;
             }
         }
         if (event.target.id === "box-shop-el") {
             this._thing = new Box();
             if (this._itemRepository.boxes <= 0) {
-                console.log('[INFO] Insufficient boxes')
+                console.info('[INFO] Insufficient boxes')
+                this._isInBuyingMode = false;
                 return;
             }
         }
         if (event.target.id === "fork-shop-el") {
             this._thing = new Fork();
             if (this._itemRepository.forks <= 0) {
-                console.log('[INFO] Insufficient forks')
+                console.info('[INFO] Insufficient forks')
+                this._isInBuyingMode = false;
                 return;
             }
         }
 
-        this._removeShopEventListeners();
         this._addCellEventListeners();
     }
 
     _finalize(cell) {
-        console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex,',', cell.cellIndex,']');
+        // console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex,',', cell.cellIndex,']');
         cell.style.backgroundColor = '';
+        this._isInBuyingMode = false;
         this._removeCellEventListeners();
         this._addShopEventListeners();
 
         if (this._thing instanceof Plant) {
             this._itemRepository.removeCompost(this._thing.price);
-            console.log('[INFO] Compost left: ', this._itemRepository.compost)
         }
         if (this._thing instanceof Box) {
             this._itemRepository.removeBoxes(1);
-            console.log('[INFO] Boxes left: ', this._itemRepository.boxes)
         }
         if (this._thing instanceof Fork) {
             this._itemRepository.removeForks(1);
-            console.log('[INFO] Forks left: ', this._itemRepository.forks)
         }
 
         // TODO add thing to board manager
