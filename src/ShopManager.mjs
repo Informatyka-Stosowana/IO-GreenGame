@@ -5,9 +5,9 @@ import {Fork} from "./Fork.mjs";
 export {ShopManager}
 
 class ShopManager {
-    constructor(itemRepository, boardManager) {
+    constructor(itemRepository, objectRepository) {
         this._itemRepository = itemRepository;
-        this._boardManager = boardManager;
+        this._objectRepository = objectRepository;
 
         this._thing = null;
 
@@ -47,8 +47,6 @@ class ShopManager {
         }
         this._isInBuyingMode = true;
         console.info('[INFO] Buying: ', event.target.id)
-
-
 
         if (event.target.id === "plant-1-shop-el") {
             this._thing = new Plant(1);
@@ -103,7 +101,7 @@ class ShopManager {
     }
 
     _finalize(cell) {
-        // console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex,',', cell.cellIndex,']');
+        console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex, ',', cell.cellIndex, ']');
         cell.style.backgroundColor = '';
         this._isInBuyingMode = false;
         this._removeCellEventListeners();
@@ -111,15 +109,18 @@ class ShopManager {
 
         if (this._thing instanceof Plant) {
             this._itemRepository.removeCompost(this._thing.price);
+            this._objectRepository.addPlant(this._thing);
         }
         if (this._thing instanceof Box) {
             this._itemRepository.removeBoxes(1);
+            this._thing.cell = cell;
+            this._thing.createImg();
+            this._objectRepository.addBox(this._thing);
         }
         if (this._thing instanceof Fork) {
             this._itemRepository.removeForks(1);
+            this._objectRepository.addFork(this._thing);
         }
-
-        // TODO add thing to board manager
     }
 
     _addCellEventListeners() {
@@ -140,18 +141,23 @@ class ShopManager {
         for (let i = 0; i < cells.length; i++) {
             cells[i].removeEventListener('mouseover', this._highlightCell);
             cells[i].removeEventListener('mouseout', this._clearCellHighlight);
-            cells[i].removeEventListener('click',  this._handleClick);
+            cells[i].removeEventListener('click', this._handleClick);
         }
     }
+
+    // TODO repair event listener so it does not add event listener to ant other elements
     _highlightCell(event) {
+        if (event.target.tagName !== 'TD') return; // temporary fix
         event.target.style.backgroundColor = 'yellow';
     }
 
     _clearCellHighlight(event) {
+        if (event.target.tagName !== 'TD') return;
         event.target.style.backgroundColor = '';
     }
 
     _handleClick(event) {
-        this._finalize(event.target)
+        if (event.target.tagName !== 'TD') return;
+        this._finalize(event.target);
     }
 }

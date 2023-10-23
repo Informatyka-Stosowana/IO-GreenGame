@@ -1,7 +1,7 @@
 import {ItemRepository} from "./ItemRepository.mjs";
 import {ShopManager} from "./ShopManager.mjs";
-import {BoardManager} from "./BoardManager.mjs";
 import {ComposterManager} from "./ComposterManager.mjs";
+import {ObjectRepository} from "./ObjectRepository.mjs";
 // for testing
 import {CompostableTrash} from "./CompostableTrash.mjs";
 
@@ -22,8 +22,8 @@ class GameManager {
         this._scoreIncrementInterval = 0;
         this._intervalId = null;
         this._itemRepository = null;
+        this._objectRepository = null;
         this._shopManager = null;
-        this._boardManager = null;
         this._composterManager = null;
     }
 
@@ -36,8 +36,8 @@ class GameManager {
 
     _setStartingResources() {
         this._itemRepository.addCompost(100);
-        this._itemRepository.addBoxes(1);
-        this._itemRepository.addForks(1);
+        this._itemRepository.addBoxes(100);
+        this._itemRepository.addForks(100);
     }
 
     startGame() {
@@ -70,8 +70,8 @@ class GameManager {
 
     resetGame() {
         this._itemRepository = new ItemRepository();
-        this._boardManager = new BoardManager();
-        this._shopManager = new ShopManager(this._itemRepository, this._boardManager);
+        this._objectRepository = new ObjectRepository();
+        this._shopManager = new ShopManager(this._itemRepository, this._objectRepository);
         this._composterManager = new ComposterManager(this._itemRepository);
 
         this._setStartingResources();
@@ -81,6 +81,7 @@ class GameManager {
         if (!this._gamePaused) {
             // TODO add other things that need updating
             this._composterManager.update();
+
 
             // Increment score over time
             if (this._scoreIncrementInterval === SCORE_INCREMENT_DIV) {

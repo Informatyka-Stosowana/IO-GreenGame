@@ -1,10 +1,23 @@
 export {ItemRepository}
+
 class ItemRepository {
     constructor() {
         this._compost = 0;
         this._forks = 0;
         this._boxes = 0;
         this._compostableTrash = [];
+    }
+
+    get compost() {
+        return this._compost;
+    }
+
+    get forks() {
+        return this._forks;
+    }
+
+    get boxes() {
+        return this._boxes;
     }
 
     addCompost(value) {
@@ -17,10 +30,6 @@ class ItemRepository {
         console.info('[INFO] Compost removed, total: ', this.compost);
     }
 
-    get compost() {
-        return this._compost;
-    }
-
     addForks(value) {
         this._forks += value;
         console.info('[INFO] Forks added, total: ', this.forks);
@@ -31,10 +40,6 @@ class ItemRepository {
         console.info('[INFO] Forks removed, total: ', this.forks);
     }
 
-    get forks() {
-        return this._forks;
-    }
-
     addBoxes(value) {
         this._boxes += value;
         console.info('[INFO] Boxes added, total: ', this.boxes);
@@ -43,10 +48,6 @@ class ItemRepository {
     removeBoxes(value) {
         this._boxes -= value;
         console.info('[INFO] Boxes removed, total: ', this.boxes);
-    }
-
-    get boxes() {
-        return this._boxes;
     }
 
     getCompostableTrash(index) {

@@ -1,4 +1,5 @@
 export {ComposterManager}
+
 class ComposterManager {
     constructor(itemRepository) {
         this._itemRepository = itemRepository;
@@ -26,11 +27,9 @@ class ComposterManager {
 
     update() {
         if (!this._currentCompostableTrash) return;
-        if (this._processingProgress < this._currentCompostableTrash.composting_time)
-        {
+        if (this._processingProgress < this._currentCompostableTrash.composting_time) {
             this._processingProgress += 1;
-        }
-        else {
+        } else {
             this._processingProgress = 0;
             this._itemRepository.addCompost(this._currentCompostableTrash.compost_amount);
             this._currentCompostableTrash = null;
