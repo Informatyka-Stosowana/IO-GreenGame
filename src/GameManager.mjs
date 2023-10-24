@@ -2,13 +2,11 @@ import {ItemRepository} from "./ItemRepository.mjs";
 import {ShopManager} from "./ShopManager.mjs";
 import {ComposterManager} from "./ComposterManager.mjs";
 import {ObjectRepository} from "./ObjectRepository.mjs";
+import {Definitions as def} from "./Definitions.mjs";
 // for testing
 import {CompostableTrash} from "./CompostableTrash.mjs";
 
 export {GameManager}
-
-let GAME_LOOP_INTERVAL = 10; // speed of everything
-let SCORE_INCREMENT_DIV = 500; // how many ticks it takes to increment score
 
 // Game Manager:
 // Starts, pauses and restarts the game
@@ -36,14 +34,14 @@ class GameManager {
 
     _setStartingResources() {
         this._itemRepository.addCompost(100);
-        this._itemRepository.addBoxes(100);
-        this._itemRepository.addForks(100);
+        this._itemRepository.addBoxes(5);
+        this._itemRepository.addForks(5);
     }
 
     startGame() {
         this.resetGame();
         this._gamePaused = false;
-        this._intervalId = setInterval(() => this.gameLoop(), GAME_LOOP_INTERVAL);
+        this._intervalId = setInterval(() => this.gameLoop(), def.GAME_LOOP_INTERVAL);
 
         // TODO remove this
         this.forTesting();
@@ -83,7 +81,7 @@ class GameManager {
             this._objectRepository.update();
 
             // Increment score over time
-            if (this._scoreIncrementInterval === SCORE_INCREMENT_DIV) {
+            if (this._scoreIncrementInterval === def.SCORE_INCREMENT_DIV) {
                 this._score++;
                 this._scoreIncrementInterval = 0;
                 // console.log('Score: ', this._score)

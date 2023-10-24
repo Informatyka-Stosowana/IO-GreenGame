@@ -1,3 +1,5 @@
+import {Definitions as def} from "./Definitions.mjs";
+
 export {Box}
 
 class Box {
@@ -12,9 +14,10 @@ class Box {
 
     createImg() {
         let img = document.createElement("img");
-        img.src = './resources/box.png';
-        img.className = 'box-img';
+        img.src = def.box.IMG_SRC;
         img.style.pointerEvents = 'none';
+        img.className = 'board-box-img';
+
         this._cell.appendChild(img);
     }
 }

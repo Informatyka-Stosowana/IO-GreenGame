@@ -1,6 +1,7 @@
 import {Plant} from "./Plant.mjs";
 import {Box} from "./Box.mjs";
 import {Fork} from "./Fork.mjs";
+import {Definitions as def} from "./Definitions.mjs";
 
 export {ShopManager}
 
@@ -17,37 +18,27 @@ class ShopManager {
 
         this._handleShopClick = this._handleShopClick.bind(this);
 
+        // TODO maybe move to a different class
+        this._handleCursorImg = this._handleCursorImg.bind(this);
+        this._clearCursorImg = this._clearCursorImg.bind(this);
+        this._imgOffsetX = null;
+        this._imgOffsetY = null;
+
         this._addShopEventListeners();
         this._isInBuyingMode = false;
     }
 
-    _addShopEventListeners() {
-        let shopCells = document.getElementsByClassName('shop-el');
-
-        for (let i = 0; i < shopCells.length; i++) {
-            // shopCells[i].addEventListener('mouseover', this._highlightCell);
-            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
-            shopCells[i].addEventListener('click', this._handleShopClick);
-        }
-    }
-
-    _removeShopEventListeners() {
-        let shopCells = document.getElementsByClassName('shop-el');
-
-        for (let i = 0; i < shopCells.length; i++) {
-            // shopCells[i].addEventListener('mouseover', this._highlightCell);
-            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
-            shopCells[i].removeEventListener('click', this._handleShopClick);
-        }
-    }
-
     _handleShopClick(event) {
+        let imgSrc = null;
+        let imgScale = null;
+
         if (this._isInBuyingMode) {
             console.info('[INFO] Buying cancelled')
             this._isInBuyingMode = false;
             this._removeCellEventListeners();
             return;
         }
+
         this._isInBuyingMode = true;
         console.info('[INFO] Buying: ', event.target.id)
 
@@ -90,6 +81,10 @@ class ShopManager {
                 this._isInBuyingMode = false;
                 return;
             }
+            this._imgOffsetX = def.box.IMG_OFFSET_X;
+            this._imgOffsetY = def.box.IMG_OFFSET_Y;
+            imgScale = def.box.IMG_CURSOR_SCALE;
+            imgSrc = def.box.IMG_SRC;
         }
         if (event.target.id === "fork-shop-el") {
             this._thing = new Fork();
@@ -100,12 +95,61 @@ class ShopManager {
             }
         }
 
+        // TODO maybe move to a different class
+        let image = document.createElement("img");
+        image.id = 'cursor-image-el';
+        image.src = imgSrc;
+        image.style.scale = imgScale;
+        image.style.position = 'absolute';
+        image.style.pointerEvents = 'none';
+        image.style.left = this._imgOffsetX + event.clientX + "px";
+        image.style.top = this._imgOffsetY + event.clientY + "px";
+        document.body.appendChild(image);
+
+        document.addEventListener("mousemove", this._handleCursorImg);
         this._addCellEventListeners();
+    }
+
+    // TODO maybe move to a different class
+    _clearCursorImg() {
+        let image = document.getElementById('cursor-image-el');
+        image.parentNode.removeChild(image);
+        document.removeEventListener("mousemove", this._handleCursorImg);
+    }
+
+    // TODO maybe move to a different class
+    _handleCursorImg(event) {
+        let image = document.getElementById('cursor-image-el');
+
+        image.style.left = event.clientX + this._imgOffsetX + "px";
+        image.style.top = event.clientY + this._imgOffsetY + "px";
+    }
+
+    _addShopEventListeners() {
+        let shopCells = document.getElementsByClassName('shop-el');
+
+        for (let i = 0; i < shopCells.length; i++) {
+            // shopCells[i].addEventListener('mouseover', this._highlightCell);
+            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
+            shopCells[i].addEventListener('click', this._handleShopClick);
+        }
+    }
+
+    _removeShopEventListeners() {
+        let shopCells = document.getElementsByClassName('shop-el');
+
+        for (let i = 0; i < shopCells.length; i++) {
+            // shopCells[i].addEventListener('mouseover', this._highlightCell);
+            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
+            shopCells[i].removeEventListener('click', this._handleShopClick);
+        }
     }
 
     _finalize(cell) {
         console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex, ',', cell.cellIndex, ']');
         cell.style.backgroundColor = '';
+
+        this._clearCursorImg();
         this._isInBuyingMode = false;
         this._removeCellEventListeners();
         this._addShopEventListeners();

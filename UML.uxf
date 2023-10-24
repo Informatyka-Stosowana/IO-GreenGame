@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>399</x>
-      <y>14</y>
-      <w>273</w>
-      <h>210</h>
+      <x>565</x>
+      <y>170</y>
+      <w>195</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>ItemRepository
 -
@@ -34,10 +34,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>406</x>
-      <y>392</y>
-      <w>126</w>
-      <h>112</h>
+      <x>570</x>
+      <y>440</y>
+      <w>90</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>GameManager
 -
@@ -55,10 +55,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>679</y>
-      <w>105</w>
-      <h>112</h>
+      <x>730</x>
+      <y>645</y>
+      <w>75</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Trash
 -
@@ -76,10 +76,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>224</x>
-      <y>280</y>
-      <w>210</w>
-      <h>70</h>
+      <x>440</x>
+      <y>360</y>
+      <w>150</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>Composter
 -
@@ -93,10 +93,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>336</x>
-      <y>574</y>
-      <w>154</w>
-      <h>84</h>
+      <x>520</x>
+      <y>570</y>
+      <w>110</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>GarbageTruckManager
 -
@@ -113,10 +113,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>343</y>
-      <w>28</w>
-      <h>63</h>
+      <x>580</x>
+      <y>405</y>
+      <w>20</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -127,10 +127,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>462</x>
-      <y>217</y>
-      <w>28</w>
-      <h>189</h>
+      <x>610</x>
+      <y>315</y>
+      <w>20</w>
+      <h>135</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -141,10 +141,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>406</x>
-      <y>217</y>
-      <w>28</w>
-      <h>77</h>
+      <x>570</x>
+      <y>315</y>
+      <w>20</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -155,10 +155,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>497</y>
-      <w>28</w>
-      <h>91</h>
+      <x>600</x>
+      <y>515</y>
+      <w>20</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -169,10 +169,10 @@ m2=
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1239</x>
-      <y>672</y>
-      <w>105</w>
-      <h>105</h>
+      <x>1165</x>
+      <y>640</y>
+      <w>75</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>Plant
 -
@@ -190,17 +190,17 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1239</x>
-      <y>483</y>
-      <w>161</w>
-      <h>98</h>
+      <x>1165</x>
+      <y>505</y>
+      <w>115</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Box
 -
 -hp: int
 -
 +set cell(cell: HTMLElement): void
-+hit(amount: int): void
++removeHp(amount: int): void
 +createImg(): void
 -
 Responsibilities
@@ -210,10 +210,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>826</x>
-      <y>539</y>
-      <w>182</w>
-      <h>217</h>
+      <x>870</x>
+      <y>545</y>
+      <w>140</w>
+      <h>165</h>
     </coordinates>
     <panel_attributes>ObjectRepository
 -
@@ -225,6 +225,7 @@ Responsibilities
 -
 +update(): void
 -_updateArray(array: Array&lt;&gt;): void
++findCellObject(cell): Object   &lt;---- TODO
 +addTrash(trash: Trash): void
 +removeTrash(trash: Trash): void
 +addEnemy(enemy: Enemy): void
@@ -246,10 +247,10 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1064</x>
-      <y>574</y>
-      <w>133</w>
-      <h>84</h>
+      <x>1055</x>
+      <y>570</y>
+      <w>95</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>Fork
 -
@@ -265,38 +266,38 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1001</x>
-      <y>693</y>
-      <w>252</w>
-      <h>35</h>
+      <x>1005</x>
+      <y>655</y>
+      <w>170</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
 m2=
 </panel_attributes>
-    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>665</x>
-      <y>175</y>
-      <w>210</w>
-      <h>378</h>
+      <x>755</x>
+      <y>280</y>
+      <w>150</w>
+      <h>275</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 </panel_attributes>
-    <additional_attributes>280.0;520.0;280.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>280.0;530.0;280.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>511</x>
-      <y>497</y>
-      <w>329</w>
-      <h>112</h>
+      <x>645</x>
+      <y>515</y>
+      <w>235</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -307,10 +308,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>728</x>
-      <y>693</y>
-      <w>112</w>
-      <h>35</h>
+      <x>800</x>
+      <y>655</y>
+      <w>80</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
@@ -321,24 +322,24 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1001</x>
-      <y>588</y>
-      <w>77</w>
-      <h>35</h>
+      <x>1005</x>
+      <y>580</y>
+      <w>60</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
 m2=
 </panel_attributes>
-    <additional_attributes>90.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>833</x>
-      <y>798</y>
-      <w>133</w>
-      <h>112</h>
+      <x>960</x>
+      <y>745</y>
+      <w>95</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Enemy
 -
@@ -356,24 +357,24 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>924</x>
-      <y>749</y>
-      <w>21</w>
-      <h>63</h>
+      <x>980</x>
+      <y>705</y>
+      <w>15</w>
+      <h>50</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
 m2=
 </panel_attributes>
-    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1071</x>
-      <y>21</y>
-      <w>154</w>
-      <h>322</h>
+      <x>1045</x>
+      <y>175</y>
+      <w>110</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>TODO:
 - Logika
@@ -408,10 +409,10 @@ m2=
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>196</x>
-      <y>413</y>
-      <w>196</w>
-      <h>112</h>
+      <x>420</x>
+      <y>455</y>
+      <w>140</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>Kliknięcie na element w kolejce 
 rozpoczyna tworzenie kompostu
@@ -427,10 +428,10 @@ tj. zapada sie w kompost</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>287</x>
-      <y>343</y>
-      <w>21</w>
-      <h>84</h>
+      <x>485</x>
+      <y>405</y>
+      <w>15</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -438,10 +439,10 @@ tj. zapada sie w kompost</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>196</x>
-      <y>14</y>
-      <w>133</w>
-      <h>119</h>
+      <x>420</x>
+      <y>170</y>
+      <w>95</w>
+      <h>85</h>
     </coordinates>
     <panel_attributes>CompostableTrash
 -
@@ -460,10 +461,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>322</x>
-      <y>70</y>
-      <w>91</w>
-      <h>35</h>
+      <x>510</x>
+      <y>210</y>
+      <w>65</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
@@ -474,10 +475,10 @@ m2=
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>574</x>
-      <y>287</y>
-      <w>224</w>
-      <h>210</h>
+      <x>690</x>
+      <y>365</y>
+      <w>160</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>ShopManager
 -
@@ -504,10 +505,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>602</x>
-      <y>217</y>
-      <w>28</w>
-      <h>84</h>
+      <x>710</x>
+      <y>315</y>
+      <w>20</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
@@ -518,10 +519,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>763</x>
-      <y>490</y>
-      <w>77</w>
-      <h>91</h>
+      <x>825</x>
+      <y>510</y>
+      <w>55</w>
+      <h>65</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
@@ -532,10 +533,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>504</x>
-      <y>350</y>
-      <w>84</w>
-      <h>56</h>
+      <x>640</x>
+      <y>410</y>
+      <w>60</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
@@ -546,10 +547,10 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>483</x>
-      <y>623</y>
-      <w>357</w>
-      <h>35</h>
+      <x>625</x>
+      <y>605</y>
+      <w>255</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -560,24 +561,24 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1001</x>
-      <y>539</y>
-      <w>252</w>
-      <h>35</h>
+      <x>1005</x>
+      <y>545</y>
+      <w>170</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
 m2=
 </panel_attributes>
-    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>868</x>
-      <y>329</y>
-      <w>140</w>
-      <h>112</h>
+      <x>1195</x>
+      <y>415</y>
+      <w>100</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>MouseTrap
 Box
@@ -593,10 +594,10 @@ No manager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>161</x>
-      <y>147</y>
-      <w>483</w>
-      <h>616</h>
+      <x>395</x>
+      <y>265</y>
+      <w>345</w>
+      <h>440</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -607,10 +608,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>175</x>
-      <y>189</y>
-      <w>238</w>
-      <h>462</h>
+      <x>405</x>
+      <y>295</y>
+      <w>170</w>
+      <h>330</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
@@ -621,10 +622,10 @@ m2=
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>357</x>
-      <y>686</y>
-      <w>189</w>
-      <h>49</h>
+      <x>535</x>
+      <y>650</y>
+      <w>135</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>Contains itemRepository
 so it can be passed to trash</panel_attributes>
@@ -633,10 +634,10 @@ so it can be passed to trash</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>413</x>
-      <y>651</y>
-      <w>21</w>
-      <h>49</h>
+      <x>575</x>
+      <y>625</y>
+      <w>15</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
@@ -644,10 +645,10 @@ so it can be passed to trash</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1015</x>
-      <y>406</y>
-      <w>182</w>
-      <h>63</h>
+      <x>1005</x>
+      <y>450</y>
+      <w>130</w>
+      <h>45</h>
     </coordinates>
     <panel_attributes>MouseTrap
 -
@@ -660,10 +661,10 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>448</y>
-      <w>84</w>
-      <h>105</h>
+      <x>955</x>
+      <y>480</y>
+      <w>60</w>
+      <h>75</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=*
@@ -674,42 +675,31 @@ m2=
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>770</x>
-      <y>0</y>
-      <w>182</w>
-      <h>63</h>
+      <x>820</x>
+      <y>210</y>
+      <w>130</w>
+      <h>55</h>
     </coordinates>
     <panel_attributes>Dynamite
 -
-+destroy(cell: HTMLElement);
--
 Responsibilities
--- Just sit there kill enemy when touched</panel_attributes>
+-- Destroy plants and boxes
+   damage enemies?
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>665</x>
-      <y>28</y>
-      <w>119</w>
-      <h>35</h>
+      <x>755</x>
+      <y>230</y>
+      <w>75</w>
+      <h>25</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>896</x>
-      <y>434</y>
-      <w>21</w>
-      <h>119</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
   </element>
 </diagram>
