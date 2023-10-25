@@ -72,7 +72,7 @@ class GameManager {
         this._objectRepository = new ObjectRepository();
         this._shopManager = new ShopManager(this._itemRepository, this._objectRepository);
         this._composterManager = new ComposterManager(this._itemRepository);
-        this._garbageTruckManager = new GarbageTruckManager(this._itemRepository);
+        this._garbageTruckManager = new GarbageTruckManager(this._itemRepository, this._objectRepository);
 
         this._setStartingResources();
     }

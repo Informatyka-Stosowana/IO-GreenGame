@@ -1,10 +1,12 @@
 import {Definitions as def} from "./Definitions.mjs";
+import {Trash} from "./Trash.mjs";
 
 export {GarbageTruckManager}
 
 class GarbageTruckManager {
-    constructor(itemRepository) {
+    constructor(itemRepository, objectRepository) {
         this._itemRepository = itemRepository;
+        this._objectRepository = objectRepository;
         this._updatesTillSpawn = def.garbageTruck.TRASH_SPAWN_DIV;
         this._truckPosX = 100; // In vw
         this._truckSpeedX = -1; // In vw
@@ -22,6 +24,9 @@ class GarbageTruckManager {
         this._img.style.top = '69vh';
 
         document.body.appendChild(this._img);
+
+        this._trashSpawned = 0;
+
     }
 
     update() {
@@ -33,12 +38,25 @@ class GarbageTruckManager {
         this._img.style.left = this._truckPosX + 'vw';
         this._newTruckPosX();
 
+        if (this._trashSpawned === 0 && this._truckPosX < 60) {
+            this._spawnTrash();
+        }
+
         // end truck movement condition
         if (this._truckPosX < -def.garbageTruck.IMG_OFFSET_X) {
             this._truckPosX = 100;
             this._updatesTillSpawn = def.garbageTruck.TRASH_SPAWN_DIV;
             this._truckSpeedX = -1;
+            this._trashSpawned = 0;
         }
+    }
+
+    _spawnTrash() {
+        // TODO randomize trash spawn
+        // TODO correct posX for truck size
+        let trash = new Trash(1, this._truckPosX, 69, this._itemRepository, this._objectRepository);
+        this._trashSpawned++;
+        this._objectRepository.addTrash(trash);
     }
 
     _newTruckPosX() {
