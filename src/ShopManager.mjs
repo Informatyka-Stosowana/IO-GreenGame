@@ -21,8 +21,6 @@ class ShopManager {
         // TODO maybe move to a different class
         this._handleCursorImg = this._handleCursorImg.bind(this);
         this._clearCursorImg = this._clearCursorImg.bind(this);
-        this._imgOffsetX = null;
-        this._imgOffsetY = null;
 
         this._addShopEventListeners();
         this._isInBuyingMode = false;
@@ -30,12 +28,12 @@ class ShopManager {
 
     _handleShopClick(event) {
         let imgSrc = null;
-        let imgScale = null;
 
         if (this._isInBuyingMode) {
             console.info('[INFO] Buying cancelled')
             this._isInBuyingMode = false;
             this._removeCellEventListeners();
+            this._clearCursorImg();
             return;
         }
 
@@ -81,9 +79,6 @@ class ShopManager {
                 this._isInBuyingMode = false;
                 return;
             }
-            this._imgOffsetX = def.box.IMG_OFFSET_X;
-            this._imgOffsetY = def.box.IMG_OFFSET_Y;
-            imgScale = def.box.IMG_CURSOR_SCALE;
             imgSrc = def.box.IMG_SRC;
         }
         if (event.target.id === "fork-shop-el") {
@@ -99,11 +94,13 @@ class ShopManager {
         let image = document.createElement("img");
         image.id = 'cursor-image-el';
         image.src = imgSrc;
-        image.style.scale = imgScale;
+        image.style.width = '5vw';
+        image.style.height = 'auto';
         image.style.position = 'absolute';
         image.style.pointerEvents = 'none';
-        image.style.left = this._imgOffsetX + event.clientX + "px";
-        image.style.top = this._imgOffsetY + event.clientY + "px";
+        image.style.left = event.clientX + "px";
+        image.style.top = event.clientY + "px";
+        image.style.transform = 'translate(-50%, -50%)';
         document.body.appendChild(image);
 
         document.addEventListener("mousemove", this._handleCursorImg);
@@ -120,9 +117,8 @@ class ShopManager {
     // TODO maybe move to a different class
     _handleCursorImg(event) {
         let image = document.getElementById('cursor-image-el');
-
-        image.style.left = event.clientX + this._imgOffsetX + "px";
-        image.style.top = event.clientY + this._imgOffsetY + "px";
+        image.style.left = event.clientX + "px";
+        image.style.top = event.clientY + "px";
     }
 
     _addShopEventListeners() {

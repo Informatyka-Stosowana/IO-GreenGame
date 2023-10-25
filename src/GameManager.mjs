@@ -2,6 +2,7 @@ import {ItemRepository} from "./ItemRepository.mjs";
 import {ShopManager} from "./ShopManager.mjs";
 import {ComposterManager} from "./ComposterManager.mjs";
 import {ObjectRepository} from "./ObjectRepository.mjs";
+import {GarbageTruckManager} from "./GarbageTruckManager.mjs";
 import {Definitions as def} from "./Definitions.mjs";
 // for testing
 import {CompostableTrash} from "./CompostableTrash.mjs";
@@ -23,6 +24,7 @@ class GameManager {
         this._objectRepository = null;
         this._shopManager = null;
         this._composterManager = null;
+        this._garbageTruckManager = null
     }
 
     // TODO remove this
@@ -70,6 +72,7 @@ class GameManager {
         this._objectRepository = new ObjectRepository();
         this._shopManager = new ShopManager(this._itemRepository, this._objectRepository);
         this._composterManager = new ComposterManager(this._itemRepository);
+        this._garbageTruckManager = new GarbageTruckManager(this._itemRepository);
 
         this._setStartingResources();
     }
@@ -79,6 +82,7 @@ class GameManager {
             // TODO add other things that need updating
             this._composterManager.update();
             this._objectRepository.update();
+            this._garbageTruckManager.update();
 
             // Increment score over time
             if (this._scoreIncrementInterval === def.SCORE_INCREMENT_DIV) {

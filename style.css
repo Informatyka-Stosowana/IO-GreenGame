@@ -1,5 +1,6 @@
 body {
-    /* background: black; */
+    /*background: black;*/
+    overflow: hidden;
     border-collapse: collapse;
     margin: 0;
 }
