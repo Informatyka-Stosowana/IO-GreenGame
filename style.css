@@ -20,6 +20,7 @@ td {
     padding: 0;
 }
 
+
 #layout-table-2-el {
     height: 69.6vh;
 }
@@ -87,7 +88,7 @@ td {
 
 /* Board */
 #game-board-td-el {
-    background-image: url('./resources/game-board-background.png');
+    background-image: url('./resources/grass_tile_background.jpg');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

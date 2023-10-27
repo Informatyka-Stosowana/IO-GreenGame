@@ -5,7 +5,12 @@ class ItemRepository {
         this._compost = 0;
         this._forks = 0;
         this._boxes = 0;
+        this._dynamite = 0;
         this._compostableTrash = [];
+    }
+
+    get dynamite() {
+        return this._dynamite;
     }
 
     get compost() {
@@ -48,6 +53,16 @@ class ItemRepository {
     removeBoxes(value) {
         this._boxes -= value;
         console.info('[INFO] Boxes removed, total: ', this.boxes);
+    }
+
+    addDynamite(value) {
+        this._dynamite += value;
+        console.info('[INFO] Dynamite added, total: ', this.dynamite);
+    }
+
+    removeDynamite(value) {
+        this._dynamite -= value;
+        console.info('[INFO] Dynamite removed, total: ', this.dynamite);
     }
 
     getCompostableTrash(index) {

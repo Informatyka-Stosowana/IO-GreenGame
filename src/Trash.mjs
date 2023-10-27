@@ -25,8 +25,8 @@ class Trash {
             this._img.style.margin = '0';
         }
 
-        document.body.appendChild(this._img);
-
+        document.body.insertBefore(this._img, document.getElementById('garbage-truck-el'));
+        
         this._collect = this._collect.bind(this);
         this._img.addEventListener('click', this._collect);
     }

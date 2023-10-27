@@ -38,6 +38,7 @@ class GameManager {
         this._itemRepository.addCompost(100);
         this._itemRepository.addBoxes(5);
         this._itemRepository.addForks(5);
+        this._itemRepository.addDynamite(5);
     }
 
     startGame() {

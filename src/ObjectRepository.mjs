@@ -7,6 +7,7 @@ class ObjectRepository {
         this._plants = [];
         this._boxes = [];
         this._forks = [];
+        this._dynamite = [];
     }
 
     update() {
@@ -15,12 +16,33 @@ class ObjectRepository {
         this._updateArray(this._plants);
         // this._updateArray(this._boxes);
         this._updateArray(this._forks);
+        this._updateArray(this._dynamite);
     }
 
     _updateArray(array) {
         for (let i = 0; i < array.length; i++) {
             array[i].update();
         }
+    }
+
+    findCellObject(cell) {
+        let searchArray = function (array) {
+            for (let i = 0; i < array.length; i++) {
+                if (array[i].cell.getAttribute('objuuid') === cell.getAttribute('objuuid')) {
+                    return array[i];
+                }
+            }
+            return null;
+        }
+
+        // TODO uncomment
+        let object = null;
+        //  object = searchArray(this._plants);
+        // if (object) return object;
+        object = searchArray(this._boxes);
+        if (object) return object;
+        // object = searchArray(this._forks);
+        // if (object) return object;
     }
 
     addTrash(trash) {
@@ -30,7 +52,7 @@ class ObjectRepository {
 
     removeTrash(trash) {
         for (let i = 0; i < this._trash.length; i++) {
-            if (this._trash[i] === trash) {
+            if (this._trash[i].UUID === trash.UUID) {
                 this._trash.splice(i, 1);
                 console.info('[INFO] Trash removed: ', trash);
                 return;
@@ -46,7 +68,7 @@ class ObjectRepository {
 
     removeEnemy(enemy) {
         for (let i = 0; i < this._enemies.length; i++) {
-            if (this._enemies[i] === enemy) {
+            if (this._enemies[i].UUID === enemy.UUID) {
                 this._enemies.splice(i, 1);
                 console.info('[INFO] Enemy removed: ', enemy);
                 return;
@@ -61,7 +83,7 @@ class ObjectRepository {
 
     removePlant(plant) {
         for (let i = 0; i < this._plants.length; i++) {
-            if (this._plants[i] === plant) {
+            if (this._plants[i].UUID === plant.UUID) {
                 this._plants.splice(i, 1);
                 console.info('[INFO] Plant removed: ', plant);
                 return;
@@ -76,7 +98,7 @@ class ObjectRepository {
 
     removeBox(box) {
         for (let i = 0; i < this._boxes.length; i++) {
-            if (this._boxes[i] === box) {
+            if (this._boxes[i].UUID === box.UUID) {
                 this._boxes.splice(i, 1);
                 console.info('[INFO] Box removed: ', box);
                 return;
@@ -91,9 +113,24 @@ class ObjectRepository {
 
     removeFork(fork) {
         for (let i = 0; i < this._forks.length; i++) {
-            if (this._forks[i] === fork) {
+            if (this._forks[i].UUID === fork.UUID) {
                 this._forks.splice(i, 1);
                 console.info('[INFO] Fork removed: ', fork);
+                return;
+            }
+        }
+    }
+
+    addDynamite(dynamite) {
+        this._dynamite.push(dynamite);
+        console.info('[INFO] Dynamite added: ', dynamite);
+    }
+
+    removeDynamite(dynamite) {
+        for (let i = 0; i < this._dynamite.length; i++) {
+            if (this._dynamite[i].getUUID === dynamite.getUUID) {
+                this._dynamite.splice(i, 1);
+                console.info('[INFO] Dynamite removed: ', dynamite);
                 return;
             }
         }

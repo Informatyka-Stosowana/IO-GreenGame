@@ -12,6 +12,7 @@ class GarbageTruckManager {
         this._truckSpeedX = -1; // In vw
 
         this._img = document.createElement('img');
+        this._img.id = 'garbage-truck-el';
         this._img.src = def.garbageTruck.IMG_SRC;
         this._img.style.backgroundColor = "#FFFF00"; // Temporary
         this._img.style.pointerEvents = 'none';
@@ -60,7 +61,7 @@ class GarbageTruckManager {
     }
 
     _newTruckPosX() {
-        // TODO come up with better, smoother truck's speed control, maybe request animation frame
+        // TODO come up with better, smoother truck speed control, maybe request animation frame
 
         // console.log('Truck speed: ', this._truckSpeedX);
         // console.log('Truck pos x: ', this._truckPosX);

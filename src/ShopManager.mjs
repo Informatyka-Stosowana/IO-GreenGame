@@ -2,6 +2,7 @@ import {Plant} from "./Plant.mjs";
 import {Box} from "./Box.mjs";
 import {Fork} from "./Fork.mjs";
 import {Definitions as def} from "./Definitions.mjs";
+import {Dynamite} from "./Dynamite.mjs";
 
 export {ShopManager}
 
@@ -73,7 +74,7 @@ class ShopManager {
             }
         }
         if (event.target.id === "box-shop-el") {
-            this._thing = new Box();
+            this._thing = new Box(this._objectRepository);
             if (this._itemRepository.boxes <= 0) {
                 console.info('[INFO] Insufficient boxes')
                 this._isInBuyingMode = false;
@@ -85,6 +86,14 @@ class ShopManager {
             this._thing = new Fork();
             if (this._itemRepository.forks <= 0) {
                 console.info('[INFO] Insufficient forks')
+                this._isInBuyingMode = false;
+                return;
+            }
+        }
+        if (event.target.id === "dynamite-shop-el") {
+            this._thing = new Dynamite(this._objectRepository);
+            if (this._itemRepository.dynamite <= 0) {
+                console.info('[INFO] Insufficient dynamite')
                 this._isInBuyingMode = false;
                 return;
             }
@@ -164,6 +173,11 @@ class ShopManager {
             this._itemRepository.removeForks(1);
             this._objectRepository.addFork(this._thing);
         }
+        if (this._thing instanceof Dynamite) {
+            this._itemRepository.removeDynamite(1);
+            this._thing.targetCell = cell;
+            this._objectRepository.addDynamite(this._thing);
+        }
     }
 
     _addCellEventListeners() {
@@ -191,21 +205,24 @@ class ShopManager {
     _highlightCell(event) {
         if (event.target.className === 'mouse-trap-td-element') return;
         if (event.target.className === 'enemy-td-element') return;
-        if (event.target.childNodes.length !== 0 && !(this._thing instanceof Fork)) return;
+        if (event.target.childNodes.length !== 0 &&
+            !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
         event.target.style.backgroundColor = 'yellow';
     }
 
     _clearCellHighlight(event) {
         if (event.target.className === 'mouse-trap-td-element') return;
         if (event.target.className === 'enemy-td-element') return;
-        if (event.target.childNodes.length !== 0 && !(this._thing instanceof Fork)) return;
+        if (event.target.childNodes.length !== 0 &&
+            !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
         event.target.style.backgroundColor = '';
     }
 
     _handleClick(event) {
         if (event.target.className === 'mouse-trap-td-element') return;
         if (event.target.className === 'enemy-td-element') return;
-        if (event.target.childNodes.length !== 0 && !(this._thing instanceof Fork)) return;
+        if (event.target.childNodes.length !== 0 &&
+            !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
         this._finalize(event.target);
     }
 }
