@@ -12,6 +12,7 @@ let Definitions = {
         IMG_OFFSET_X: 25 // In vw
     },
     dynamite: {
+        IMG_SRC: './resources/dynamite.png',
         EXPLOSION_DELAY: 50,
     }
 };

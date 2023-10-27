@@ -1,7 +1,7 @@
 export {Enemy}
 
 class Enemy {
-    constructor() {
+    constructor(type) {
     }
 
     update() {

@@ -8,6 +8,11 @@ class Dynamite {
         this._objectRepository = objectRepository;
         this._targetCell = null;
         this._delay = def.dynamite.EXPLOSION_DELAY;
+        this._img = null;
+    }
+
+    set img(value) {
+        this._img = value;
     }
 
     set targetCell(cell) {
@@ -31,7 +36,9 @@ class Dynamite {
         let object = this._objectRepository.findCellObject(this._targetCell);
         if (object) object.removeHp(10_000);
         // TODO find and damage enemies
-        console.log('Dynamite in Dynamite: ', this);
+
+        this._img.parentNode.removeChild(this._img);
+
         this._objectRepository.removeDynamite(this);
     }
 }

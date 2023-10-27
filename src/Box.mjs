@@ -11,6 +11,10 @@ class Box {
         this._img = null;
     }
 
+    get img() {
+        return this._img;
+    }
+
     get cell() {
         return this._cell;
     }

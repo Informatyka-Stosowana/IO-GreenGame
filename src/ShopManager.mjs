@@ -97,6 +97,7 @@ class ShopManager {
                 this._isInBuyingMode = false;
                 return;
             }
+            imgSrc = def.dynamite.IMG_SRC;
         }
 
         // TODO maybe move to a different class
@@ -119,8 +120,10 @@ class ShopManager {
     // TODO maybe move to a different class
     _clearCursorImg() {
         let image = document.getElementById('cursor-image-el');
-        image.parentNode.removeChild(image);
-        document.removeEventListener("mousemove", this._handleCursorImg);
+        if (image) {
+            image.parentNode.removeChild(image);
+            document.removeEventListener("mousemove", this._handleCursorImg);
+        }
     }
 
     // TODO maybe move to a different class
@@ -154,7 +157,6 @@ class ShopManager {
         console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex, ',', cell.cellIndex, ']');
         cell.style.backgroundColor = '';
 
-        this._clearCursorImg();
         this._isInBuyingMode = false;
         this._removeCellEventListeners();
         this._addShopEventListeners();
@@ -174,10 +176,16 @@ class ShopManager {
             this._objectRepository.addFork(this._thing);
         }
         if (this._thing instanceof Dynamite) {
+            let image = document.getElementById('cursor-image-el');
+            image.removeAttribute('id');
+            document.removeEventListener("mousemove", this._handleCursorImg);
+            this._thing.img = image;
             this._itemRepository.removeDynamite(1);
             this._thing.targetCell = cell;
             this._objectRepository.addDynamite(this._thing);
         }
+
+        this._clearCursorImg();
     }
 
     _addCellEventListeners() {
@@ -185,8 +193,8 @@ class ShopManager {
         let cells = table.getElementsByTagName('td');
 
         for (let i = 0; i < cells.length; i++) {
-            cells[i].addEventListener('mouseover', this._highlightCell);
-            cells[i].addEventListener('mouseout', this._clearCellHighlight);
+            // cells[i].addEventListener('mouseover', this._highlightCell);
+            // cells[i].addEventListener('mouseout', this._clearCellHighlight);
             cells[i].addEventListener('click', this._handleClick);
         }
     }
@@ -196,8 +204,8 @@ class ShopManager {
         let cells = table.getElementsByTagName('td');
 
         for (let i = 0; i < cells.length; i++) {
-            cells[i].removeEventListener('mouseover', this._highlightCell);
-            cells[i].removeEventListener('mouseout', this._clearCellHighlight);
+            // cells[i].removeEventListener('mouseover', this._highlightCell);
+            // cells[i].removeEventListener('mouseout', this._clearCellHighlight);
             cells[i].removeEventListener('click', this._handleClick);
         }
     }

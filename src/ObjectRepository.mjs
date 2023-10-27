@@ -41,8 +41,6 @@ class ObjectRepository {
         // if (object) return object;
         object = searchArray(this._boxes);
         if (object) return object;
-        // object = searchArray(this._forks);
-        // if (object) return object;
     }
 
     addTrash(trash) {
@@ -135,5 +133,4 @@ class ObjectRepository {
             }
         }
     }
-
 }
