@@ -37,7 +37,7 @@ class ObjectRepository {
 
         // TODO uncomment
         let object = null;
-        //  object = searchArray(this._plants);
+        // object = searchArray(this._plants);
         // if (object) return object;
         object = searchArray(this._boxes);
         if (object) return object;

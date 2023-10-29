@@ -73,13 +73,14 @@ class ItemRepository {
         return this._compostableTrash.length;
     }
 
-    addCompostableTrash(trash) {
-        this._compostableTrash.push(trash);
-        console.info('[INFO] Compostable trash added, total: ', this.getCompostableTrashSize());
+    addCompostableTrash(compostableTrash) {
+        this._compostableTrash.push(compostableTrash);
+        console.info('[INFO] Compostable trash added: ', compostableTrash);
     }
 
-    removeCompostableTrash(trash) {
+    removeCompostableTrash() {
+        let temp = this._compostableTrash[0];
         this._compostableTrash.splice(0, 1);
-        console.info('[INFO] Compostable trash removed, total: ', this.getCompostableTrashSize());
+        console.info('[INFO] Compostable trash removed: ', temp);
     }
 }

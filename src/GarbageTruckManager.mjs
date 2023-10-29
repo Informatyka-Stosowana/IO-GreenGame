@@ -27,6 +27,8 @@ class GarbageTruckManager {
         document.body.appendChild(this._img);
 
         this._trashSpawned = 0;
+        this._spawnSpots = [];
+        this._randomizeSpawnSpots();
 
     }
 
@@ -39,23 +41,31 @@ class GarbageTruckManager {
         this._img.style.left = this._truckPosX + 'vw';
         this._newTruckPosX();
 
-        if (this._trashSpawned === 0 && this._truckPosX < 60) {
+        if (this._trashSpawned === 0 && this._truckPosX < this._spawnSpots[0]) {
+            this._spawnTrash();
+        } else if (this._trashSpawned === 1 && this._truckPosX < this._spawnSpots[1]) {
+            this._spawnTrash();
+        } else if (this._trashSpawned === 2 && this._truckPosX < this._spawnSpots[2]) {
             this._spawnTrash();
         }
 
         // end truck movement condition
         if (this._truckPosX < -def.garbageTruck.IMG_OFFSET_X) {
             this._truckPosX = 100;
-            this._updatesTillSpawn = def.garbageTruck.TRASH_SPAWN_DIV;
+            this._updatesTillSpawn = def.garbageTruck.TRASH_SPAWN_DIV + Math.ceil(Math.random() * 500);
+            console.log(this._updatesTillSpawn)
             this._truckSpeedX = -1;
             this._trashSpawned = 0;
+            this._randomizeSpawnSpots();
         }
     }
 
     _spawnTrash() {
-        // TODO randomize trash spawn
+        // TODO finish randomizing trash spawn
+        let type = Math.ceil(Math.random() * 4);
+
         // TODO correct posX for truck size
-        let trash = new Trash(1, this._truckPosX, 69, this._itemRepository, this._objectRepository);
+        let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
         this._trashSpawned++;
         this._objectRepository.addTrash(trash);
     }
@@ -72,5 +82,12 @@ class GarbageTruckManager {
         if (this._truckPosX < 10) this._truckSpeedX -= 0.01;
 
         this._truckPosX += this._truckSpeedX;
+    }
+
+    _randomizeSpawnSpots() {
+        this._spawnSpots = [];
+        this._spawnSpots.push((60 + Math.ceil(Math.random() * 20)))
+        this._spawnSpots.push((40 + Math.ceil(Math.random() * 20)))
+        this._spawnSpots.push((20 + Math.ceil(Math.random() * 20)))
     }
 }

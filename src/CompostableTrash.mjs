@@ -1,11 +1,10 @@
 export {CompostableTrash}
+
 class CompostableTrash {
     /*
     composting time in number of tics needed to process
     Types:
     1 - rotten tomato
-    2 - rotten apple
-    3 - destroyed plant
      */
     constructor(type) {
         this._type = type;

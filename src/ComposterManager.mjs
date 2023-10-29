@@ -7,27 +7,33 @@ class ComposterManager {
         this._currentCompostableTrash = null;
 
         this._composterElement = document.getElementById('composter-el');
-        this._composterElement.addEventListener('click', () => this._processTrash());
+        // this._composterElement.addEventListener('click', () => this._processTrash());
     }
 
     _processTrash() {
-        if (this._currentCompostableTrash) {
-            console.info('[INFO] Trash is being currently processed');
-            return;
-        }
-        if (this._itemRepository.getCompostableTrashSize() === 0) {
-            console.info('[INFO] No trash to process');
-            return;
-        }
-        this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
-        this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
-        this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
+        // if (this._currentCompostableTrash) {
+        //     console.info('[INFO] Trash is being currently processed');
+        //     return;
+        // }
+        // if (this._itemRepository.getCompostableTrashSize() === 0) {
+        //     console.info('[INFO] No trash to process');
+        //     return;
+        // }
+        // this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
+        // this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
+        // this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
 
         console.info('[INFO] Composting started, composting time: ', this._currentCompostableTrash.composting_time);
     }
 
     update() {
-        if (!this._currentCompostableTrash) return;
+        if (!this._currentCompostableTrash) {
+            if (this._itemRepository.getCompostableTrashSize() === 0) return;
+            this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
+            this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
+            console.info('Processing: ', this._currentCompostableTrash);
+            this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
+        }
         if (this._updatesTillProcessed > 0) {
             this._updatesTillProcessed--;
         } else {
