@@ -1,8 +1,8 @@
-import {Plant} from "./Plant.mjs";
-import {Box} from "./Box.mjs";
-import {Fork} from "./Fork.mjs";
 import {Definitions as def} from "./Definitions.mjs";
+import {Box} from "./Box.mjs";
 import {Dynamite} from "./Dynamite.mjs";
+import {Fork} from "./Fork.mjs";
+import {Plant} from "./Plant.mjs";
 
 export {ShopManager}
 
@@ -213,6 +213,7 @@ class ShopManager {
     _highlightCell(event) {
         if (event.target.className === 'mouse-trap-td-element') return;
         if (event.target.className === 'enemy-td-element') return;
+        // Block ability to place stuff on top of different stuff, except for Fork and Dynamite
         if (event.target.childNodes.length !== 0 &&
             !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
         event.target.style.backgroundColor = 'yellow';
@@ -221,6 +222,7 @@ class ShopManager {
     _clearCellHighlight(event) {
         if (event.target.className === 'mouse-trap-td-element') return;
         if (event.target.className === 'enemy-td-element') return;
+        // Block ability to place stuff on top of different stuff, except for Fork and Dynamite
         if (event.target.childNodes.length !== 0 &&
             !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
         event.target.style.backgroundColor = '';
@@ -229,6 +231,7 @@ class ShopManager {
     _handleClick(event) {
         if (event.target.className === 'mouse-trap-td-element') return;
         if (event.target.className === 'enemy-td-element') return;
+        // Block ability to place stuff on top of different stuff, except for Fork and Dynamite
         if (event.target.childNodes.length !== 0 &&
             !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
         this._finalize(event.target);

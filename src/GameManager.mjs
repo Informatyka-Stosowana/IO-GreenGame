@@ -3,6 +3,7 @@ import {ShopManager} from "./ShopManager.mjs";
 import {ComposterManager} from "./ComposterManager.mjs";
 import {ObjectRepository} from "./ObjectRepository.mjs";
 import {GarbageTruckManager} from "./GarbageTruckManager.mjs";
+import {EnemyManager} from "./EnemyManager.mjs";
 import {Definitions as def} from "./Definitions.mjs";
 // for testing
 import {CompostableTrash} from "./CompostableTrash.mjs";
@@ -20,11 +21,13 @@ class GameManager {
         this._score = 0;
         this._scoreIncrementInterval = 0;
         this._intervalId = null;
+
         this._itemRepository = null;
         this._objectRepository = null;
         this._shopManager = null;
         this._composterManager = null;
-        this._garbageTruckManager = null
+        this._garbageTruckManager = null;
+        this._enemyManager = null;
     }
 
     // TODO remove this
@@ -74,6 +77,7 @@ class GameManager {
         this._shopManager = new ShopManager(this._itemRepository, this._objectRepository);
         this._composterManager = new ComposterManager(this._itemRepository);
         this._garbageTruckManager = new GarbageTruckManager(this._itemRepository, this._objectRepository);
+        this._enemyManager = new EnemyManager(this._objectRepository);
 
         this._setStartingResources();
     }

@@ -46,4 +46,10 @@ class Plant {
     update() {
 
     }
+
+    _attack() {
+        // TODO implement attack - spawn bullet behaviour
+        // Enemies can appear on top of each other so only the first one should be damaged
+
+    }
 }

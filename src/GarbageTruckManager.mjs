@@ -29,7 +29,6 @@ class GarbageTruckManager {
         this._trashSpawned = 0;
         this._spawnSpots = [];
         this._randomizeSpawnSpots();
-
     }
 
     update() {
@@ -37,36 +36,34 @@ class GarbageTruckManager {
             this._updatesTillSpawn--;
             return;
         }
-        // truck movement and spawning
+        // truck movement and trash spawn
         this._img.style.left = this._truckPosX + 'vw';
-        this._newTruckPosX();
 
-        if (this._trashSpawned === 0 && this._truckPosX < this._spawnSpots[0]) {
-            this._spawnTrash();
-        } else if (this._trashSpawned === 1 && this._truckPosX < this._spawnSpots[1]) {
-            this._spawnTrash();
-        } else if (this._trashSpawned === 2 && this._truckPosX < this._spawnSpots[2]) {
-            this._spawnTrash();
-        }
+        this._newTruckPosX();
+        this._spawnTrash();
 
         // end truck movement condition
         if (this._truckPosX < -def.garbageTruck.IMG_OFFSET_X) {
-            this._truckPosX = 100;
+            // Randomize time until next appearance
             this._updatesTillSpawn = def.garbageTruck.TRASH_SPAWN_DIV + Math.ceil(Math.random() * 500);
-            console.log(this._updatesTillSpawn)
+
+            this._truckPosX = 100;
             this._truckSpeedX = -1;
+
             this._trashSpawned = 0;
             this._randomizeSpawnSpots();
         }
     }
 
     _spawnTrash() {
-        // TODO finish randomizing trash spawn
-        let type = Math.ceil(Math.random() * 4);
-
-        // TODO correct posX for truck size
-        let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
+        if (this._truckPosX > this._spawnSpots[this._trashSpawned] ||
+            this._trashSpawned === this._spawnSpots.length) return;
         this._trashSpawned++;
+
+        // TODO finish trash spawning, add animations etc.
+        let type = Math.ceil(Math.random() * 4);
+        let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
+
         this._objectRepository.addTrash(trash);
     }
 

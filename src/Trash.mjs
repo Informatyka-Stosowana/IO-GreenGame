@@ -33,19 +33,13 @@ class Trash {
                 // this._img.src = def.box.IMG_SRC;
                 this._img.style.backgroundColor = "#6500FF"; // Temporary
                 break;
-            case 5:
-                this._img.src = def.box.IMG_SRC;
-                break;
-            case 6:
-                this._img.src = def.box.IMG_SRC;
-                break;
         }
 
         this._img.style.left = posX + 'vw';
         this._img.style.top = posY + 'vh';
         this._img.style.position = 'absolute';
         this._img.style.width = '4vw';
-        this._img.style.height = '6vh'; // TODO change to auto later
+        this._img.style.height = '6vh'; // TODO change to auto after adding images
         this._img.style.margin = '0';
 
         document.body.insertBefore(this._img, document.getElementById('garbage-truck-el'));
