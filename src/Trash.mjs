@@ -7,7 +7,9 @@ class Trash {
 
     // Types:
     // 1 - box
-    // 2 -
+    // 2 - Compostable trash 1
+    // 3 - Compostable trash 2
+    // 4 - Compostable trash 3
 
     constructor(type, posX, posY, itemRepository, objectRepository) {
         this._itemRepository = itemRepository;
@@ -38,8 +40,8 @@ class Trash {
         this._img.style.left = posX + 'vw';
         this._img.style.top = posY + 'vh';
         this._img.style.position = 'absolute';
-        this._img.style.width = '4vw';
-        this._img.style.height = '6vh'; // TODO change to auto after adding images
+        this._img.style.width = '3vw';
+        this._img.style.height = 'auto'; // TODO change to auto after adding images
         this._img.style.margin = '0';
 
         document.body.insertBefore(this._img, document.getElementById('garbage-truck-el'));

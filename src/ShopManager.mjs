@@ -104,7 +104,7 @@ class ShopManager {
         let image = document.createElement("img");
         image.id = 'cursor-image-el';
         image.src = imgSrc;
-        image.style.width = '5vw';
+        image.style.width = '3vw';
         image.style.height = 'auto';
         image.style.position = 'absolute';
         image.style.pointerEvents = 'none';

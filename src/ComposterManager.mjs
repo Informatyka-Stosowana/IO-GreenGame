@@ -10,6 +10,8 @@ class ComposterManager {
         // this._composterElement.addEventListener('click', () => this._processTrash());
     }
 
+
+    // TODO remove this probably
     _processTrash() {
         // if (this._currentCompostableTrash) {
         //     console.info('[INFO] Trash is being currently processed');
@@ -34,6 +36,7 @@ class ComposterManager {
             console.info('Processing: ', this._currentCompostableTrash);
             this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
         }
+
         if (this._updatesTillProcessed > 0) {
             this._updatesTillProcessed--;
         } else {

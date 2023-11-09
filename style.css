@@ -86,6 +86,22 @@ td {
     pointer-events: none;
 }
 
+/* TODO make this nice and scalable */
+.enemy-1-img {
+    scale: 0.7;
+    width: 13vw;
+    height: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    pointer-events: none;
+}
+
+
 /* Board */
 #game-board-td-el {
     background-image: url('./resources/grass_tile_background.jpg');

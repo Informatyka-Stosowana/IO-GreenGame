@@ -19,10 +19,6 @@ class Dynamite {
         this._targetCell = cell;
     }
 
-    getUUID() {
-        return this._UUID;
-    }
-
     update() {
         if (this._delay > 0) {
             this._delay--;

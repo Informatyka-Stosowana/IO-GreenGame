@@ -4,8 +4,7 @@ export {Box}
 
 class Box {
     constructor(objectRepository) {
-        this._UUID = crypto.randomUUID();
-        this._hp = 300;
+        this._hp = def.box.HP;
         this._objectRepository = objectRepository;
         this._cell = null;
         this._img = null;
@@ -21,11 +20,6 @@ class Box {
 
     set cell(cell) {
         this._cell = cell;
-        this._cell.setAttribute('objUUID', this._UUID);
-    }
-
-    get UUID() {
-        return this._UUID;
     }
 
     createImg() {

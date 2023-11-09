@@ -11,18 +11,7 @@ class GarbageTruckManager {
         this._truckPosX = 100; // In vw
         this._truckSpeedX = -1; // In vw
 
-        this._img = document.createElement('img');
-        this._img.id = 'garbage-truck-el';
-        this._img.src = def.garbageTruck.IMG_SRC;
-        this._img.style.backgroundColor = "#FFFF00"; // Temporary
-        this._img.style.pointerEvents = 'none';
-        this._img.style.position = 'absolute';
-        this._img.style.width = '20vw';
-        this._img.style.height = '20vh';
-        this._img.style.margin = '0';
-
-        this._img.style.left = 100 + 'vw';
-        this._img.style.top = '69vh';
+        this._createImg();
 
         document.body.appendChild(this._img);
 
@@ -53,6 +42,21 @@ class GarbageTruckManager {
             this._trashSpawned = 0;
             this._randomizeSpawnSpots();
         }
+    }
+
+    _createImg() {
+        this._img = document.createElement('img');
+        this._img.id = 'garbage-truck-el';
+        this._img.src = def.garbageTruck.IMG_SRC;
+        this._img.style.backgroundColor = "#FFFF00"; // Temporary
+        this._img.style.pointerEvents = 'none';
+        this._img.style.position = 'absolute';
+        this._img.style.width = '20vw';
+        this._img.style.height = '20vh';
+        this._img.style.margin = '0';
+
+        this._img.style.left = 100 + 'vw';
+        this._img.style.top = '69vh';
     }
 
     _spawnTrash() {

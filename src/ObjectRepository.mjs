@@ -28,7 +28,7 @@ class ObjectRepository {
     findCellObject(cell) {
         let searchArray = function (array) {
             for (let i = 0; i < array.length; i++) {
-                if (array[i].cell.getAttribute('objuuid') === cell.getAttribute('objuuid')) {
+                if (array[i].cell === cell) {
                     return array[i];
                 }
             }
@@ -43,6 +43,31 @@ class ObjectRepository {
         if (object) return object;
     }
 
+    checkCollision(el) {
+        let getPos = function (el) {
+            let rect = el.getBoundingClientRect();
+            return {left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom};
+        }
+
+        let checkArray = function (el, array) {
+            let cords1 = getPos(el);
+            for (let i = 0; i < array.length; i++) {
+                let cords2 = getPos(array[i].img);
+                if (!(
+                    cords1.top > cords2.bottom ||
+                    cords1.right < cords2.left ||
+                    cords1.bottom < cords2.top ||
+                    cords1.left > cords2.right
+                )) return array[i];
+            }
+            return null;
+        }
+
+        let obj = checkArray(el, this._boxes);
+        // if (!obj) obj = checkArray(el, this._plants) TODO uncomment when plants done
+        return obj;
+    }
+
     addTrash(trash) {
         this._trash.push(trash);
         console.info('[INFO] Trash added: ', trash);
@@ -50,7 +75,7 @@ class ObjectRepository {
 
     removeTrash(trash) {
         for (let i = 0; i < this._trash.length; i++) {
-            if (this._trash[i].UUID === trash.UUID) {
+            if (this._trash[i] === trash) {
                 this._trash.splice(i, 1);
                 console.info('[INFO] Trash removed: ', trash);
                 return;
@@ -66,7 +91,7 @@ class ObjectRepository {
 
     removeEnemy(enemy) {
         for (let i = 0; i < this._enemies.length; i++) {
-            if (this._enemies[i].UUID === enemy.UUID) {
+            if (this._enemies[i] === enemy) {
                 this._enemies.splice(i, 1);
                 console.info('[INFO] Enemy removed: ', enemy);
                 return;
@@ -81,7 +106,7 @@ class ObjectRepository {
 
     removePlant(plant) {
         for (let i = 0; i < this._plants.length; i++) {
-            if (this._plants[i].UUID === plant.UUID) {
+            if (this._plants[i] === plant) {
                 this._plants.splice(i, 1);
                 console.info('[INFO] Plant removed: ', plant);
                 return;
@@ -96,7 +121,7 @@ class ObjectRepository {
 
     removeBox(box) {
         for (let i = 0; i < this._boxes.length; i++) {
-            if (this._boxes[i].UUID === box.UUID) {
+            if (this._boxes[i] === box) {
                 this._boxes.splice(i, 1);
                 console.info('[INFO] Box removed: ', box);
                 return;
@@ -111,7 +136,7 @@ class ObjectRepository {
 
     removeFork(fork) {
         for (let i = 0; i < this._forks.length; i++) {
-            if (this._forks[i].UUID === fork.UUID) {
+            if (this._forks[i] === fork) {
                 this._forks.splice(i, 1);
                 console.info('[INFO] Fork removed: ', fork);
                 return;
@@ -126,7 +151,7 @@ class ObjectRepository {
 
     removeDynamite(dynamite) {
         for (let i = 0; i < this._dynamite.length; i++) {
-            if (this._dynamite[i].getUUID === dynamite.getUUID) {
+            if (this._dynamite[i] === dynamite) {
                 this._dynamite.splice(i, 1);
                 console.info('[INFO] Dynamite removed: ', dynamite);
                 return;

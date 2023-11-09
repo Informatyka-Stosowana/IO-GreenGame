@@ -84,10 +84,10 @@ class GameManager {
 
     gameLoop() {
         if (!this._gamePaused) {
-            // TODO add other things that need updating
             this._composterManager.update();
             this._objectRepository.update();
             this._garbageTruckManager.update();
+            this._enemyManager.update();
 
             // Increment score over time
             if (this._scoreIncrementInterval === def.SCORE_INCREMENT_DIV) {
