@@ -16,6 +16,8 @@ export const Definitions = {
     dynamite: {
         IMG_SRC: './resources/dynamite.png',
         EXPLOSION_DELAY: 50,
+        EXPLOSION_RADIUS: 50,
+        EXPLOSION_DAMAGE: 100,
     },
 
     enemy_1: {
@@ -47,7 +49,7 @@ export const Definitions = {
         AMBIENT_DIV: 1000,
     },
 
-    checkCollision: function (element1, element2) {
+    checkCollision: function (element1, element2, radius) {
         let getPos = function (el) {
             let rect = el.getBoundingClientRect();
             return {left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom};
@@ -56,9 +58,9 @@ export const Definitions = {
         let element1Pos = getPos(element1);
         let element2Pos = getPos(element2);
 
-        return !(element1Pos.top > element2Pos.bottom ||
-            element1Pos.right < element2Pos.left ||
-            element1Pos.bottom < element2Pos.top ||
-            element1Pos.left > element2Pos.right);
+        return !(element1Pos.top + radius > element2Pos.bottom ||
+            element1Pos.right + radius < element2Pos.left ||
+            element1Pos.bottom + radius < element2Pos.top ||
+            element1Pos.left + radius > element2Pos.right);
     }
 };

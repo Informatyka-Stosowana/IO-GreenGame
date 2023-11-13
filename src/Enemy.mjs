@@ -11,6 +11,10 @@ class Enemy {
         this._createImg();
     }
 
+    get img() {
+        return this._img;
+    }
+
     // TODO figure out a way to define difficulty with multiplier/multipliers
 
     update() {
@@ -22,7 +26,7 @@ class Enemy {
     _checkCollision() {
         let array = this._objectRepository.boxes;
         for (let i = 0; i < array.length; i++) {
-            if (def.checkCollision(this._img, array[i].img)) return array[i];
+            if (def.checkCollision(this._img, array[i].img, 0)) return array[i];
         }
         // TODO uncomment when plants done
         // array = this._objectRepository.plants;

@@ -25,16 +25,25 @@ class Dynamite {
             return;
         }
         // TODO add some animations
-        this.destroy();
+        this._destroy();
     }
 
-    destroy() {
+    _destroy() {
         let object = this._objectRepository.findCellObject(this._targetCell);
         if (object) object.removeHp(10_000);
-        // TODO find and damage enemies
+
+        this._damageEnemies();
 
         this._img.parentNode.removeChild(this._img);
-
         this._objectRepository.removeDynamite(this);
     }
+
+    _damageEnemies() {
+        for (let i = 0; i < this._objectRepository.enemies.length; i++) {
+            if (def.checkCollision(this._img, this._objectRepository.enemies[i].img, def.dynamite.EXPLOSION_RADIUS)) {
+                this._objectRepository.enemies[i].removeHp(def.dynamite.EXPLOSION_DAMAGE);
+            }
+        }
+    }
+
 }

@@ -3,44 +3,31 @@ export {Plant}
 class Plant {
     constructor(type) {
         this._type = type;
-        switch (type) {
-            case 1:
-                this._price = 20
-                this._healthPoints = 200;
-                this._attackPower = 30;
-                break;
-            case 2:
-                this._price = 20
-                this._healthPoints = 200;
-                this._attackPower = 30;
-                break;
-            case 3:
-                this._price = 20
-                this._healthPoints = 200;
-                this._attackPower = 30;
-                break;
-            case 4:
-                this._price = 20
-                this._healthPoints = 200;
-                this._attackPower = 30;
-                break;
-        }
-    }
 
-    get type() {
-        return this._type;
+        if (type === 1) {
+            this._price = 20
+            this._hp = 200;
+            this._damage = 30;
+        }
+        if (type === 2) {
+            this._price = 20
+            this._hp = 200;
+            this._damage = 30;
+        }
+        if (type === 3) {
+            this._price = 20
+            this._hp = 200;
+            this._damage = 30;
+        }
+        if (type === 4) {
+            this._price = 20
+            this._hp = 200;
+            this._damage = 30;
+        }
     }
 
     get price() {
         return this._price;
-    }
-
-    get healthPoints() {
-        return this._healthPoints;
-    }
-
-    get attackPower() {
-        return this._attackPower;
     }
 
     update() {
