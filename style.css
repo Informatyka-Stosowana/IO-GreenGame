@@ -58,6 +58,13 @@ td {
     background-size: 100% 100%;
 }
 
+#composter-el #composter-el-img {
+    scale: 0.8;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
 #composter-queue-el {
     position: absolute;
     width: 5vw;

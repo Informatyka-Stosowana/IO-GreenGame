@@ -8,6 +8,7 @@ class ComposterManager {
         this._updatesTillProcessed = null;
         this._currentCompostableTrash = null;
         this._compostableTrashCount = null;
+        this._composterEl = document.getElementById('composter-el');
     }
 
     update() {
@@ -30,6 +31,29 @@ class ComposterManager {
             this._itemRepository.addCompost(this._currentCompostableTrash.compost_amount);
             this._currentCompostableTrash = null;
         }
+
+        this._updateCompostingProgress();
+    }
+
+    _updateCompostingProgress() {
+        if (!this._currentCompostableTrash) {
+            if (this._composterEl.childNodes.length !== 0) {
+                this._composterEl.removeChild(document.getElementById('composter-el-img'));
+            }
+            return;
+        }
+        // Create img if none present
+        if (this._composterEl.innerHTML === '') {
+            let img = document.createElement('img');
+            img.src = this._currentCompostableTrash.imgSrc;
+            img.id = 'composter-el-img';
+            this._composterEl.appendChild(img);
+        }
+
+        let img = document.getElementById('composter-el-img');
+        // 0.8 is the original scale
+        img.style.scale = 0.8 * (this._updatesTillProcessed / this._currentCompostableTrash.composting_time) + '';
+
     }
 
     _updateQueue() {
