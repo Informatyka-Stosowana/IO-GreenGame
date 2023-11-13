@@ -33,8 +33,15 @@ class GameManager {
     // TODO remove this
     forTesting() {
         this._itemRepository.addCompostableTrash(new CompostableTrash(1));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(2));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(2));
         this._itemRepository.addCompostableTrash(new CompostableTrash(2));
         this._itemRepository.addCompostableTrash(new CompostableTrash(3));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(3));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(3));
+        // this._itemRepository.addBoxes(500);
     }
 
     _setStartingResources() {

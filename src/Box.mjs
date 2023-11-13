@@ -35,7 +35,6 @@ class Box {
         if (this._hp - value <= 0) {
             this._objectRepository.removeBox(this);
             this._cell.removeChild(this._img);
-            this._cell.removeAttribute('objUUID');
             return;
         }
         this._hp -= value;

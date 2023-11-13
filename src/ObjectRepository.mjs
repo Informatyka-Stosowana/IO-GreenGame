@@ -10,6 +10,18 @@ class ObjectRepository {
         this._dynamite = [];
     }
 
+    get enemies() {
+        return this._enemies;
+    }
+
+    get plants() {
+        return this._plants;
+    }
+
+    get boxes() {
+        return this._boxes;
+    }
+
     update() {
         this._updateArray(this._trash);
         this._updateArray(this._enemies);
@@ -41,31 +53,6 @@ class ObjectRepository {
         // if (object) return object;
         object = searchArray(this._boxes);
         if (object) return object;
-    }
-
-    checkCollision(el) {
-        let getPos = function (el) {
-            let rect = el.getBoundingClientRect();
-            return {left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom};
-        }
-
-        let checkArray = function (el, array) {
-            let cords1 = getPos(el);
-            for (let i = 0; i < array.length; i++) {
-                let cords2 = getPos(array[i].img);
-                if (!(
-                    cords1.top > cords2.bottom ||
-                    cords1.right < cords2.left ||
-                    cords1.bottom < cords2.top ||
-                    cords1.left > cords2.right
-                )) return array[i];
-            }
-            return null;
-        }
-
-        let obj = checkArray(el, this._boxes);
-        // if (!obj) obj = checkArray(el, this._plants) TODO uncomment when plants done
-        return obj;
     }
 
     addTrash(trash) {

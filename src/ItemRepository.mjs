@@ -27,11 +27,13 @@ class ItemRepository {
 
     addCompost(value) {
         this._compost += value;
+        document.getElementById('compost-amount-el').innerText = 'compost amount: ' + this._compost;
         console.info('[INFO] Compost added, total: ', this.compost);
     }
 
     removeCompost(value) {
         this._compost -= value;
+        document.getElementById('compost-amount-el').innerText = 'compost amount: ' + this._compost;
         console.info('[INFO] Compost removed, total: ', this.compost);
     }
 

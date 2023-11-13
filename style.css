@@ -11,7 +11,6 @@ table {
     border-collapse: collapse;
 }
 
-
 td {
     position: relative;
     /*border: 1px solid black;*/
@@ -65,6 +64,18 @@ td {
     height: 65vh;
     margin-top: 10vh;
     background: saddlebrown;
+}
+
+#composter-queue-el td {
+    border: 1px solid black;
+    height: 10vh;
+    text-align: center;
+}
+
+#composter-queue-el .composter-queue-td-img {
+    scale: 0.8;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 /* Images */
@@ -143,8 +154,7 @@ td {
 .enemy-1-img {
     scale: 0.7;
     width: 13vw;
-    height: auto;
-    display: block;
+    height: 10vh;
     position: absolute;
     top: 0;
     left: 0;

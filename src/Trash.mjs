@@ -15,33 +15,32 @@ class Trash {
         this._itemRepository = itemRepository;
         this._objectRepository = objectRepository;
         this._type = type;
-        this._posX = posX;
-        this._posY = posY;
+        this._timeTillDisappear = def.trash.TIME_TILL_DISAPPEAR;
         this._img = document.createElement('img');
 
         switch (type) {
             case 1:
                 this._img.src = def.box.IMG_SRC;
+                this._img.style.width = '3vw';
                 break;
             case 2:
-                // this._img.src = def.box.IMG_SRC;
-                this._img.style.backgroundColor = "#FF0000"; // Temporary
+                this._img.src = def.compostableTrash.type1.IMG_SRC;
+                this._img.style.width = '4vw';
                 break;
             case 3:
-                // this._img.src = def.box.IMG_SRC;
-                this._img.style.backgroundColor = "#FF00FF"; // Temporary
+                this._img.src = def.compostableTrash.type2.IMG_SRC;
+                this._img.style.width = '4vw';
                 break;
             case 4:
-                // this._img.src = def.box.IMG_SRC;
-                this._img.style.backgroundColor = "#6500FF"; // Temporary
+                this._img.src = def.compostableTrash.type3.IMG_SRC;
+                this._img.style.width = '4vw';
                 break;
         }
 
         this._img.style.left = posX + 'vw';
         this._img.style.top = posY + 'vh';
         this._img.style.position = 'absolute';
-        this._img.style.width = '3vw';
-        this._img.style.height = 'auto'; // TODO change to auto after adding images
+        this._img.style.height = 'auto';
         this._img.style.margin = '0';
 
         document.body.insertBefore(this._img, document.getElementById('garbage-truck-el'));
@@ -51,7 +50,14 @@ class Trash {
     }
 
     update() {
-        // TODO add animation
+        if (this._timeTillDisappear > 0) {
+            this._timeTillDisappear--;
+            if (this._timeTillDisappear < def.trash.TIME_FADING)
+                this._img.style.opacity = this._timeTillDisappear / def.trash.TIME_FADING + '';
+        } else {
+            this._selfDelete();
+        }
+        // TODO add animation?
     }
 
     _collect(event) {
@@ -59,6 +65,10 @@ class Trash {
         if (this._type === 2) this._itemRepository.addCompostableTrash(new CompostableTrash(1));
         if (this._type === 3) this._itemRepository.addCompostableTrash(new CompostableTrash(2));
         if (this._type === 4) this._itemRepository.addCompostableTrash(new CompostableTrash(3));
+        this._selfDelete()
+    }
+
+    _selfDelete() {
         this._objectRepository.removeTrash(this);
         document.body.removeChild(this._img);
     }

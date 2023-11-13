@@ -1,39 +1,26 @@
 export {ComposterManager}
 
 class ComposterManager {
+    _
+
     constructor(itemRepository) {
         this._itemRepository = itemRepository;
         this._updatesTillProcessed = null;
         this._currentCompostableTrash = null;
-
-        this._composterElement = document.getElementById('composter-el');
-        // this._composterElement.addEventListener('click', () => this._processTrash());
-    }
-
-
-    // TODO remove this probably
-    _processTrash() {
-        // if (this._currentCompostableTrash) {
-        //     console.info('[INFO] Trash is being currently processed');
-        //     return;
-        // }
-        // if (this._itemRepository.getCompostableTrashSize() === 0) {
-        //     console.info('[INFO] No trash to process');
-        //     return;
-        // }
-        // this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
-        // this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
-        // this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
-
-        console.info('[INFO] Composting started, composting time: ', this._currentCompostableTrash.composting_time);
+        this._compostableTrashCount = null;
     }
 
     update() {
+        if (this._itemRepository.getCompostableTrashSize() !== this._compostableTrashCount) {
+            this._compostableTrashCount = this._itemRepository.getCompostableTrashSize();
+            this._updateQueue();
+        }
+
         if (!this._currentCompostableTrash) {
             if (this._itemRepository.getCompostableTrashSize() === 0) return;
             this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
             this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
-            console.info('Processing: ', this._currentCompostableTrash);
+            console.info('[INFO] Processing: ', this._currentCompostableTrash);
             this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
         }
 
@@ -44,4 +31,26 @@ class ComposterManager {
             this._currentCompostableTrash = null;
         }
     }
+
+    _updateQueue() {
+        let queueEl = document.getElementById('composter-queue-el');
+        let tdArray = queueEl.getElementsByTagName('td');
+
+        // Remove previous images
+        for (let i = 0; i < tdArray.length; i++) {
+            tdArray[i].innerHTML = '';
+        }
+
+        for (let i = 0; i < tdArray.length; i++) {
+            if (this._itemRepository.getCompostableTrashSize() === i) return;
+
+            let img = document.createElement('img');
+            img.src = this._itemRepository.getCompostableTrash(i).imgSrc;
+            img.className = 'composter-queue-td-img';
+
+            tdArray[i].appendChild(img);
+        }
+    }
+
+    // TODO add fading current compostable trash
 }
