@@ -31,7 +31,6 @@ class Dynamite {
     _destroy() {
         let object = this._objectRepository.findCellObject(this._targetCell);
         if (object) object.removeHp(10_000);
-
         this._damageEnemies();
 
         this._img.parentNode.removeChild(this._img);
@@ -39,10 +38,14 @@ class Dynamite {
     }
 
     _damageEnemies() {
+        let enemiesToDamage = [];
         for (let i = 0; i < this._objectRepository.enemies.length; i++) {
             if (def.checkCollision(this._img, this._objectRepository.enemies[i].img, def.dynamite.EXPLOSION_RADIUS)) {
-                this._objectRepository.enemies[i].removeHp(def.dynamite.EXPLOSION_DAMAGE);
+                enemiesToDamage.push(this._objectRepository.enemies[i]);
             }
+        }
+        for (let i = 0; i < enemiesToDamage.length; i++) {
+            enemiesToDamage[i].removeHp(def.dynamite.EXPLOSION_DAMAGE);
         }
     }
 

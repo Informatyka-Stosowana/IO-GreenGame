@@ -26,7 +26,7 @@ class Enemy {
     _checkCollision() {
         let array = this._objectRepository.boxes;
         for (let i = 0; i < array.length; i++) {
-            if (def.checkCollision(this._img, array[i].img, 0)) return array[i];
+            if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
         }
         // TODO uncomment when plants done
         // array = this._objectRepository.plants;

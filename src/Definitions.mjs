@@ -16,7 +16,7 @@ export const Definitions = {
     dynamite: {
         IMG_SRC: './resources/dynamite.png',
         EXPLOSION_DELAY: 50,
-        EXPLOSION_RADIUS: 50,
+        EXPLOSION_RADIUS: 2, // How much bigger is the collision box, scale factor
         EXPLOSION_DAMAGE: 100,
     },
 
@@ -46,21 +46,39 @@ export const Definitions = {
     },
 
     enemyManager: {
-        AMBIENT_DIV: 1000,
+        AMBIENT_DIV: 100,
     },
 
-    checkCollision: function (element1, element2, radius) {
-        let getPos = function (el) {
+    checkCollision: function (element1, element2, scaleFactor) {
+        let getPos = function (el, scale) {
             let rect = el.getBoundingClientRect();
-            return {left: rect.left, top: rect.top, right: rect.right, bottom: rect.bottom};
-        }
 
-        let element1Pos = getPos(element1);
-        let element2Pos = getPos(element2);
+            let scaledWidth = rect.width * scale;
+            let scaledHeight = rect.height * scale;
 
-        return !(element1Pos.top + radius > element2Pos.bottom ||
-            element1Pos.right + radius < element2Pos.left ||
-            element1Pos.bottom + radius < element2Pos.top ||
-            element1Pos.left + radius > element2Pos.right);
+            // let boundingBox = document.createElement('div');
+            // boundingBox.style.position = 'absolute';
+            // boundingBox.style.left = rect.left - (scaledWidth - rect.width) / 2 + 'px';
+            // boundingBox.style.top = rect.top - (scaledHeight - rect.height) / 2 + 'px';
+            // boundingBox.style.width = rect.width * scaleFactor + 'px';
+            // boundingBox.style.height = rect.height * scaleFactor + 'px';
+            // boundingBox.style.border = '2px solid red'; // You can adjust the border style as needed
+            // document.body.appendChild(boundingBox);
+
+            return {
+                top: rect.top - (scaledHeight - rect.height) / 2,
+                right: rect.right + (scaledWidth - rect.width) / 2,
+                bottom: rect.bottom + (scaledHeight - rect.height) / 2,
+                left: rect.left - (scaledWidth - rect.width) / 2
+            };
+        };
+
+        let element1Pos = getPos(element1, scaleFactor);
+        let element2Pos = getPos(element2, 1);
+
+        return !(element1Pos.top > element2Pos.bottom ||
+            element1Pos.right < element2Pos.left ||
+            element1Pos.bottom < element2Pos.top ||
+            element1Pos.left > element2Pos.right);
     }
 };
