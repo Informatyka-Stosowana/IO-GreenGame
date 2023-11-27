@@ -30,7 +30,6 @@ export class Bullet {
     }
 
     _move() {
-        // TODO check collision and damage enemies
         this._img.style.left = (parseFloat(this._img.style.left) + def.bullet[this._type].SPEED / 100) + 'vw';
     }
 
