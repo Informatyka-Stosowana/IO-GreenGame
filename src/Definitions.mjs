@@ -21,24 +21,46 @@ export const Definitions = {
     },
 
     enemy: {
-        type: [{
-            // Type 0 - weak
-            IMG_SRC: './resources/enemy_1_placeholder.png',
-            HP: 100,
-            DAMAGE: 10,
-            SPEED: 5, // In vw divided by 100
-            // ATTACK_SPEED: 25, // Cool-down in ticks
-        }]
+        type: [
+            {
+                // Type 0 - weak
+                IMG_SRC: './resources/enemy_1_placeholder.png',
+                HP: 100,
+                DAMAGE: 10,
+                SPEED: 5, // In vw divided by 100
+                // ATTACK_SPEED: 25, // Cool-down in ticks
+            }
+        ]
 
     },
 
-    bullet: {
-        type: [{
+    plant: {
+        type: [
             // Type 0 - normal
-            IMG_SRC: './resources/bullet_0.png',
-            DAMAGE: 30,
-            SPEED: 10 // In vw divided by 100
-        }]
+            {
+                IMG_SRC: './resources/plant_0.png',
+                HP: 1000,
+                ATTACK_SPEED_DIV: 100,
+            }
+        ]
+    },
+
+    bullet: {
+        type: [
+            // Type 0 - normal
+            {
+                IMG_SRC: './resources/bullet_0.png',
+                DAMAGE: 30,
+                SPEED: 10 // In vw divided by 100
+            },
+            // Type 1 - frozen
+            {
+                IMG_SRC: './resources/bullet_1.png',
+                DAMAGE: 15,
+                SPEED: 13, // In vw divided by 100
+                FREEZE_TIME: 200
+            }
+        ]
     },
 
     trash: {
@@ -47,15 +69,26 @@ export const Definitions = {
     },
 
     compostableTrash: {
-        type1: {
-            IMG_SRC: './resources/rotten_apple.png'
-        },
-        type2: {
-            IMG_SRC: './resources/rotten_banana.png'
-        },
-        type3: {
-            IMG_SRC: './resources/rotten_cabbage.png'
-        },
+        type: [
+            // Type 0 - rotten apple
+            {
+                IMG_SRC: './resources/rotten_apple.png',
+                COMPOST_AMOUNT: 5,
+                COMPOSTING_TIME: 500,
+            },
+            // Type 1 - rotten banana
+            {
+                IMG_SRC: './resources/rotten_banana.png',
+                COMPOST_AMOUNT: 15,
+                COMPOSTING_TIME: 1000,
+            },
+            // Type 2 - rotten cabbage
+            {
+                IMG_SRC: './resources/rotten_cabbage.png',
+                COMPOST_AMOUNT: 15,
+                COMPOSTING_TIME: 2000,
+            }
+        ]
     },
 
     enemyManager: {
@@ -68,16 +101,6 @@ export const Definitions = {
 
             let scaledWidth = rect.width * scale;
             let scaledHeight = rect.height * scale;
-
-            // Just for testing
-            // let boundingBox = document.createElement('div');
-            // boundingBox.style.position = 'absolute';
-            // boundingBox.style.left = rect.left - (scaledWidth - rect.width) / 2 + 'px';
-            // boundingBox.style.top = rect.top - (scaledHeight - rect.height) / 2 + 'px';
-            // boundingBox.style.width = rect.width * scaleFactor + 'px';
-            // boundingBox.style.height = rect.height * scaleFactor + 'px';
-            // boundingBox.style.border = '2px solid red'; // You can adjust the border style as needed
-            // document.body.appendChild(boundingBox);
 
             return {
                 top: rect.top - (scaledHeight - rect.height) / 2,

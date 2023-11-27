@@ -11,6 +11,7 @@ class ComposterManager {
         this._composterEl = document.getElementById('composter-el');
     }
 
+    // TODO remove compostable trash, make array of types (int) of compostable trash
     update() {
 
         // Update queue if count changed

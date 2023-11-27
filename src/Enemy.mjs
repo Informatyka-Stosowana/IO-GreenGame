@@ -6,7 +6,7 @@ class Enemy {
     constructor(type, objectRepository, row) {
         this._type = type;
         this._objectRepository = objectRepository;
-        this._hp = def.enemy[this._type].HP;
+        this._hp = def.enemy.type[this._type].HP;
 
         this._cell = document.getElementById('enemy-td-element-' + row);
         this._createImg();
@@ -20,7 +20,7 @@ class Enemy {
 
     update() {
         let collisionObj = this._checkCollision();
-        if (collisionObj) collisionObj.removeHp(def.enemy[this._type].DAMAGE);
+        if (collisionObj) collisionObj.removeHp(def.enemy.type[this._type].DAMAGE);
         else this._move();
     }
 
@@ -38,7 +38,7 @@ class Enemy {
     }
 
     _move() {
-        this._img.style.left = (parseFloat(this._img.style.left) - def.enemy[this._type].SPEED / 100) + 'vw';
+        this._img.style.left = (parseFloat(this._img.style.left) - def.enemy.type[this._type].SPEED / 100) + 'vw';
         if (parseFloat(this._img.style.left) < -68) {
             // TODO activate mouse trap or end game
             this.removeHp(10_000) // temporary
@@ -47,7 +47,7 @@ class Enemy {
 
     _createImg() {
         this._img = document.createElement("img");
-        this._img.src = def.enemy[this._type].IMG_SRC;
+        this._img.src = def.enemy.type[this._type].IMG_SRC;
         this._img.style.pointerEvents = 'none';
         this._img.className = 'enemy-0-img';
         this._img.style.left = 15 + 'vw';

@@ -32,10 +32,9 @@ class GameManager {
 
     // TODO remove this
     forTesting() {
+        this._itemRepository.addCompostableTrash(new CompostableTrash(0));
         this._itemRepository.addCompostableTrash(new CompostableTrash(1));
-        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
-        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
-        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
+        this._itemRepository.addCompostableTrash(new CompostableTrash(2));
         this._itemRepository.addDynamite(500);
     }
 
@@ -72,7 +71,7 @@ class GameManager {
             cover.style.width = 100 + 'vw';
             cover.style.height = 100 + 'vh';
             cover.style.background = '#000000';
-            cover.style.opacity = 0.7;
+            cover.style.opacity = '0.7';
             document.body.appendChild(cover);
         } else {
             document.title = "Green Game";
