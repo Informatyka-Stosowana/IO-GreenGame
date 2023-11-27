@@ -12,11 +12,14 @@ class ComposterManager {
     }
 
     update() {
+
+        // Update queue if count changed
         if (this._itemRepository.getCompostableTrashSize() !== this._compostableTrashCount) {
             this._compostableTrashCount = this._itemRepository.getCompostableTrashSize();
             this._updateQueue();
         }
 
+        // Add next trash to process if empty
         if (!this._currentCompostableTrash) {
             if (this._itemRepository.getCompostableTrashSize() === 0) return;
             this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
@@ -25,6 +28,7 @@ class ComposterManager {
             this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
         }
 
+        // Finish processing check
         if (this._updatesTillProcessed > 0) {
             this._updatesTillProcessed--;
         } else {
@@ -32,6 +36,7 @@ class ComposterManager {
             this._currentCompostableTrash = null;
         }
 
+        // Animation
         this._updateCompostingProgress();
     }
 
@@ -42,6 +47,7 @@ class ComposterManager {
             }
             return;
         }
+
         // Create img if none present
         if (this._composterEl.innerHTML === '') {
             let img = document.createElement('img');
@@ -51,8 +57,8 @@ class ComposterManager {
         }
 
         let img = document.getElementById('composter-el-img');
-        // 0.8 is the original scale
-        img.style.scale = 0.8 * (this._updatesTillProcessed / this._currentCompostableTrash.composting_time) + '';
+        // 0.8 is the original scale, maybe move this to definitions
+        img.style.scale = (this._updatesTillProcessed / this._currentCompostableTrash.composting_time) + '';
 
     }
 

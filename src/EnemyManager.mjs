@@ -21,7 +21,7 @@ export class EnemyManager {
     }
 
     spawnEnemy() {
-        let newEnemy = new Enemy(1, this._objectRepositroy, Math.floor(Math.random() * 5));
+        let newEnemy = new Enemy(0, this._objectRepositroy, Math.floor(Math.random() * 5));
         this._objectRepositroy.addEnemy(newEnemy);
     }
 }

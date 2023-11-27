@@ -20,12 +20,25 @@ export const Definitions = {
         EXPLOSION_DAMAGE: 100,
     },
 
-    enemy_1: {
-        IMG_SRC: './resources/enemy_1_placeholder.png',
-        HP: 100,
-        DAMAGE: 10,
-        SPEED: 5, // In vw divided by 100
-        // ATTACK_SPEED: 25, // Cool-down in ticks
+    enemy: {
+        type: [{
+            // Type 0 - weak
+            IMG_SRC: './resources/enemy_1_placeholder.png',
+            HP: 100,
+            DAMAGE: 10,
+            SPEED: 5, // In vw divided by 100
+            // ATTACK_SPEED: 25, // Cool-down in ticks
+        }]
+
+    },
+
+    bullet: {
+        type: [{
+            // Type 0 - normal
+            IMG_SRC: './resources/bullet_0.png',
+            DAMAGE: 30,
+            SPEED: 10 // In vw divided by 100
+        }]
     },
 
     trash: {
@@ -56,6 +69,7 @@ export const Definitions = {
             let scaledWidth = rect.width * scale;
             let scaledHeight = rect.height * scale;
 
+            // Just for testing
             // let boundingBox = document.createElement('div');
             // boundingBox.style.position = 'absolute';
             // boundingBox.style.left = rect.left - (scaledWidth - rect.width) / 2 + 'px';

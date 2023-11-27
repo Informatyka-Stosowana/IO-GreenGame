@@ -28,8 +28,8 @@ fontsize=14
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>510</x>
-      <y>42</y>
+      <x>414</x>
+      <y>0</y>
       <w>234</w>
       <h>180</h>
     </coordinates>
@@ -58,101 +58,110 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>516</x>
-      <y>366</y>
-      <w>108</w>
-      <h>96</h>
+      <x>420</x>
+      <y>324</y>
+      <w>126</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>GameManager
 -
 -score: int
 -
 +startGame(): void
++stopGame(): void
 +pauseGame(): void
++resetGame(): void
++quitGame(): void
+-_gameLoop(): void
+-_setStartingResources(): void
 -
 Responsibilities
 -- Initialize the game
--- Main loop
--- Send info to backend</panel_attributes>
+-- Send updates to everything</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>708</x>
-      <y>654</y>
+      <x>606</x>
+      <y>612</y>
       <w>90</w>
-      <h>102</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Trash
 -
 -type: int
--pos_x: int
--pos_y: int
+-_img: HTMLElement
 -
-+collect(): void
++update(): void
+-_collect(event: EventListener): void
 -
 Responsibilities
--- Lay on the ground
 -- On collect add item</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>360</x>
-      <y>270</y>
-      <w>180</w>
-      <h>60</h>
+      <x>276</x>
+      <y>216</y>
+      <w>156</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>Composter
 -
-+processTrash(): void
 +update(): void
+-_processTrash(): void
+-_updateQueue(): void
+-_updateCompostingProgress(): void
 -
 Responsibilities
--- Manage compostable items</panel_attributes>
+-- Process compostable trash
+-- Add compost</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>594</y>
+      <x>354</x>
+      <y>498</y>
       <w>132</w>
-      <h>72</h>
+      <h>114</h>
     </coordinates>
     <panel_attributes>GarbageTruckManager
 -
--timer: int
+-_img: HTMLElement
 -
 +update(): void
-+spawnTrash(amount: int): void
+-_spawnTrash(): void
+-_createImg(): void
+-_randomizeSpawnSpots(): void
+-_newTruckPosX(): void
 -
 Responsibilities
--- Spawn random items 
+-- Spawn random trash 
    for player to collect</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>528</x>
-      <y>324</y>
-      <w>24</w>
+      <x>384</x>
+      <y>300</y>
+      <w>48</w>
       <h>54</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
 m2=
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;60.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>564</x>
-      <y>216</y>
+      <x>468</x>
+      <y>174</y>
       <w>24</w>
       <h>162</h>
     </coordinates>
@@ -165,47 +174,46 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>516</x>
-      <y>216</y>
+      <x>420</x>
+      <y>174</y>
       <w>24</w>
-      <h>66</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
 m2=
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>546</x>
-      <y>456</y>
+      <x>450</x>
+      <y>450</y>
       <w>24</w>
-      <h>150</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
 m2=
 </panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1158</x>
-      <y>630</y>
+      <x>1032</x>
+      <y>582</y>
       <w>90</w>
       <h>90</h>
     </coordinates>
     <panel_attributes>Plant
 -
--type: int
--hp: int
+-_type: int
+-_hp: int
 -
 +update(): void
-+attack(): void
-+hit(amount: int): void
++removeHp(amount: int): void
 -
 Responsibilities
 -- Shoot bullets</panel_attributes>
@@ -214,30 +222,31 @@ Responsibilities
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1224</x>
-      <y>444</y>
+      <x>1032</x>
+      <y>378</y>
       <w>138</w>
       <h>96</h>
     </coordinates>
     <panel_attributes>Box
 -
--hp: int
+-_hp: int
+-_cell: HTMLElement
 -
 +set cell(cell: HTMLElement): void
 +removeHp(amount: int): void
 +createImg(): void
 -
 Responsibilities
--- Just sit there</panel_attributes>
+-- Block enemies</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>876</x>
-      <y>492</y>
-      <w>168</w>
-      <h>198</h>
+      <x>780</x>
+      <y>450</y>
+      <w>174</w>
+      <h>282</h>
     </coordinates>
     <panel_attributes>ObjectRepository
 -
@@ -246,6 +255,7 @@ Responsibilities
 -plants: Array&lt;Plant&gt;
 -boxes: Array&lt;Box&gt; 
 -forks: Array&lt;Fork&gt; 
+-bullets: Array&lt;Bullet&gt; 
 -
 +update(): void
 -_updateArray(array: Array&lt;&gt;): void
@@ -260,28 +270,31 @@ Responsibilities
 +removeBox(box: Box): void
 +addFork(fork: Fork): void
 +removeFork(fork: Fork): void
-
-
++addDynamite(dynamite: Dynamite): void
++removeDynamite(dynamite: Dynamite): void
++addBullet(bullet: Bullet): void
++removeBullet(bullet: Bullet): void
 -
 Responsibilities
 -- Store plants, boxes,
-   trash and forks</panel_attributes>
+   trash and forks
+-- Send update to everything</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1098</x>
-      <y>522</y>
+      <x>1032</x>
+      <y>480</y>
       <w>114</w>
       <h>72</h>
     </coordinates>
     <panel_attributes>Fork
 -
--pos_x: int
+-_img: HTMLElement
 -
 +update(): void
-+attack(): void
+-_damageEnemies(): void
 -
 Responsibilities
 -- Damage enemies on line</panel_attributes>
@@ -290,74 +303,76 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1038</x>
-      <y>648</y>
-      <w>132</w>
+      <x>948</x>
+      <y>600</y>
+      <w>96</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>606</x>
-      <y>456</y>
+      <x>510</x>
+      <y>450</y>
       <w>282</w>
-      <h>96</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
 m2=
 </panel_attributes>
-    <additional_attributes>450.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+    <additional_attributes>450.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>792</x>
-      <y>672</y>
-      <w>96</w>
+      <x>690</x>
+      <y>630</y>
+      <w>102</w>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1</panel_attributes>
-    <additional_attributes>10.0;10.0;140.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1038</x>
-      <y>534</y>
-      <w>72</w>
+      <x>948</x>
+      <y>492</y>
+      <w>96</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>984</x>
-      <y>744</y>
-      <w>114</w>
-      <h>102</h>
+      <x>1134</x>
+      <y>624</y>
+      <w>126</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>Enemy
 -
--type: int
--hp: int
--pos_x: int
+-_type: int
+-_hp: int
 -
 +update(): void
-+attack(): void
++removeHp(amount: int): void
+-_checkCollision(): Object
+-_move(): void
+-_createImg(): void
 -
 Responsibilities
 -- Damage objects on board</panel_attributes>
@@ -366,54 +381,24 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>684</y>
-      <w>24</w>
-      <h>72</h>
+      <x>948</x>
+      <y>666</y>
+      <w>198</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>336</x>
-      <y>384</y>
-      <w>168</w>
-      <h>96</h>
-    </coordinates>
-    <panel_attributes>Kliknięcie na element w kolejce 
-rozpoczyna tworzenie kompostu
-- edit: chyba jednak nie, wydaje sie być
-monotonne dosyć, zamiast tego elementy same 
-wpadają do kompostownika 
-
-pokazanie progresu poprzez znikanie
-kompostowanego przedmiotu
-tj. zapada sie w kompost</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>414</x>
-      <y>324</y>
-      <w>18</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>336</x>
-      <y>42</y>
+      <x>240</x>
+      <y>18</y>
       <w>114</w>
-      <h>102</h>
+      <h>72</h>
     </coordinates>
     <panel_attributes>CompostableTrash
 -
@@ -422,18 +407,14 @@ tj. zapada sie w kompost</panel_attributes>
 -composting_time: int
 -
 +getCompostAmount: int
-+getCompostingTime: int
--
-Responsibilities
--- Lay on the ground
--- On collect add item</panel_attributes>
++getCompostingTime: int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>444</x>
-      <y>90</y>
+      <x>348</x>
+      <y>48</y>
       <w>78</w>
       <h>30</h>
     </coordinates>
@@ -446,16 +427,16 @@ m2=
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>276</y>
+      <x>564</x>
+      <y>234</y>
       <w>192</w>
-      <h>180</h>
+      <h>162</h>
     </coordinates>
     <panel_attributes>ShopManager
 -
 -_itemRepository: ItemRepository;
--_boardManager = BoardManager;
--_index: int
+-_boardManager: BoardManager;
+-_thing: Object
 -_isInBuyingMode: boolean
 -
 -_addShopEventListeners: void
@@ -464,8 +445,6 @@ m2=
 -_finalize(cell: HTMLElement): void
 -_addCellEventListeners():void
 -_removeCellEventListeners(): void
--_highlightCell(event: Event): void
--_clearCellHighlight(event: Event): void
 -_handleClick(event: Event): void
 -
 Responsibilities
@@ -476,8 +455,8 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>216</y>
+      <x>588</x>
+      <y>174</y>
       <w>24</w>
       <h>72</h>
     </coordinates>
@@ -490,22 +469,22 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>822</x>
-      <y>450</y>
+      <x>726</x>
+      <y>390</y>
       <w>66</w>
-      <h>78</h>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0;90.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;90.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>330</y>
+      <x>504</x>
+      <y>288</y>
       <w>72</w>
       <h>48</h>
     </coordinates>
@@ -518,8 +497,8 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>576</x>
-      <y>630</y>
+      <x>480</x>
+      <y>588</y>
       <w>312</w>
       <h>30</h>
     </coordinates>
@@ -532,72 +511,49 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1038</x>
-      <y>492</y>
-      <w>198</w>
+      <x>948</x>
+      <y>450</y>
+      <w>96</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>306</x>
-      <y>156</y>
-      <w>414</w>
-      <h>570</h>
+      <x>210</x>
+      <y>114</y>
+      <w>408</w>
+      <h>522</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
 m2=
 </panel_attributes>
-    <additional_attributes>340.0;10.0;10.0;10.0;10.0;930.0;670.0;930.0</additional_attributes>
+    <additional_attributes>340.0;10.0;10.0;10.0;10.0;850.0;660.0;850.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>318</x>
-      <y>192</y>
-      <w>204</w>
-      <h>468</h>
+      <x>246</x>
+      <y>150</y>
+      <w>180</w>
+      <h>456</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;&gt;
 m1=1
 m2=
 </panel_attributes>
-    <additional_attributes>320.0;10.0;10.0;10.0;10.0;760.0;220.0;760.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>348</x>
-      <y>522</y>
-      <w>162</w>
-      <h>42</h>
-    </coordinates>
-    <panel_attributes>Contains itemRepository
-so it can be passed to trash</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>438</x>
-      <y>558</y>
-      <w>48</w>
-      <h>48</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>60.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>280.0;10.0;10.0;10.0;10.0;740.0;180.0;740.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1032</x>
+      <x>858</x>
       <y>378</y>
       <w>156</w>
       <h>54</h>
@@ -607,68 +563,70 @@ so it can be passed to trash</panel_attributes>
 +update();
 -
 Responsibilities
--- Just sit there kill enemy when touched</panel_attributes>
+-- Kill enemy when touched</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>978</x>
-      <y>414</y>
-      <w>66</w>
-      <h>90</h>
+      <x>834</x>
+      <y>402</y>
+      <w>36</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>90.0;10.0;10.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>40.0;10.0;10.0;10.0;10.0;80.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>924</x>
-      <y>288</y>
+      <x>966</x>
+      <y>696</y>
       <w>156</w>
-      <h>78</h>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Dynamite
 -
+-_img: HTMLElement
 -
-+destroy(cell: HTMLElement): void
++destroy(): void
+-_damageEnemies(): void
 -
 Responsibilities
 -- Destroy plants and boxes
--- Damage enemies - opt.
+-- Damage enemies
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>942</x>
-      <y>360</y>
-      <w>24</w>
-      <h>144</h>
+      <x>918</x>
+      <y>726</y>
+      <w>60</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1
 m2=*
 </panel_attributes>
-    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;80.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>648</x>
-      <y>552</y>
+      <x>552</x>
+      <y>510</y>
       <w>144</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>EnemyManager
 -
 +update(): void
-+spawnEnemies(): void
+-_spawnEnemies(): void
 -
 Responsibilities
 -- Spawn enemies, manage waves</panel_attributes>
@@ -677,8 +635,8 @@ Responsibilities
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>786</x>
-      <y>582</y>
+      <x>690</x>
+      <y>540</y>
       <w>102</w>
       <h>30</h>
     </coordinates>
@@ -691,45 +649,44 @@ m2=1
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>582</x>
-      <y>456</y>
+      <x>486</x>
+      <y>450</y>
       <w>78</w>
-      <h>144</h>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;210.0;110.0;210.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0;110.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1038</x>
-      <y>606</y>
-      <w>258</w>
+      <x>948</x>
+      <y>564</y>
+      <w>216</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>410.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1284</x>
-      <y>594</y>
+      <x>1152</x>
+      <y>528</y>
       <w>90</w>
       <h>72</h>
     </coordinates>
     <panel_attributes>Bullet
 -
--_hp?
 -_damage: int
 -
--_attack()
++update(): void
 -
 Responsibilities
 - Damage enemies</panel_attributes>
