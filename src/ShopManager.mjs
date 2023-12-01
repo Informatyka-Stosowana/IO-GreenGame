@@ -12,12 +12,7 @@ export class ShopManager {
         this._thing = null;
 
         this._handleCellClick = this._handleCellClick.bind(this);
-        this._clearCellHighlight = this._clearCellHighlight.bind(this);
-        this._highlightCell = this._highlightCell.bind(this);
-
         this._handleShopClick = this._handleShopClick.bind(this);
-
-        // TODO maybe move to a different class
         this._handleCursorImg = this._handleCursorImg.bind(this);
         this._clearCursorImg = this._clearCursorImg.bind(this);
 
@@ -136,8 +131,6 @@ export class ShopManager {
         let shopCells = document.getElementsByClassName('shop-el');
 
         for (let i = 0; i < shopCells.length; i++) {
-            // shopCells[i].addEventListener('mouseover', this._highlightCell);
-            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
             shopCells[i].addEventListener('click', this._handleShopClick);
         }
     }
@@ -146,8 +139,6 @@ export class ShopManager {
         let shopCells = document.getElementsByClassName('shop-el');
 
         for (let i = 0; i < shopCells.length; i++) {
-            // shopCells[i].addEventListener('mouseover', this._highlightCell);
-            // shopCells[i].addEventListener('mouseout', this._clearCellHighlight);
             shopCells[i].removeEventListener('click', this._handleShopClick);
         }
     }
@@ -198,8 +189,6 @@ export class ShopManager {
         let cells = table.getElementsByTagName('td');
 
         for (let i = 0; i < cells.length; i++) {
-            // cells[i].addEventListener('mouseover', this._highlightCell);
-            // cells[i].addEventListener('mouseout', this._clearCellHighlight);
             cells[i].addEventListener('click', this._handleCellClick);
         }
     }
@@ -209,28 +198,8 @@ export class ShopManager {
         let cells = table.getElementsByTagName('td');
 
         for (let i = 0; i < cells.length; i++) {
-            // cells[i].removeEventListener('mouseover', this._highlightCell);
-            // cells[i].removeEventListener('mouseout', this._clearCellHighlight);
             cells[i].removeEventListener('click', this._handleCellClick);
         }
-    }
-
-    _highlightCell(event) {
-        if (event.target.className === 'mouse-trap-td-element') return;
-        if (event.target.className === 'enemy-td-element') return;
-        // Block ability to place stuff on top of different stuff, except for Fork and Dynamite
-        if (event.target.childNodes.length !== 0 &&
-            !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
-        event.target.style.backgroundColor = 'yellow';
-    }
-
-    _clearCellHighlight(event) {
-        if (event.target.className === 'mouse-trap-td-element') return;
-        if (event.target.className === 'enemy-td-element') return;
-        // Block ability to place stuff on top of different stuff, except for Fork and Dynamite
-        if (event.target.childNodes.length !== 0 &&
-            !((this._thing instanceof Fork) || (this._thing instanceof Dynamite))) return;
-        event.target.style.backgroundColor = '';
     }
 
     _checkCellClick(event) {

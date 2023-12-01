@@ -1,6 +1,8 @@
 import {Definitions as def} from "./Definitions.mjs";
 
 export class Fork {
+    damage
+
     constructor(objectRepository) {
         this._img = null;
         this._objectRepository = objectRepository;
@@ -16,9 +18,11 @@ export class Fork {
     }
 
     update() {
-        let collisionObj = this._checkCollision();
-        if (collisionObj) {
-            collisionObj.removeHp(def.fork.DAMAGE);
+        let collidingEnemies = this._checkCollision();
+        if (collidingEnemies.length !== 0) {
+            for (let i = 0; i < collidingEnemies.length; i++) {
+                collidingEnemies[i].removeHp(def.fork.DAMAGE);
+            }
         }
         this._move();
     }
@@ -34,9 +38,10 @@ export class Fork {
 
     _checkCollision() {
         let array = this._objectRepository.enemies;
+        let collidingEnemies = [];
         for (let i = 0; i < array.length; i++) {
-            if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
+            if (def.checkCollision(this._img, array[i].img, 1)) collidingEnemies.push(array[i]);
         }
-        return null;
+        return collidingEnemies;
     }
 }
