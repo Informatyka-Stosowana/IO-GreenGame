@@ -1,8 +1,6 @@
 import {Definitions as def} from "./Definitions.mjs";
 
-export {Dynamite}
-
-class Dynamite {
+export class Dynamite {
     constructor(objectRepository) {
         this._UUID = crypto.randomUUID();
         this._objectRepository = objectRepository;

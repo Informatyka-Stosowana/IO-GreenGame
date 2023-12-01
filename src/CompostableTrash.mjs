@@ -1,8 +1,6 @@
 import {Definitions as def} from "./Definitions.mjs";
 
-export {CompostableTrash}
-
-class CompostableTrash {
+export class CompostableTrash {
     /*
     composting time in number of tics needed to process
     Types:

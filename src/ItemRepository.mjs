@@ -1,6 +1,4 @@
-export {ItemRepository}
-
-class ItemRepository {
+export class ItemRepository {
     constructor() {
         this._compost = 0;
         this._forks = 0;
@@ -27,43 +25,49 @@ class ItemRepository {
 
     addCompost(value) {
         this._compost += value;
-        document.getElementById('compost-amount-el').innerText = 'compost amount: ' + this._compost;
+        document.getElementById('compost-amount-el').innerText = this._compost;
         console.info('[INFO] Compost added, total: ', this.compost);
     }
 
     removeCompost(value) {
         this._compost -= value;
-        document.getElementById('compost-amount-el').innerText = 'compost amount: ' + this._compost;
+        document.getElementById('compost-amount-el').innerText = this._compost;
         console.info('[INFO] Compost removed, total: ', this.compost);
     }
 
     addForks(value) {
         this._forks += value;
+        document.getElementById('fork-amount-el').innerText = this._forks;
         console.info('[INFO] Forks added, total: ', this.forks);
     }
 
     removeForks(value) {
         this._forks -= value;
+        document.getElementById('fork-amount-el').innerText = this._forks;
         console.info('[INFO] Forks removed, total: ', this.forks);
     }
 
     addBoxes(value) {
         this._boxes += value;
+        document.getElementById('box-amount-el').innerText = this._boxes;
         console.info('[INFO] Boxes added, total: ', this.boxes);
     }
 
     removeBoxes(value) {
         this._boxes -= value;
+        document.getElementById('box-amount-el').innerText = this._boxes;
         console.info('[INFO] Boxes removed, total: ', this.boxes);
     }
 
     addDynamite(value) {
         this._dynamite += value;
+        document.getElementById('dynamite-amount-el').innerText = this._dynamite;
         console.info('[INFO] Dynamite added, total: ', this.dynamite);
     }
 
     removeDynamite(value) {
         this._dynamite -= value;
+        document.getElementById('dynamite-amount-el').innerText = this._dynamite;
         console.info('[INFO] Dynamite removed, total: ', this.dynamite);
     }
 

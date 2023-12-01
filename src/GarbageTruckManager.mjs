@@ -1,9 +1,7 @@
 import {Definitions as def} from "./Definitions.mjs";
 import {Trash} from "./Trash.mjs";
 
-export {GarbageTruckManager}
-
-class GarbageTruckManager {
+export class GarbageTruckManager {
     constructor(itemRepository, objectRepository) {
         this._itemRepository = itemRepository;
         this._objectRepository = objectRepository;
@@ -64,7 +62,7 @@ class GarbageTruckManager {
             this._trashSpawned === this._spawnSpots.length) return;
         this._trashSpawned++;
 
-        // TODO finish trash spawning, add animations etc.
+        // TODO add all possible trash, add animations etc.
         let type = Math.ceil(Math.random() * 4);
         let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
 

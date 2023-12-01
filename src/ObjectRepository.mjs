@@ -1,6 +1,4 @@
-export {ObjectRepository}
-
-class ObjectRepository {
+export class ObjectRepository {
     constructor() {
         this._trash = [];
         this._enemies = [];

@@ -1,8 +1,6 @@
 import {Definitions as def} from "./Definitions.mjs";
 
-export {Box}
-
-class Box {
+export class Box {
     constructor(objectRepository) {
         this._hp = def.box.HP;
         this._objectRepository = objectRepository;

@@ -1,8 +1,6 @@
 import {Definitions as def} from "./Definitions.mjs";
 
-export {Enemy}
-
-class Enemy {
+export class Enemy {
     constructor(type, objectRepository, row) {
         this._type = type;
         this._objectRepository = objectRepository;
@@ -38,8 +36,9 @@ class Enemy {
     }
 
     _move() {
-        this._img.style.left = (parseFloat(this._img.style.left) - def.enemy.type[this._type].SPEED / 100) + 'vw';
-        if (parseFloat(this._img.style.left) < -68) {
+        let posX = parseFloat(this._img.style.left);
+        this._img.style.left = (posX - def.enemy.type[this._type].SPEED / 100) + 'vw';
+        if (posX < -68) {
             // TODO activate mouse trap or end game
             this.removeHp(10_000) // temporary
         }

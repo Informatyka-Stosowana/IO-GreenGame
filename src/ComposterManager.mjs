@@ -1,6 +1,4 @@
-export {ComposterManager}
-
-class ComposterManager {
+ export class ComposterManager {
     _
 
     constructor(itemRepository) {
@@ -25,7 +23,7 @@ class ComposterManager {
             if (this._itemRepository.getCompostableTrashSize() === 0) return;
             this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
             this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
-            console.info('[INFO] Processing: ', this._currentCompostableTrash);
+            console.info('[INFO] Composting: ', this._currentCompostableTrash);
             this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
         }
 
@@ -82,6 +80,4 @@ class ComposterManager {
             tdArray[i].appendChild(img);
         }
     }
-
-    // TODO add fading current compostable trash
 }

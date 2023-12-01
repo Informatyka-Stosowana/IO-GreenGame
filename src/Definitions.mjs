@@ -7,6 +7,12 @@ export const Definitions = {
         HP: 5000,
     },
 
+    fork: {
+        IMG_SRC: './resources/frok.png',
+        DAMAGE: 5,
+        SPEED: 35,
+    },
+
     garbageTruck: {
         TRASH_SPAWN_DIV: 1500, // how many ticks it takes for truck to appear, randomized in GarbageTruckManager
         IMG_SRC: null,
@@ -16,7 +22,7 @@ export const Definitions = {
     dynamite: {
         IMG_SRC: './resources/dynamite.png',
         EXPLOSION_DELAY: 50,
-        EXPLOSION_RADIUS: 2, // How much bigger is the collision box, scale factor
+        EXPLOSION_RADIUS: 2, // How much bigger the collision box is, scale factor
         EXPLOSION_DAMAGE: 100,
     },
 
@@ -117,5 +123,12 @@ export const Definitions = {
             element1Pos.right < element2Pos.left ||
             element1Pos.bottom < element2Pos.top ||
             element1Pos.left > element2Pos.right);
+    },
+
+    convertPixelsToVw(element) {
+        let viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        let currentPositionInPixels = parseFloat(element.style.left);
+        let currentPositionInVw = (currentPositionInPixels / viewportWidth) * 100;
+        element.style.left = currentPositionInVw + 'vw';
     }
 };

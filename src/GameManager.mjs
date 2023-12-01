@@ -8,14 +8,12 @@ import {Definitions as def} from "./Definitions.mjs";
 // for testing
 import {CompostableTrash} from "./CompostableTrash.mjs";
 
-export {GameManager}
-
 // Game Manager:
 // Starts, pauses and restarts the game
 // Creates all the necessary managers and repositories
 // Manages main menu and pause menu
 
-class GameManager {
+export class GameManager {
     constructor() {
         this._gamePaused = true;
         this._score = 0;
@@ -35,7 +33,7 @@ class GameManager {
         this._itemRepository.addCompostableTrash(new CompostableTrash(0));
         this._itemRepository.addCompostableTrash(new CompostableTrash(1));
         this._itemRepository.addCompostableTrash(new CompostableTrash(2));
-        this._itemRepository.addDynamite(500);
+        // this._itemRepository.addDynamite(500);
     }
 
     _setStartingResources() {

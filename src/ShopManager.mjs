@@ -4,9 +4,7 @@ import {Dynamite} from "./Dynamite.mjs";
 import {Fork} from "./Fork.mjs";
 import {Plant} from "./Plant.mjs";
 
-export {ShopManager}
-
-class ShopManager {
+export class ShopManager {
     constructor(itemRepository, objectRepository) {
         this._itemRepository = itemRepository;
         this._objectRepository = objectRepository;
@@ -29,6 +27,7 @@ class ShopManager {
 
     _handleShopClick(event) {
         let imgSrc = null;
+        let image = document.createElement("img");
 
         if (this._isInBuyingMode) {
             console.info('[INFO] Buying cancelled')
@@ -80,15 +79,18 @@ class ShopManager {
                 this._isInBuyingMode = false;
                 return;
             }
-            imgSrc = def.box.IMG_SRC;
+            image.style.width = '3vw';
+            image.src = def.box.IMG_SRC;
         }
         if (event.target.id === "fork-shop-el") {
-            this._thing = new Fork();
+            this._thing = new Fork(this._objectRepository);
             if (this._itemRepository.forks <= 0) {
                 console.info('[INFO] Insufficient forks')
                 this._isInBuyingMode = false;
                 return;
             }
+            image.style.width = '5vw';
+            image.src = def.fork.IMG_SRC;
         }
         if (event.target.id === "dynamite-shop-el") {
             this._thing = new Dynamite(this._objectRepository);
@@ -97,14 +99,11 @@ class ShopManager {
                 this._isInBuyingMode = false;
                 return;
             }
-            imgSrc = def.dynamite.IMG_SRC;
+            image.style.width = '3vw';
+            image.src = def.dynamite.IMG_SRC;
         }
 
-        // TODO maybe move to a different class
-        let image = document.createElement("img");
         image.id = 'cursor-image-el';
-        image.src = imgSrc;
-        image.style.width = '3vw';
         image.style.height = 'auto';
         image.style.position = 'absolute';
         image.style.pointerEvents = 'none';
@@ -172,6 +171,11 @@ class ShopManager {
             this._objectRepository.addBox(this._thing);
         }
         if (this._thing instanceof Fork) {
+            let image = document.getElementById('cursor-image-el');
+            image.removeAttribute('id');
+            document.removeEventListener("mousemove", this._handleCursorImg);
+            this._thing.img = image;
+
             this._itemRepository.removeForks(1);
             this._objectRepository.addFork(this._thing);
         }
@@ -180,6 +184,7 @@ class ShopManager {
             image.removeAttribute('id');
             document.removeEventListener("mousemove", this._handleCursorImg);
             this._thing.img = image;
+
             this._itemRepository.removeDynamite(1);
             this._thing.targetCell = cell;
             this._objectRepository.addDynamite(this._thing);

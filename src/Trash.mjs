@@ -1,10 +1,9 @@
 import {Definitions as def} from "./Definitions.mjs";
 import {CompostableTrash} from "./CompostableTrash.mjs";
 
-export {Trash}
+export class Trash {
 
-class Trash {
-
+    // TODO add all possible trash
     // Types:
     // 1 - box
     // 2 - Compostable trash 1

@@ -1,6 +1,4 @@
-export {Plant}
-
-class Plant {
+export class Plant {
     constructor(type) {
         this._type = type;
 
