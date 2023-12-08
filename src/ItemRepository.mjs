@@ -23,6 +23,10 @@ export class ItemRepository {
         return this._boxes;
     }
 
+    get compostableTrash() {
+        return this._compostableTrash;
+    }
+
     addCompost(value) {
         this._compost += value;
         document.getElementById('compost-amount-el').innerText = this._compost;
@@ -71,20 +75,12 @@ export class ItemRepository {
         console.info('[INFO] Dynamite removed, total: ', this.dynamite);
     }
 
-    getCompostableTrash(index) {
-        return this._compostableTrash[index];
+    addCompostableTrash(compostableTrashType) {
+        this._compostableTrash.push(compostableTrashType);
+        console.info('[INFO] Compostable trash added: ', compostableTrashType);
     }
 
-    getCompostableTrashSize() {
-        return this._compostableTrash.length;
-    }
-
-    addCompostableTrash(compostableTrash) {
-        this._compostableTrash.push(compostableTrash);
-        console.info('[INFO] Compostable trash added: ', compostableTrash);
-    }
-
-    removeCompostableTrash() {
+    removeFirstCompostableTrash() {
         let temp = this._compostableTrash[0];
         this._compostableTrash.splice(0, 1);
         console.info('[INFO] Compostable trash removed: ', temp);

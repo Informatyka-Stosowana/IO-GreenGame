@@ -1,4 +1,6 @@
- export class ComposterManager {
+import {Definitions as def} from "./Definitions.mjs";
+
+export class ComposterManager {
     _
 
     constructor(itemRepository) {
@@ -13,25 +15,25 @@
     update() {
 
         // Update queue if count changed
-        if (this._itemRepository.getCompostableTrashSize() !== this._compostableTrashCount) {
-            this._compostableTrashCount = this._itemRepository.getCompostableTrashSize();
+        if (this._itemRepository.compostableTrash.length !== this._compostableTrashCount) {
+            this._compostableTrashCount = this._itemRepository.compostableTrash.length;
             this._updateQueue();
         }
 
         // Add next trash to process if empty
-        if (!this._currentCompostableTrash) {
-            if (this._itemRepository.getCompostableTrashSize() === 0) return;
-            this._currentCompostableTrash = this._itemRepository.getCompostableTrash(0);
-            this._updatesTillProcessed = this._currentCompostableTrash.composting_time;
+        if (this._currentCompostableTrash === null) {
+            if (this._itemRepository.compostableTrash.length === 0) return;
+            this._currentCompostableTrash = this._itemRepository.compostableTrash[0];
+            this._updatesTillProcessed = def.compostableTrash[this._currentCompostableTrash].COMPOSTING_TIME;
             console.info('[INFO] Composting: ', this._currentCompostableTrash);
-            this._itemRepository.removeCompostableTrash(this._currentCompostableTrash);
+            this._itemRepository.removeFirstCompostableTrash();
         }
 
         // Finish processing check
         if (this._updatesTillProcessed > 0) {
             this._updatesTillProcessed--;
         } else {
-            this._itemRepository.addCompost(this._currentCompostableTrash.compost_amount);
+            this._itemRepository.addCompost(def.compostableTrash[this._currentCompostableTrash].COMPOST_AMOUNT);
             this._currentCompostableTrash = null;
         }
 
@@ -40,7 +42,7 @@
     }
 
     _updateCompostingProgress() {
-        if (!this._currentCompostableTrash) {
+        if (this._currentCompostableTrash === null) {
             if (this._composterEl.childNodes.length !== 0) {
                 this._composterEl.removeChild(document.getElementById('composter-el-img'));
             }
@@ -50,15 +52,14 @@
         // Create img if none present
         if (this._composterEl.innerHTML === '') {
             let img = document.createElement('img');
-            img.src = this._currentCompostableTrash.imgSrc;
+            img.src = def.compostableTrash[this._currentCompostableTrash].IMG_SRC;
             img.id = 'composter-el-img';
             this._composterEl.appendChild(img);
         }
 
         let img = document.getElementById('composter-el-img');
-        // 0.8 is the original scale, maybe move this to definitions
-        img.style.scale = (this._updatesTillProcessed / this._currentCompostableTrash.composting_time) + '';
-
+        img.style.scale = (this._updatesTillProcessed /
+            def.compostableTrash[this._currentCompostableTrash].COMPOSTING_TIME) + '';
     }
 
     _updateQueue() {
@@ -71,10 +72,10 @@
         }
 
         for (let i = 0; i < tdArray.length; i++) {
-            if (this._itemRepository.getCompostableTrashSize() === i) return;
+            if (i === this._itemRepository.compostableTrash.length) return;
 
             let img = document.createElement('img');
-            img.src = this._itemRepository.getCompostableTrash(i).imgSrc;
+            img.src = def.compostableTrash[this._itemRepository.compostableTrash[i]].IMG_SRC;
             img.className = 'composter-queue-td-img';
 
             tdArray[i].appendChild(img);

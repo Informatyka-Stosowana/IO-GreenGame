@@ -104,28 +104,26 @@ export const Definitions = {
         TIME_FADING: 200,
     },
 
-    compostableTrash: {
-        type: [
-            // Type 0 - rotten apple
-            {
-                IMG_SRC: './resources/rotten_apple.png',
-                COMPOST_AMOUNT: 5,
-                COMPOSTING_TIME: 500,
-            },
-            // Type 1 - rotten banana
-            {
-                IMG_SRC: './resources/rotten_banana.png',
-                COMPOST_AMOUNT: 15,
-                COMPOSTING_TIME: 1000,
-            },
-            // Type 2 - rotten cabbage
-            {
-                IMG_SRC: './resources/rotten_cabbage.png',
-                COMPOST_AMOUNT: 15,
-                COMPOSTING_TIME: 2000,
-            }
-        ]
-    },
+    compostableTrash: [
+        // Type 0 - rotten apple
+        {
+            IMG_SRC: './resources/rotten_apple.png',
+            COMPOST_AMOUNT: 5,
+            COMPOSTING_TIME: 500,
+        },
+        // Type 1 - rotten banana
+        {
+            IMG_SRC: './resources/rotten_banana.png',
+            COMPOST_AMOUNT: 15,
+            COMPOSTING_TIME: 1000,
+        },
+        // Type 2 - rotten cabbage
+        {
+            IMG_SRC: './resources/rotten_cabbage.png',
+            COMPOST_AMOUNT: 15,
+            COMPOSTING_TIME: 2000,
+        }
+    ],
 
     enemyManager: {
         AMBIENT_DIV: 100,

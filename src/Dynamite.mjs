@@ -68,7 +68,8 @@ export class Dynamite {
         this._animationImg.src = def.dynamite.EXPLOSION_ANIMATION[this._animationFrame].IMG_SRC;
         this._animationImg.id = 'explosion-img-el';
         this._animationImg.style.position = 'absolute';
-        this._animationImg.style.transform = 'translate(-50%, -50%) scale(0.5)';
+        this._animationImg.style.transform = 'translate(-50%, -50%)';
+        this._animationImg.style.width = 7 + 'vw';
         this._animationImg.style.left = this._img.style.left;
         this._animationImg.style.top = this._img.style.top;
         document.body.appendChild(this._animationImg);

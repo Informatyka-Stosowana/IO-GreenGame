@@ -1,5 +1,4 @@
 import {Definitions as def} from "./Definitions.mjs";
-import {CompostableTrash} from "./CompostableTrash.mjs";
 
 export class Trash {
 
@@ -23,15 +22,15 @@ export class Trash {
                 this._img.style.width = '3vw';
                 break;
             case 2:
-                this._img.src = def.compostableTrash.type[0].IMG_SRC;
+                this._img.src = def.compostableTrash[0].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
             case 3:
-                this._img.src = def.compostableTrash.type[1].IMG_SRC;
+                this._img.src = def.compostableTrash[1].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
             case 4:
-                this._img.src = def.compostableTrash.type[2].IMG_SRC;
+                this._img.src = def.compostableTrash[2].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
         }
@@ -61,9 +60,9 @@ export class Trash {
 
     _collect(event) {
         if (this._type === 1) this._itemRepository.addBoxes(1);
-        if (this._type === 2) this._itemRepository.addCompostableTrash(new CompostableTrash(0));
-        if (this._type === 3) this._itemRepository.addCompostableTrash(new CompostableTrash(1));
-        if (this._type === 4) this._itemRepository.addCompostableTrash(new CompostableTrash(2));
+        if (this._type === 2) this._itemRepository.addCompostableTrash(0);
+        if (this._type === 3) this._itemRepository.addCompostableTrash(1);
+        if (this._type === 4) this._itemRepository.addCompostableTrash(2);
         this._selfDelete()
     }
 

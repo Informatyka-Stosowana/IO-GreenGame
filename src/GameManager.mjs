@@ -6,7 +6,6 @@ import {GarbageTruckManager} from "./GarbageTruckManager.mjs";
 import {EnemyManager} from "./EnemyManager.mjs";
 import {Definitions as def} from "./Definitions.mjs";
 // for testing
-import {CompostableTrash} from "./CompostableTrash.mjs";
 
 // Game Manager:
 // Starts, pauses and restarts the game
@@ -30,9 +29,9 @@ export class GameManager {
 
     // TODO remove this
     forTesting() {
-        this._itemRepository.addCompostableTrash(new CompostableTrash(0));
-        this._itemRepository.addCompostableTrash(new CompostableTrash(1));
-        this._itemRepository.addCompostableTrash(new CompostableTrash(2));
+        this._itemRepository.addCompostableTrash(0);
+        this._itemRepository.addCompostableTrash(1);
+        this._itemRepository.addCompostableTrash(2);
         this._itemRepository.addDynamite(500);
         this._itemRepository.addForks(500);
         this._itemRepository.addBoxes(500);
