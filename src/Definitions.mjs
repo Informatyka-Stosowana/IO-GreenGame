@@ -24,6 +24,7 @@ export const Definitions = {
         EXPLOSION_DELAY: 50,
         EXPLOSION_RADIUS: 2, // How much bigger the collision box is, scale factor
         EXPLOSION_DAMAGE: 100,
+        EXPLOSION_SOUND_SRC: './resources/sounds/explosion.mp3',
         EXPLOSION_ANIMATION: [
             {
                 IMG_SRC: './resources/explosion/Explosion_1.png',
@@ -126,7 +127,7 @@ export const Definitions = {
     ],
 
     enemyManager: {
-        AMBIENT_DIV: 100,
+        AMBIENT_DIV: 1000,
     },
 
     checkCollision: function (element1, element2, scaleFactor) {

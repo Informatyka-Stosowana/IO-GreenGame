@@ -31,7 +31,6 @@ export class Dynamite {
         let object = this._objectRepository.findCellObject(this._targetCell);
         if (object) object.removeHp(10_000);
 
-        this._img.parentNode.removeChild(this._img);
         this._objectRepository.removeDynamite(this);
     }
 
@@ -48,16 +47,19 @@ export class Dynamite {
     }
 
     _explosionAnimation() {
-
         if (this._animationDelay > 0) {
             this._animationDelay--;
             return;
+        }
+        if (this._animationFrame === 0) {
+            new Audio(def.dynamite.EXPLOSION_SOUND_SRC).play();
         }
         if (this._animationFrame !== 0) {
             document.body.removeChild(document.getElementById('explosion-img-el'));
         }
         if (this._animationFrame === 3) {
             this._damageEnemies();
+            this._img.parentNode.removeChild(this._img);
         }
         if (this._animationFrame === def.dynamite.EXPLOSION_ANIMATION.length) {
             this._destroy();
