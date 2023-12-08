@@ -24,6 +24,36 @@ export const Definitions = {
         EXPLOSION_DELAY: 50,
         EXPLOSION_RADIUS: 2, // How much bigger the collision box is, scale factor
         EXPLOSION_DAMAGE: 100,
+        EXPLOSION_ANIMATION: [
+            {
+                IMG_SRC: './resources/explosion/Explosion_1.png',
+                ANIMATION_DELAY: 5,
+            },
+            {
+                IMG_SRC: './resources/explosion/Explosion_2.png',
+                ANIMATION_DELAY: 5,
+            },
+            {
+                IMG_SRC: './resources/explosion/Explosion_3.png',
+                ANIMATION_DELAY: 5,
+            },
+            {
+                IMG_SRC: './resources/explosion/Explosion_4.png',
+                ANIMATION_DELAY: 3,
+            },
+            {
+                IMG_SRC: './resources/explosion/Explosion_5.png',
+                ANIMATION_DELAY: 3,
+            },
+            {
+                IMG_SRC: './resources/explosion/Explosion_6.png',
+                ANIMATION_DELAY: 4,
+            },
+            {
+                IMG_SRC: './resources/explosion/Explosion_7.png',
+                ANIMATION_DELAY: 5,
+            },
+        ],
     },
 
     enemy: {

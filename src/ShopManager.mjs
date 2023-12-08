@@ -27,6 +27,7 @@ export class ShopManager {
         if (this._isInBuyingMode) {
             console.info('[INFO] Buying cancelled')
             this._isInBuyingMode = false;
+            // this._thing = null;
             this._removeCellEventListeners();
             this._clearCursorImg();
             return;
@@ -42,32 +43,28 @@ export class ShopManager {
                 this._isInBuyingMode = false;
                 return;
             }
-        }
-        if (event.target.id === "plant-2-shop-el") {
+        } else if (event.target.id === "plant-2-shop-el") {
             this._thing = new Plant(2);
             if (this._itemRepository.compost < this._thing.price) {
                 console.info('[INFO] Insufficient compost')
                 this._isInBuyingMode = false;
                 return;
             }
-        }
-        if (event.target.id === "plant-3-shop-el") {
+        } else if (event.target.id === "plant-3-shop-el") {
             this._thing = new Plant(3);
             if (this._itemRepository.compost < this._thing.price) {
                 console.info('[INFO] Insufficient compost')
                 this._isInBuyingMode = false;
                 return;
             }
-        }
-        if (event.target.id === "plant-4-shop-el") {
+        } else if (event.target.id === "plant-4-shop-el") {
             this._thing = new Plant(4);
             if (this._itemRepository.compost < this._thing.price) {
                 console.info('[INFO] Insufficient compost')
                 this._isInBuyingMode = false;
                 return;
             }
-        }
-        if (event.target.id === "box-shop-el") {
+        } else if (event.target.id === "box-shop-el") {
             this._thing = new Box(this._objectRepository);
             if (this._itemRepository.boxes <= 0) {
                 console.info('[INFO] Insufficient boxes')
@@ -76,8 +73,7 @@ export class ShopManager {
             }
             image.style.width = '3vw';
             image.src = def.box.IMG_SRC;
-        }
-        if (event.target.id === "fork-shop-el") {
+        } else if (event.target.id === "fork-shop-el") {
             this._thing = new Fork(this._objectRepository);
             if (this._itemRepository.forks <= 0) {
                 console.info('[INFO] Insufficient forks')
@@ -86,8 +82,7 @@ export class ShopManager {
             }
             image.style.width = '5vw';
             image.src = def.fork.IMG_SRC;
-        }
-        if (event.target.id === "dynamite-shop-el") {
+        } else if (event.target.id === "dynamite-shop-el") {
             this._thing = new Dynamite(this._objectRepository);
             if (this._itemRepository.dynamite <= 0) {
                 console.info('[INFO] Insufficient dynamite')
@@ -96,6 +91,8 @@ export class ShopManager {
             }
             image.style.width = '3vw';
             image.src = def.dynamite.IMG_SRC;
+        } else {
+            return;
         }
 
         image.id = 'cursor-image-el';
@@ -180,7 +177,7 @@ export class ShopManager {
             this._thing.targetCell = cell;
             this._objectRepository.addDynamite(this._thing);
         }
-
+        this._thing = null;
         this._clearCursorImg();
     }
 

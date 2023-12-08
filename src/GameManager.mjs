@@ -33,7 +33,9 @@ export class GameManager {
         this._itemRepository.addCompostableTrash(new CompostableTrash(0));
         this._itemRepository.addCompostableTrash(new CompostableTrash(1));
         this._itemRepository.addCompostableTrash(new CompostableTrash(2));
-        // this._itemRepository.addDynamite(500);
+        this._itemRepository.addDynamite(500);
+        this._itemRepository.addForks(500);
+        this._itemRepository.addBoxes(500);
     }
 
     _setStartingResources() {

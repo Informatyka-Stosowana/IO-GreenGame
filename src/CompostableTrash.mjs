@@ -2,7 +2,6 @@ import {Definitions as def} from "./Definitions.mjs";
 
 export class CompostableTrash {
     /*
-    composting time in number of tics needed to process
     Types:
     0 - rotten apple
     1 - rotten banana
@@ -23,5 +22,4 @@ export class CompostableTrash {
     get composting_time() {
         return def.compostableTrash.type[this._type].COMPOSTING_TIME;
     }
-
 }
