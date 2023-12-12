@@ -164,10 +164,7 @@ export class GameManager {
             // Events
             // Restart game
             restart.addEventListener('click', () => {
-                // document.title = "Green Game";
-                // let cover = document.getElementById('cover-el');
-                // document.body.removeChild(cover);
-                // TODO restart game
+                location.reload();
             });
 
             // Resume game
@@ -180,10 +177,81 @@ export class GameManager {
 
             // End game
             end.addEventListener('click', () => {
-                // document.title = "Green Game";
-                // let cover = document.getElementById('cover-el');
-                // document.body.removeChild(cover);
-                // TODO end game screen
+                document.title = "Green Game";
+                let cover = document.getElementById('cover-el');
+                document.body.removeChild(cover);
+
+                // Create empty div to center end screen
+                let endBackground = document.createElement('div');
+                endBackground.style.height = '100vh';
+                endBackground.style.width = '100vw';
+                endBackground.style.position = 'absolute';
+                endBackground.style.display = 'flex';
+                endBackground.style.alignItems = 'center';
+                endBackground.style.justifyContent = 'center';
+
+                // Create end screen
+                let endScreen = document.createElement('div');
+                endScreen.className = 'd-grid gap-2 col-6 mx-auto';
+                endScreen.style.height = '80vh';
+                endScreen.style.width = '60vw';
+                endScreen.style.position = 'absolute';
+                endScreen.style.display = 'flex'
+                endScreen.style.alignItems = 'center';
+                endScreen.style.justifyContent = 'center';
+                endScreen.style.border = '2px solid black';
+                endScreen.style.borderRadius = '50px';
+                endScreen.style.background = '#1A1A1A';
+
+                // Create score text
+                let scoreText = document.createElement('p');
+                scoreText.textContent = 'YOUR SCORE: ' + this._score;
+                scoreText.style.textAlign = 'center';
+                scoreText.style.color = 'white';
+                scoreText.style.fontSize = '2rem';
+
+                // Create end options
+                let endOptions = document.createElement('div');
+                endOptions.className = 'd-grid gap-2 col-6 mx-auto';
+                endOptions.style.width = '30vw';
+
+                // Create exit button
+                let exit = document.createElement('button');
+                exit.id = 'exit-el';
+                exit.className = 'btn btn-primary';
+                exit.type = 'button';
+                exit.style.backgroundColor = 'white';
+                exit.style.color = 'black';
+                exit.style.height = '8vh';
+                exit.style.border = '5px solid white';
+                exit.style.borderRadius = '40px';
+                exit.style.margin = '3vh 0';
+                exit.textContent = 'EXIT GAME';
+
+                // Hover effect on mouseover
+                exit.addEventListener('mouseover', () => {
+                    // Change the button's border color
+                    exit.style.border = '5px solid green';
+                    exit.style.color = 'green';
+                });
+                exit.addEventListener('mouseout', () => {
+                    // Change the button's border color
+                    exit.style.border = '5px solid white';
+                    exit.style.color = 'black';
+                });
+
+                // Return to main menu
+                exit.addEventListener('click', () => {
+                    // TODO add exit to main menu
+                })
+
+                endOptions.appendChild(restart);
+                endOptions.appendChild(exit);
+                endScreen.appendChild(scoreText);
+                endScreen.appendChild(endOptions);
+                endBackground.appendChild(endScreen);
+                document.body.appendChild(endBackground);
+                // TODO end game screen styling
             });
 
         } else {
