@@ -65,13 +65,127 @@ export class GameManager {
             document.title = "Green Game - PAUSED";
 
             // TODO show pause screen
+            // Create background element
             let cover = document.createElement('div');
             cover.id = 'cover-el';
             cover.style.width = 100 + 'vw';
             cover.style.height = 100 + 'vh';
             cover.style.background = '#000000';
             cover.style.opacity = '0.7';
+            cover.style.display = 'flex';
+            cover.style.alignItems = 'center';
+            cover.style.justifyContent = 'center';
+
+            // Using bootstrap styling for elements
+            // Create options element
+            let options = document.createElement('div');
+            options.className = 'd-grid gap-2 col-6 mx-auto';
+
+            // Create restart game button
+            let restart = document.createElement('button');
+            restart.id = 'restart-el';
+            restart.className = 'btn btn-primary';
+            restart.type = 'button';
+            restart.style.backgroundColor = 'white';
+            restart.style.color = 'black';
+            restart.style.height = '8vh';
+            restart.style.border = '5px solid white';
+            restart.style.borderRadius = '40px';
+            restart.style.margin = '3vh 0';
+            restart.textContent = 'RESTART GAME';
+
+            // Hover effect on mouseover
+            restart.addEventListener('mouseover', () => {
+                // Change the button's border color
+                restart.style.border = '5px solid green';
+                restart.style.color = 'green';
+            });
+            restart.addEventListener('mouseout', () => {
+                // Change the button's border color
+                restart.style.border = '5px solid white';
+                restart.style.color = 'black';
+            });
+
+            // Create resume game button
+            let resume = document.createElement('button');
+            resume.id = 'resume-el';
+            resume.className = 'btn btn-primary';
+            resume.type = 'button';
+            resume.style.backgroundColor = 'white';
+            resume.style.color = 'black';
+            resume.style.height = '8vh';
+            resume.style.borderRadius = '40px'
+            resume.style.margin = '3vh 0';
+            resume.textContent = 'RESUME GAME';
+
+            // Hover effect on mouseover
+            resume.addEventListener('mouseover', () => {
+                // Change the button's border color
+                resume.style.border = '5px solid green';
+                resume.style.color = 'green';
+            });
+            resume.addEventListener('mouseout', () => {
+                // Change the button's border color
+                resume.style.border = '5px solid white';
+                resume.style.color = 'black';
+            });
+
+            // Create end game button
+            let end = document.createElement('button');
+            end.id = 'end-el';
+            end.className = 'btn btn-primary';
+            end.type = 'button';
+            end.style.backgroundColor = 'white';
+            end.style.color = 'black';
+            end.style.height = '8vh';
+            end.style.borderRadius = '40px'
+            end.style.margin = '3vh 0';
+            end.textContent = 'END GAME';
+
+            // Hover effect on mouseover
+            end.addEventListener('mouseover', () => {
+                // Change the button's border color
+                end.style.border = '5px solid green';
+                end.style.color = 'green';
+            });
+            end.addEventListener('mouseout', () => {
+                // Change the button's border color
+                end.style.border = '5px solid white';
+                end.style.color = 'black';
+            });
+
+            // Append pause elements
+            options.appendChild(restart);
+            options.appendChild(resume);
+            options.appendChild(end);
+            cover.appendChild(options);
             document.body.appendChild(cover);
+
+            // Events
+            // Restart game
+            restart.addEventListener('click', () => {
+                // document.title = "Green Game";
+                // let cover = document.getElementById('cover-el');
+                // document.body.removeChild(cover);
+                // TODO restart game
+            });
+
+            // Resume game
+            resume.addEventListener('click', () => {
+                document.title = "Green Game";
+                let cover = document.getElementById('cover-el');
+                document.body.removeChild(cover);
+                this._gamePaused = false;
+            });
+
+            // End game
+            end.addEventListener('click', () => {
+                // document.title = "Green Game";
+                // let cover = document.getElementById('cover-el');
+                // document.body.removeChild(cover);
+                // TODO end game screen
+            });
+
         } else {
             document.title = "Green Game";
             let cover = document.getElementById('cover-el');
