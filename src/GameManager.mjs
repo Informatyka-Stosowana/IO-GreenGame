@@ -190,6 +190,18 @@ export class GameManager {
                 endBackground.style.alignItems = 'center';
                 endBackground.style.justifyContent = 'center';
 
+                // Create frame
+                let endScreenBackground = document.createElement('div');
+                endScreenBackground.style.height = '82vh';
+                endScreenBackground.style.width = '61vw';
+                endScreenBackground.style.position = 'absolute';
+                endScreenBackground.style.display = 'flex';
+                endScreenBackground.style.alignItems = 'center';
+                endScreenBackground.style.justifyContent = 'center';
+                endScreenBackground.style.border = '2px solid #562b00';
+                endScreenBackground.style.borderRadius = '50px';
+                endScreenBackground.style.background = '#562b00';
+
                 // Create end screen
                 let endScreen = document.createElement('div');
                 endScreen.className = 'd-grid gap-2 col-6 mx-auto';
@@ -199,9 +211,9 @@ export class GameManager {
                 endScreen.style.display = 'flex'
                 endScreen.style.alignItems = 'center';
                 endScreen.style.justifyContent = 'center';
-                endScreen.style.border = '2px solid black';
+                endScreen.style.border = '3px solid #1A1A1A';
                 endScreen.style.borderRadius = '50px';
-                endScreen.style.background = '#1A1A1A';
+                endScreen.style.background = '#633200';
 
                 // Create score text
                 let scoreText = document.createElement('p');
@@ -245,11 +257,13 @@ export class GameManager {
                     // TODO add exit to main menu
                 })
 
+
                 endOptions.appendChild(restart);
                 endOptions.appendChild(exit);
                 endScreen.appendChild(scoreText);
                 endScreen.appendChild(endOptions);
-                endBackground.appendChild(endScreen);
+                endScreenBackground.appendChild(endScreen);
+                endBackground.appendChild(endScreenBackground);
                 document.body.appendChild(endBackground);
                 // TODO end game screen styling
             });
