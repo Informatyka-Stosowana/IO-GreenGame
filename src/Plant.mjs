@@ -2,6 +2,7 @@ export class Plant {
     constructor(type) {
         this._type = type;
 
+        // TODO move this to definitions
         if (type === 1) {
             this._price = 20
             this._hp = 200;

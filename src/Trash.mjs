@@ -17,19 +17,19 @@ export class Trash {
         this._img = document.createElement('img');
 
         switch (type) {
-            case 1:
+            case 0:
                 this._img.src = def.box.IMG_SRC;
                 this._img.style.width = '3vw';
                 break;
-            case 2:
+            case 1:
                 this._img.src = def.compostableTrash[0].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
-            case 3:
+            case 2:
                 this._img.src = def.compostableTrash[1].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
-            case 4:
+            case 3:
                 this._img.src = def.compostableTrash[2].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
@@ -55,14 +55,14 @@ export class Trash {
         } else {
             this._selfDelete();
         }
-        // TODO add animation?
+        // TODO add animation? would be cool
     }
 
     _collect(event) {
-        if (this._type === 1) this._itemRepository.addBoxes(1);
-        if (this._type === 2) this._itemRepository.addCompostableTrash(0);
-        if (this._type === 3) this._itemRepository.addCompostableTrash(1);
-        if (this._type === 4) this._itemRepository.addCompostableTrash(2);
+        if (this._type === 0) this._itemRepository.addBoxes(1);
+        if (this._type === 1) this._itemRepository.addCompostableTrash(0);
+        if (this._type === 2) this._itemRepository.addCompostableTrash(1);
+        if (this._type === 3) this._itemRepository.addCompostableTrash(2);
         this._selfDelete()
     }
 

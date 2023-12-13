@@ -1,11 +1,12 @@
 import {Definitions as def} from "./Definitions.mjs";
 
 export class Fork {
-    damage
+    // TODO add enemy list, add enemy hit sound
 
     constructor(objectRepository) {
         this._img = null;
         this._objectRepository = objectRepository;
+        this._hitEnemies = [];
     }
 
     get img() {
@@ -18,12 +19,7 @@ export class Fork {
     }
 
     update() {
-        let collidingEnemies = this._checkCollision();
-        if (collidingEnemies.length !== 0) {
-            for (let i = 0; i < collidingEnemies.length; i++) {
-                collidingEnemies[i].removeHp(def.fork.DAMAGE);
-            }
-        }
+        this._damageEnemies();
         this._move();
     }
 
@@ -36,12 +32,33 @@ export class Fork {
         }
     }
 
-    _checkCollision() {
-        let array = this._objectRepository.enemies;
-        let collidingEnemies = [];
-        for (let i = 0; i < array.length; i++) {
-            if (def.checkCollision(this._img, array[i].img, 1)) collidingEnemies.push(array[i]);
+    _damageEnemies() {
+        // Iterate all enemies
+        for (let i = 0; i < this._objectRepository.enemies.length; i++) {
+
+            // Check if enemy collides with fork
+            if (def.checkCollision(this._img, this._objectRepository.enemies[i].img, 1)) {
+
+                // Check if first enemy hit by fork
+                if (this._hitEnemies.length === 0) {
+                    this._hitEnemies.push(this._objectRepository.enemies[i])
+                    this._objectRepository.enemies[i].removeHp(def.fork.DAMAGE);
+                } else {
+
+                    // Check if enemy has been hit before
+                    let enemyNeverHit = true;
+                    for (let j = 0; j < this._hitEnemies.length; j++) {
+                        if (this._objectRepository.enemies[i] === this._hitEnemies[j]) {
+                            enemyNeverHit = false;
+                            break;
+                        }
+                    }
+                    if (enemyNeverHit) {
+                        this._hitEnemies.push(this._objectRepository.enemies[i])
+                        this._objectRepository.enemies[i].removeHp(def.fork.DAMAGE);
+                    }
+                }
+            }
         }
-        return collidingEnemies;
     }
 }
