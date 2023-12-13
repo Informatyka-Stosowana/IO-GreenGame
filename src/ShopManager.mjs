@@ -140,14 +140,6 @@ export class ShopManager {
         }
     }
 
-    _removeShopEventListeners() {
-        let shopCells = document.getElementsByClassName('shop-el');
-
-        for (let i = 0; i < shopCells.length; i++) {
-            shopCells[i].removeEventListener('click', this._handleShopClick);
-        }
-    }
-
     _finalize(cell) {
         console.log('[INFO] Selected cell: [', cell.parentNode.rowIndex, ',', cell.cellIndex, ']');
         cell.style.backgroundColor = '';

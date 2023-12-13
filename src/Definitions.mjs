@@ -9,7 +9,7 @@ export const Definitions = {
 
     fork: {
         IMG_SRC: './resources/frok.png',
-        DAMAGE: 5,
+        DAMAGE: 50,
         SPEED: 35,
     },
 
@@ -58,6 +58,26 @@ export const Definitions = {
     },
 
     enemy: {
+        damage_sound: [
+            {
+                SOUND_SRC: './resources/sounds/stab_0.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_1.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_2.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_3.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_4.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_5.mp3'
+            },
+        ],
         type: [
             {
                 // Type 0 - weak
@@ -145,7 +165,7 @@ export const Definitions = {
     ],
 
     enemyManager: {
-        AMBIENT_DIV: 1000,
+        AMBIENT_DIV: 500,
     },
 
     getPos: function (el, scale) {

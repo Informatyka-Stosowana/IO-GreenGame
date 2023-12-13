@@ -24,48 +24,53 @@ export class Dynamite {
             this._delay--;
             return;
         }
-        this._explosionAnimation();
-    }
-
-    _destroy() {
-        let object = this._objectRepository.findCellObject(this._targetCell);
-        if (object) object.removeHp(10_000);
-
-        this._objectRepository.removeDynamite(this);
+        this._explosion();
     }
 
     _damageEnemies() {
+        // Find enemies to damage
         let enemiesToDamage = [];
         for (let i = 0; i < this._objectRepository.enemies.length; i++) {
             if (def.checkCollision(this._img, this._objectRepository.enemies[i].img, def.dynamite.EXPLOSION_RADIUS)) {
                 enemiesToDamage.push(this._objectRepository.enemies[i]);
             }
         }
+
+        // Damage found enemies
         for (let i = 0; i < enemiesToDamage.length; i++) {
             enemiesToDamage[i].removeHp(def.dynamite.EXPLOSION_DAMAGE);
         }
     }
 
-    _explosionAnimation() {
+    _explosion() {
+        // Delay between animation frames
         if (this._animationDelay > 0) {
             this._animationDelay--;
             return;
         }
+
+        // Play sound & delete last frame img
         if (this._animationFrame === 0) {
             new Audio(def.dynamite.EXPLOSION_SOUND_SRC).play();
-        }
-        if (this._animationFrame !== 0) {
+        } else {
             document.body.removeChild(document.getElementById('explosion-img-el'));
         }
+
+        // Damage enemies & remove object
         if (this._animationFrame === 3) {
             this._damageEnemies();
+            let object = this._objectRepository.findCellObject(this._targetCell);
+            if (object) object.removeHp(10_000);
             this._img.parentNode.removeChild(this._img);
         }
+
+        // End explosion & delete dynamite
         if (this._animationFrame === def.dynamite.EXPLOSION_ANIMATION.length) {
-            this._destroy();
+            this._objectRepository.removeDynamite(this);
             return;
         }
 
+        // Set up img
         this._animationImg = document.createElement('img');
         this._animationImg.src = def.dynamite.EXPLOSION_ANIMATION[this._animationFrame].IMG_SRC;
         this._animationImg.id = 'explosion-img-el';
@@ -79,5 +84,4 @@ export class Dynamite {
         this._animationDelay = def.dynamite.EXPLOSION_ANIMATION[this._animationFrame].ANIMATION_DELAY;
         this._animationFrame++;
     }
-
 }

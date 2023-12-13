@@ -5,7 +5,6 @@ import {ObjectRepository} from "./ObjectRepository.mjs";
 import {GarbageTruckManager} from "./GarbageTruckManager.mjs";
 import {EnemyManager} from "./EnemyManager.mjs";
 import {Definitions as def} from "./Definitions.mjs";
-// for testing
 
 // Game Manager:
 // Starts, pauses and restarts the game
@@ -42,15 +41,15 @@ export class GameManager {
         this._itemRepository.addBoxes(5);
         this._itemRepository.addForks(5);
         this._itemRepository.addDynamite(5);
+
+        // TODO remove this
+        this.forTesting();
     }
 
     startGame() {
         this.resetGame();
         this._gamePaused = false;
         this._intervalId = setInterval(() => this.gameLoop(), def.GAME_LOOP_INTERVAL);
-
-        // TODO remove this
-        this.forTesting();
     }
 
     stopGame() {
@@ -161,6 +160,7 @@ export class GameManager {
             });
 
             // Append pause elements
+            options.appendChild(resume);
             options.appendChild(restart);
             options.appendChild(end);
             options.appendChild(resume);
@@ -175,10 +175,7 @@ export class GameManager {
 
             // Resume game
             resume.addEventListener('click', () => {
-                document.title = "Green Game";
-                let cover = document.getElementById('cover-el');
-                document.body.removeChild(cover);
-                this._gamePaused = false;
+                this.pauseGame();
             });
 
             // End game
@@ -280,7 +277,6 @@ export class GameManager {
             document.title = "Green Game";
             let cover = document.getElementById('cover-el');
             document.body.removeChild(cover);
-            // TODO hide pause screen
         }
 
     }

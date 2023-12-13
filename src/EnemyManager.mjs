@@ -7,7 +7,7 @@ export class EnemyManager {
     constructor(objectRepository) {
         this._objectRepositroy = objectRepository;
 
-        this._weakEnemyDiv = def.enemyManager.AMBIENT_DIV;
+        this._weakEnemyDiv = def.enemyManager.AMBIENT_DIV; // TODO decreases with time??
     }
 
     update() {

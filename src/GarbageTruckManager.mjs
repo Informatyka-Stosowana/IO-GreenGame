@@ -63,7 +63,7 @@ export class GarbageTruckManager {
         this._trashSpawned++;
 
         // TODO add all possible trash, add animations etc.
-        let type = Math.ceil(Math.random() * 4);
+        let type = Math.floor(Math.random() * 4);
         let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
 
         this._objectRepository.addTrash(trash);
@@ -85,8 +85,8 @@ export class GarbageTruckManager {
 
     _randomizeSpawnSpots() {
         this._spawnSpots = [];
-        this._spawnSpots.push((60 + Math.ceil(Math.random() * 20)))
-        this._spawnSpots.push((40 + Math.ceil(Math.random() * 20)))
-        this._spawnSpots.push((20 + Math.ceil(Math.random() * 20)))
+        this._spawnSpots.push((60 + Math.floor(Math.random() * 20)))
+        this._spawnSpots.push((40 + Math.floor(Math.random() * 20)))
+        this._spawnSpots.push((20 + Math.floor(Math.random() * 20)))
     }
 }
