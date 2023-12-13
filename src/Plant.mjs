@@ -1,40 +1,67 @@
-export class Plant {
-    constructor(type) {
-        this._type = type;
+import {Definitions as def} from "./Definitions.mjs";
+import {Bullet} from "./Bullet.mjs";
 
-        if (type === 1) {
-            this._price = 20
-            this._hp = 200;
-            this._damage = 30;
-        }
-        if (type === 2) {
-            this._price = 20
-            this._hp = 200;
-            this._damage = 30;
-        }
-        if (type === 3) {
-            this._price = 20
-            this._hp = 200;
-            this._damage = 30;
-        }
-        if (type === 4) {
-            this._price = 20
-            this._hp = 200;
-            this._damage = 30;
-        }
+export class Plant {
+    constructor(type, objectRepository) {
+        this._type = type;
+        this._cell = null;
+        this._img = null;
+        this._objectRepository = objectRepository;
+        this._hp = def.plant.type[this._type].HP;
+        this._attackDiv = def.plant.type[this._type].ATTACK_SPEED_DIV;
     }
 
-    get price() {
-        return this._price;
+    get img() {
+        return this._img;
+    }
+
+    get cell() {
+        return this._cell;
+    }
+
+    set cell(cell) {
+        this._cell = cell;
+    }
+
+    createImage() {
+        this._img = document.createElement('img');
+        this._img.src = def.plant.type[this._type].IMG_SRC;
+        this._img.style.pointerEvents = 'none';
+        this._img.className = 'board-box-img';
+
+        this._cell.appendChild(this._img);
+    }
+
+    removeHp(value) {
+        if (this._hp - value <= 0) {
+            this._objectRepository.removePlant(this);
+            this._cell.removeChild(this._img);
+            return;
+        }
+        this._hp -= value;
+    }
+
+    get type() {
+        return this._type;
     }
 
     update() {
-
+        if (this._attackDiv > 0) {
+            this._attackDiv--;
+        }
+        else {
+            this._attack()
+            this._attackDiv = def.plant.type[this._type].ATTACK_SPEED_DIV;
+        }
     }
 
     _attack() {
         // TODO implement attack - spawn bullet behaviour
         // Enemies can appear on top of each other so only the first one should be damaged
-
+        let position = def.getPos(this._img, 1);
+        let bullet = new Bullet(this._type, position.left,
+                                        position.top, this._objectRepository)
+        console.log(position)
+        this._objectRepository.addBullet(bullet);
     }
 }

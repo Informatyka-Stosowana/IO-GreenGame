@@ -6,6 +6,7 @@ export class ObjectRepository {
         this._boxes = [];
         this._forks = [];
         this._dynamite = [];
+        this._bullets = [];
     }
 
     get enemies() {
@@ -20,6 +21,10 @@ export class ObjectRepository {
         return this._boxes;
     }
 
+    get bullets() {
+        return this._bullets;
+    }
+
     update() {
         this._updateArray(this._trash);
         this._updateArray(this._enemies);
@@ -27,6 +32,7 @@ export class ObjectRepository {
         // this._updateArray(this._boxes);
         this._updateArray(this._forks);
         this._updateArray(this._dynamite);
+        this._updateArray(this._bullets);
     }
 
     _updateArray(array) {
@@ -47,10 +53,25 @@ export class ObjectRepository {
 
         // TODO uncomment
         let object = null;
-        // object = searchArray(this._plants);
-        // if (object) return object;
+        object = searchArray(this._plants);
+        if (object) return object;
         object = searchArray(this._boxes);
         if (object) return object;
+    }
+
+    addBullet(bullet) {
+        this._bullets.push(bullet);
+        console.info('[INFO] Bullet added: ', bullet);
+    }
+
+    removeBullet(bullet) {
+        for (let i = 0; i < this._bullets.length; i++) {
+            if (this._bullets[i] === bullet) {
+                this._bullets.splice(i, 1);
+                console.info('[INFO] Bullet removed: ', bullet);
+                return;
+            }
+        }
     }
 
     addTrash(trash) {

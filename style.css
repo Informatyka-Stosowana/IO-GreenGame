@@ -56,7 +56,7 @@ td {
     object-fit: contain;
 }
 
-#items-menu-table-el #shop-box-icon-el, #shop-dynamite-icon-el {
+#items-menu-table-el #shop-box-icon-el, #shop-dynamite-icon-el, .shop-plant-icon-el {
     margin: 0;
     padding: 0;
     height: 7vh;

@@ -14,7 +14,7 @@ export class Fork {
 
     set img(value) {
         this._img = value;
-        def.convertPixelsToVw(this._img);
+        def.convertPixelsToViewPort(this._img);
     }
 
     update() {

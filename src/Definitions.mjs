@@ -73,11 +73,29 @@ export const Definitions = {
 
     plant: {
         type: [
-            // Type 0 - normal
             {
                 IMG_SRC: './resources/plant_0.png',
                 HP: 1000,
                 ATTACK_SPEED_DIV: 100,
+                PRICE: 20
+            },
+            {
+                IMG_SRC: './resources/plant_1.png',
+                HP: 1500,
+                ATTACK_SPEED_DIV: 500,
+                PRICE: 40
+            },
+            {
+                IMG_SRC: './resources/plant_2.png',
+                HP: 1000,
+                ATTACK_SPEED_DIV: 500,
+                PRICE: 60
+            },
+            {
+                IMG_SRC: './resources/plant_2.png',
+                HP: 1000,
+                ATTACK_SPEED_DIV: 500,
+                PRICE: 80
             }
         ]
     },
@@ -130,23 +148,23 @@ export const Definitions = {
         AMBIENT_DIV: 1000,
     },
 
+    getPos: function (el, scale) {
+        let rect = el.getBoundingClientRect();
+
+        let scaledWidth = rect.width * scale;
+        let scaledHeight = rect.height * scale;
+
+        return {
+            top: rect.top - (scaledHeight - rect.height) / 2,
+            right: rect.right + (scaledWidth - rect.width) / 2,
+            bottom: rect.bottom + (scaledHeight - rect.height) / 2,
+            left: rect.left - (scaledWidth - rect.width) / 2
+        }
+    },
+
     checkCollision: function (element1, element2, scaleFactor) {
-        let getPos = function (el, scale) {
-            let rect = el.getBoundingClientRect();
-
-            let scaledWidth = rect.width * scale;
-            let scaledHeight = rect.height * scale;
-
-            return {
-                top: rect.top - (scaledHeight - rect.height) / 2,
-                right: rect.right + (scaledWidth - rect.width) / 2,
-                bottom: rect.bottom + (scaledHeight - rect.height) / 2,
-                left: rect.left - (scaledWidth - rect.width) / 2
-            };
-        };
-
-        let element1Pos = getPos(element1, scaleFactor);
-        let element2Pos = getPos(element2, 1);
+        let element1Pos = this.getPos(element1, scaleFactor);
+        let element2Pos = this.getPos(element2, 1);
 
         return !(element1Pos.top > element2Pos.bottom ||
             element1Pos.right < element2Pos.left ||
@@ -154,10 +172,17 @@ export const Definitions = {
             element1Pos.left > element2Pos.right);
     },
 
-    convertPixelsToVw(element) {
+    convertPixelsToViewPort(element) {
         let viewportWidth = window.innerWidth || document.documentElement.clientWidth;
         let currentPositionInPixels = parseFloat(element.style.left);
-        let currentPositionInVw = (currentPositionInPixels / viewportWidth) * 100;
-        element.style.left = currentPositionInVw + 'vw';
+        let currentPositionInViewPort = (currentPositionInPixels / viewportWidth) * 100;
+        element.style.left = currentPositionInViewPort + 'vw';
+
+        let viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        currentPositionInPixels = parseFloat(element.style.top);
+        currentPositionInViewPort = (currentPositionInPixels / viewportHeight) * 100;
+        element.style.top = currentPositionInViewPort + 'vh';
     }
+
+
 };

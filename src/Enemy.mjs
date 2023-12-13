@@ -28,10 +28,10 @@ export class Enemy {
             if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
         }
         // TODO uncomment when plants done
-        // array = this._objectRepository.plants;
-        // for (let i = 0; i < array.length; i++) {
-        //     if (def.checkCollision(this._img, array[i].img)) return array[i];
-        // }
+        array = this._objectRepository.plants;
+        for (let i = 0; i < array.length; i++) {
+            if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
+        }
         return null;
     }
 
