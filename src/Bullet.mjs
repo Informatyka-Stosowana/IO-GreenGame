@@ -11,7 +11,7 @@ export class Bullet {
     _createImg(posX, posY) {
         this._img = document.createElement("img");
         this._img.style.position = 'absolute';
-        this._img.style.scale = '0.2';
+        this._img.style.width = 1.5 + 'vw';
         this._img.src = def.bullet.type[this._type].IMG_SRC;
         this._img.style.pointerEvents = 'none';
         this._img.className = 'bullet-0-img';
@@ -22,7 +22,7 @@ export class Bullet {
         def.convertPixelsToViewPort(this._img);
 
         this._img.style.left = parseFloat(this._img.style.left) + 3 + 'vw';
-        this._img.style.top = parseFloat(this._img.style.top) - 2.2 + 'vh';
+        this._img.style.top = parseFloat(this._img.style.top) + 1 + 'vh';
 
         document.body.appendChild(this._img);
     }
