@@ -23,6 +23,10 @@ export class Plant {
         this._cell = cell;
     }
 
+    get type() {
+        return this._type;
+    }
+
     createImage() {
         this._img = document.createElement('img');
         this._img.src = def.plant.type[this._type].IMG_SRC;
@@ -41,16 +45,14 @@ export class Plant {
         this._hp -= value;
     }
 
-    get type() {
-        return this._type;
-    }
-
     update() {
         if (this._attackDiv > 0) {
             this._attackDiv--;
-        }
-        else {
-            this._attack()
+        } else {
+            console.log(this._cell.parent)
+            if (this._cell.parentElement.getElementsByClassName('enemy-td-element')[0].children.length !== 0) {
+                this._attack();
+            }
             this._attackDiv = def.plant.type[this._type].ATTACK_SPEED_DIV;
         }
     }
@@ -60,8 +62,7 @@ export class Plant {
         // Enemies can appear on top of each other so only the first one should be damaged
         let position = def.getPos(this._img, 1);
         let bullet = new Bullet(this._type, position.left,
-                                        position.top, this._objectRepository)
-        console.log(position)
+            position.top, this._objectRepository)
         this._objectRepository.addBullet(bullet);
     }
 }
