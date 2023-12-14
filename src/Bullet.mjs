@@ -30,16 +30,19 @@ export class Bullet {
     update() {
         let collisionObj = this._checkCollision();
         if (collisionObj) {
-            collisionObj.removeHp(def.bullet[this._type].DAMAGE);
+            collisionObj.removeHp(def.bullet.type[this._type].DAMAGE);
             // If frozen bullet freeze enemy
             if (this._type === 1) null; // TODO freeze enemy
+
+            // Remove img & self from objRepo
+            this._objectRepository.removeBullet(this);
+            document.body.removeChild(this._img);
         }
         this._move();
     }
 
     _move() {
         let posX = parseFloat(this._img.style.left);
-        console.log(posX);
         this._img.style.left = (posX + def.bullet.type[this._type].SPEED / 100) + 'vw';
         if (posX > 100) {
             this._objectRepository.removeBullet(this);
