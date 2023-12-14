@@ -131,6 +131,7 @@ export const Definitions = {
             // Type 0 - normal
             {
                 IMG_SRC: './resources/bullet_0.png',
+                HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
                 DAMAGE: 30,
                 SPEED: 15 // In vw divided by 100
             },

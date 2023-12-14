@@ -43,6 +43,7 @@ export class Fork {
                 if (this._hitEnemies.length === 0) {
                     this._hitEnemies.push(this._objectRepository.enemies[i])
                     this._objectRepository.enemies[i].removeHp(def.fork.DAMAGE);
+                    new Audio(def.enemy.damage_sound[Math.floor(Math.random() * 6)].SOUND_SRC).play();
                 } else {
 
                     // Check if enemy has been hit before
@@ -56,6 +57,7 @@ export class Fork {
                     if (enemyNeverHit) {
                         this._hitEnemies.push(this._objectRepository.enemies[i])
                         this._objectRepository.enemies[i].removeHp(def.fork.DAMAGE);
+                        new Audio(def.enemy.damage_sound[Math.floor(Math.random() * 6)].SOUND_SRC).play();
                     }
                 }
             }

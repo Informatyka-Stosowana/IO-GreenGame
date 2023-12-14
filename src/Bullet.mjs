@@ -33,6 +33,9 @@ export class Bullet {
             collisionObj.removeHp(def.bullet.type[this._type].DAMAGE);
             // If frozen bullet freeze enemy
             if (this._type === 1) null; // TODO freeze enemy
+            
+            // Play sound
+            new Audio(def.bullet.type[this._type].HIT_SOUND_SRC).play();
 
             // Remove img & self from objRepo
             this._objectRepository.removeBullet(this);

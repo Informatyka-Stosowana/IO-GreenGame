@@ -49,7 +49,6 @@ export class Plant {
         if (this._attackDiv > 0) {
             this._attackDiv--;
         } else {
-            console.log(this._cell.parent)
             if (this._cell.parentElement.getElementsByClassName('enemy-td-element')[0].children.length !== 0) {
                 this._attack();
             }
