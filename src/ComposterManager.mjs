@@ -13,12 +13,6 @@ export class ComposterManager {
 
     update() {
 
-        // Update queue if count changed
-        if (this._itemRepository.compostableTrash.length !== this._compostableTrashCount) {
-            this._compostableTrashCount = this._itemRepository.compostableTrash.length;
-            this._updateQueue();
-        }
-
         // Add next trash to process if empty
         if (this._currentCompostableTrash === null) {
             if (this._itemRepository.compostableTrash.length === 0) return;
@@ -26,6 +20,12 @@ export class ComposterManager {
             this._updatesTillProcessed = def.compostableTrash[this._currentCompostableTrash].COMPOSTING_TIME;
             console.info('[INFO] Composting: ', this._currentCompostableTrash);
             this._itemRepository.removeFirstCompostableTrash();
+        }
+
+        // Update queue if count changed
+        if (this._itemRepository.compostableTrash.length !== this._compostableTrashCount) {
+            this._compostableTrashCount = this._itemRepository.compostableTrash.length;
+            this._updateQueue();
         }
 
         // Finish processing check

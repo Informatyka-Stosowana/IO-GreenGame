@@ -18,16 +18,18 @@ export class Enemy {
 
     update() {
         let collisionObj = this._checkCollision();
-        if (collisionObj) collisionObj.removeHp(def.enemy.type[this._type].DAMAGE);
-        else this._move();
+        if (collisionObj) {
+            collisionObj.removeHp(def.enemy.type[this._type].DAMAGE);
+        } else this._move();
     }
 
     _checkCollision() {
+        // Check collision with boxes
         let array = this._objectRepository.boxes;
         for (let i = 0; i < array.length; i++) {
             if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
         }
-        // TODO uncomment when plants done
+        // Check collision with plants
         array = this._objectRepository.plants;
         for (let i = 0; i < array.length; i++) {
             if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
@@ -39,8 +41,7 @@ export class Enemy {
         let posX = parseFloat(this._img.style.left);
         this._img.style.left = (posX - def.enemy.type[this._type].SPEED / 100) + 'vw';
         if (posX < -68) {
-            // TODO activate mouse trap or end game
-            this.removeHp(10_000) // temporary
+            def.game.ALIVE = false;
         }
     }
 
@@ -58,7 +59,7 @@ export class Enemy {
 
     removeHp(value) {
         if (this._hp - value <= 0) {
-            // TODO increase score
+            def.game.SCORE += def.enemy.type[this._type].SCORE_INC;
             this._objectRepository.removeEnemy(this);
             this._cell.removeChild(this._img);
             return;

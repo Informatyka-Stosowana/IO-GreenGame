@@ -2,6 +2,11 @@ export const Definitions = {
     GAME_LOOP_INTERVAL: 10, // speed of ticks in ms
     SCORE_INCREMENT_DIV: 500, // how many ticks it takes to increment score
 
+    game: {
+        SCORE: 0,
+        ALIVE: true,
+    },
+
     box: {
         IMG_SRC: './resources/box_1.png',
         HP: 5000,
@@ -85,6 +90,7 @@ export const Definitions = {
                 HP: 100,
                 DAMAGE: 10,
                 SPEED: 5, // In vw divided by 100
+                SCORE_INC: 10,
                 // ATTACK_SPEED: 25, // Cool-down in ticks
             }
         ]
@@ -96,7 +102,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/plant_0.png',
                 HP: 1000,
-                ATTACK_SPEED_DIV: 100,
+                ATTACK_SPEED_DIV: 300,
                 PRICE: 20
             },
             {
@@ -126,7 +132,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/bullet_0.png',
                 DAMAGE: 30,
-                SPEED: 10 // In vw divided by 100
+                SPEED: 15 // In vw divided by 100
             },
             // Type 1 - frozen
             {

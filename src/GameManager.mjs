@@ -14,7 +14,6 @@ import {Definitions as def} from "./Definitions.mjs";
 export class GameManager {
     constructor() {
         this._gamePaused = true;
-        this._score = 0;
         this._scoreIncrementInterval = 0;
         this._intervalId = null;
 
@@ -293,6 +292,10 @@ export class GameManager {
     }
 
     gameLoop() {
+        if (!def.game.ALIVE) {
+            // TODO add proper end game screen
+            location.reload();
+        }
         if (!this._gamePaused) {
             this._composterManager.update();
             this._objectRepository.update();
@@ -301,9 +304,9 @@ export class GameManager {
 
             // Increment score over time
             if (this._scoreIncrementInterval === def.SCORE_INCREMENT_DIV) {
-                this._score++;
+                def.game.SCORE++;
                 this._scoreIncrementInterval = 0;
-                // console.log('Score: ', this._score)
+                console.log('Score: ', def.game.SCORE);
             } else this._scoreIncrementInterval++;
         }
     }
