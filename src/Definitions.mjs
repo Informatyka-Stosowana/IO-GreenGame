@@ -14,7 +14,7 @@ export const Definitions = {
 
     fork: {
         IMG_SRC: './resources/frok.png',
-        DAMAGE: 50,
+        DAMAGE: 100,
         SPEED: 35,
         damage_sound: [
             {
@@ -48,7 +48,7 @@ export const Definitions = {
         IMG_SRC: './resources/dynamite.png',
         EXPLOSION_DELAY: 50,
         EXPLOSION_RADIUS: 2, // How much bigger the collision box is, scale factor
-        EXPLOSION_DAMAGE: 100,
+        EXPLOSION_DAMAGE: 500,
         EXPLOSION_SOUND_SRC: './resources/sounds/explosion.mp3',
         EXPLOSION_ANIMATION: [
             {
@@ -80,33 +80,6 @@ export const Definitions = {
                 ANIMATION_DELAY: 5,
             },
         ],
-    },
-
-    enemy: {
-        type: [
-            {
-                // Type 0 - weak
-                IMG_SRC: './resources/enemy_0.png',
-                CLASS_NAME: 'enemy-0-img',
-                HP: 100,
-                DAMAGE: 10,
-                SPEED: 5, // In vw divided by 100
-                SCORE_INC: 10,
-                // ATTACK_SPEED: 25, // Cool-down in ticks
-            },
-            {
-                // Type 0 - weak
-                IMG_SRC: './resources/enemy_1.png',
-                CLASS_NAME: 'enemy-1-img',
-                HP: 300,
-                DAMAGE: 20,
-                SPEED: 2, // In vw divided by 100
-                SCORE_INC: 20,
-                // ATTACK_SPEED: 25, // Cool-down in ticks
-            },
-
-        ]
-
     },
 
     plant: {
@@ -193,8 +166,57 @@ export const Definitions = {
         }
     ],
 
+    enemy: {
+        type: [
+            {
+                // Type 0 - weak
+                IMG_SRC: './resources/enemy_0.png',
+                CLASS_NAME: 'enemy-0-img',
+                HP: 100,
+                DAMAGE: 10,
+                SPEED: 5, // In vw divided by 100
+                SCORE_INC: 10,
+                // ATTACK_SPEED: 25, // Cool-down in ticks
+            },
+            {
+                // Type 1 - weak snail
+                IMG_SRC: './resources/enemy_1.png',
+                CLASS_NAME: 'enemy-1-img',
+                HP: 250,
+                DAMAGE: 20,
+                SPEED: 3, // In vw divided by 100
+                SCORE_INC: 20,
+                // ATTACK_SPEED: 25, // Cool-down in ticks
+            },
+            {
+                // Type 2 - strong snail
+                IMG_SRC: './resources/enemy_2.png',
+                CLASS_NAME: 'enemy-2-img',
+                HP: 500,
+                DAMAGE: 50,
+                SPEED: 2, // In vw divided by 100
+                SCORE_INC: 20,
+                // ATTACK_SPEED: 25, // Cool-down in ticks
+            },
+            {
+                // Type 3 - very strong snail
+                IMG_SRC: './resources/enemy_3.png',
+                CLASS_NAME: 'enemy-3-img',
+                HP: 1000,
+                DAMAGE: 100,
+                SPEED: 0.8, // In vw divided by 100
+                SCORE_INC: 50,
+                // ATTACK_SPEED: 25, // Cool-down in ticks
+            },
+        ]
+    },
+
     enemyManager: {
-        AMBIENT_DIV: 500,
+        WAVE_ENEMY_SPAWN_DIV: 70,
+        WEAK_ENEMY_COUNT: 5,
+        STRONG_ENEMY_COUNT: 0,
+        AMBIENT_DIV: 1_000,
+        WAVE_DIV: 9_000,
     },
 
     getPos: function (el, scale) {

@@ -27,7 +27,12 @@ td {
     background: rgb(128, 128, 128);
 }
 
+
 /* Items menu*/
+#wave-info-el {
+    width: 30vw;
+}
+
 #items-menu-table-el {
     position: absolute;
     width: 80vw;
@@ -215,10 +220,10 @@ td {
     pointer-events: none;
 }
 
-.enemy-1-img {
+.enemy-1-img, .enemy-2-img, .enemy-3-img {
     scale: 0.8;
-    /*width: 13vw;*/
-    /*height: 10vh;*/
+    width: 5.5vw;
+    height: 10vh;
     position: absolute;
     top: 0;
     left: 0;
