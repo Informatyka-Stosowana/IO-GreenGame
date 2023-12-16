@@ -8,6 +8,7 @@ export class EnemyManager {
         this._objectRepositroy = objectRepository;
 
         this._weakEnemyDiv = def.enemyManager.AMBIENT_DIV; // TODO decreases with time??
+        this._weakEnemyDivIncDiv = 0;
     }
 
     update() {
@@ -15,13 +16,14 @@ export class EnemyManager {
             this._weakEnemyDiv--;
 
         } else {
+            this._weakEnemyDivIncDiv++;
             this.spawnEnemy();
-            this._weakEnemyDiv = def.enemyManager.AMBIENT_DIV;
+            this._weakEnemyDiv = def.enemyManager.AMBIENT_DIV - this._weakEnemyDivIncDiv;
         }
     }
 
     spawnEnemy() {
-        let newEnemy = new Enemy(0, this._objectRepositroy, Math.floor(Math.random() * 5));
+        let newEnemy = new Enemy(Math.floor(Math.random() * 2), this._objectRepositroy, Math.floor(Math.random() * 5));
         this._objectRepositroy.addEnemy(newEnemy);
     }
 }

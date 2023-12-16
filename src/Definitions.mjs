@@ -16,6 +16,26 @@ export const Definitions = {
         IMG_SRC: './resources/frok.png',
         DAMAGE: 50,
         SPEED: 35,
+        damage_sound: [
+            {
+                SOUND_SRC: './resources/sounds/stab_0.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_1.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_2.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_3.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_4.mp3'
+            },
+            {
+                SOUND_SRC: './resources/sounds/stab_5.mp3'
+            },
+        ],
     },
 
     garbageTruck: {
@@ -63,37 +83,28 @@ export const Definitions = {
     },
 
     enemy: {
-        damage_sound: [
-            {
-                SOUND_SRC: './resources/sounds/stab_0.mp3'
-            },
-            {
-                SOUND_SRC: './resources/sounds/stab_1.mp3'
-            },
-            {
-                SOUND_SRC: './resources/sounds/stab_2.mp3'
-            },
-            {
-                SOUND_SRC: './resources/sounds/stab_3.mp3'
-            },
-            {
-                SOUND_SRC: './resources/sounds/stab_4.mp3'
-            },
-            {
-                SOUND_SRC: './resources/sounds/stab_5.mp3'
-            },
-        ],
         type: [
             {
                 // Type 0 - weak
-                IMG_SRC: './resources/enemy_1_placeholder.png',
+                IMG_SRC: './resources/enemy_0.png',
                 CLASS_NAME: 'enemy-0-img',
                 HP: 100,
                 DAMAGE: 10,
                 SPEED: 5, // In vw divided by 100
                 SCORE_INC: 10,
                 // ATTACK_SPEED: 25, // Cool-down in ticks
-            }
+            },
+            {
+                // Type 0 - weak
+                IMG_SRC: './resources/enemy_1.png',
+                CLASS_NAME: 'enemy-1-img',
+                HP: 300,
+                DAMAGE: 20,
+                SPEED: 2, // In vw divided by 100
+                SCORE_INC: 20,
+                // ATTACK_SPEED: 25, // Cool-down in ticks
+            },
+
         ]
 
     },

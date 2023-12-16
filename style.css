@@ -215,6 +215,19 @@ td {
     pointer-events: none;
 }
 
+.enemy-1-img {
+    scale: 0.8;
+    /*width: 13vw;*/
+    /*height: 10vh;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    pointer-events: none;
+}
+
 .blue-img {
     filter: brightness(1.2) saturate(1.2) hue-rotate(200deg);
 }
