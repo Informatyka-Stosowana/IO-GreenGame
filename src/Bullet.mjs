@@ -31,9 +31,17 @@ export class Bullet {
         let collisionObj = this._checkCollision();
         if (collisionObj) {
             collisionObj.removeHp(def.bullet.type[this._type].DAMAGE);
+
+            // If poison bullet poison enemy
+            if (this._type === 1) {
+                collisionObj.poisonTicks = def.bullet.type[this._type].POISON_TIME;
+            }
+
             // If frozen bullet freeze enemy
-            if (this._type === 1) null; // TODO freeze enemy
-            
+            if (this._type === 2) {
+                collisionObj.frozenTicks = def.bullet.type[this._type].FREEZE_TIME;
+            }
+
             // Play sound
             new Audio(def.bullet.type[this._type].HIT_SOUND_SRC).play();
 

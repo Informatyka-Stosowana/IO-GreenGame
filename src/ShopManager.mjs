@@ -18,6 +18,12 @@ export class ShopManager {
 
         this._addShopEventListeners();
         this._isInBuyingMode = false;
+
+        // Set prices
+        document.getElementById('plant-0-price-el').innerText = def.plant.type[0].PRICE;
+        document.getElementById('plant-1-price-el').innerText = def.plant.type[1].PRICE;
+        document.getElementById('plant-2-price-el').innerText = def.plant.type[2].PRICE;
+        document.getElementById('plant-3-price-el').innerText = def.plant.type[3].PRICE;
     }
 
     _handleShopClick(event) {
@@ -33,10 +39,9 @@ export class ShopManager {
             return;
         }
 
-        this._isInBuyingMode = true;
         console.info('[INFO] Buying: ', event.target.id)
 
-        if (event.target.id === "plant-1-shop-el") {
+        if (event.target.id === "plant-0-shop-el") {
             this._thing = new Plant(0, this._objectRepository);
             if (this._itemRepository.compost < def.plant.type[0].PRICE) {
                 console.info('[INFO] Insufficient compost')
@@ -45,7 +50,7 @@ export class ShopManager {
             }
             image.style.width = '4.5vw';
             image.src = def.plant.type[0].IMG_SRC;
-        } else if (event.target.id === "plant-2-shop-el") {
+        } else if (event.target.id === "plant-1-shop-el") {
             this._thing = new Plant(1, this._objectRepository);
             if (this._itemRepository.compost < def.plant.type[1].PRICE) {
                 console.info('[INFO] Insufficient compost')
@@ -54,7 +59,7 @@ export class ShopManager {
             }
             image.style.width = '4.5vw';
             image.src = def.plant.type[1].IMG_SRC;
-        } else if (event.target.id === "plant-3-shop-el") {
+        } else if (event.target.id === "plant-2-shop-el") {
             this._thing = new Plant(2, this._objectRepository);
             if (this._itemRepository.compost < def.plant.type[2].PRICE) {
                 console.info('[INFO] Insufficient compost')
@@ -63,7 +68,7 @@ export class ShopManager {
             }
             image.style.width = '4.5vw';
             image.src = def.plant.type[2].IMG_SRC;
-        } else if (event.target.id === "plant-4-shop-el") {
+        } else if (event.target.id === "plant-3-shop-el") {
             this._thing = new Plant(3, this._objectRepository);
             if (this._itemRepository.compost < def.plant.type[3].PRICE) {
                 console.info('[INFO] Insufficient compost')
@@ -102,6 +107,7 @@ export class ShopManager {
         } else {
             return;
         }
+        this._isInBuyingMode = true;
 
         image.id = 'cursor-image-el';
         image.style.height = 'auto';

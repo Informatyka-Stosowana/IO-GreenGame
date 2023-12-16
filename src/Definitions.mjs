@@ -87,6 +87,7 @@ export const Definitions = {
             {
                 // Type 0 - weak
                 IMG_SRC: './resources/enemy_1_placeholder.png',
+                CLASS_NAME: 'enemy-0-img',
                 HP: 100,
                 DAMAGE: 10,
                 SPEED: 5, // In vw divided by 100
@@ -135,9 +136,19 @@ export const Definitions = {
                 DAMAGE: 30,
                 SPEED: 15 // In vw divided by 100
             },
-            // Type 1 - frozen
+            // Type 1 - poison
             {
                 IMG_SRC: './resources/bullet_1.png',
+                HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
+                DAMAGE: 15,
+                SPEED: 13, // In vw divided by 100
+                POISON_TIME: 500,
+                POISON_DMG: 0.1,
+            },
+            // Type 2 - frozen
+            {
+                IMG_SRC: './resources/bullet_2.png',
+                HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
                 DAMAGE: 15,
                 SPEED: 13, // In vw divided by 100
                 FREEZE_TIME: 200

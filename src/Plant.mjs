@@ -8,7 +8,7 @@ export class Plant {
         this._img = null;
         this._objectRepository = objectRepository;
         this._hp = def.plant.type[this._type].HP;
-        this._attackDiv = def.plant.type[this._type].ATTACK_SPEED_DIV;
+        this._attackDiv = 0;
     }
 
     get img() {
@@ -31,7 +31,7 @@ export class Plant {
         this._img = document.createElement('img');
         this._img.src = def.plant.type[this._type].IMG_SRC;
         this._img.style.pointerEvents = 'none';
-        this._img.className = 'board-box-img';
+        this._img.className = 'board-plant-img';
 
         this._cell.appendChild(this._img);
     }
@@ -46,13 +46,14 @@ export class Plant {
     }
 
     update() {
-        if (this._attackDiv > 0) {
-            this._attackDiv--;
+        if (this._attackDiv < def.plant.type[this._type].ATTACK_SPEED_DIV) {
+            // Attack cool down
+            this._attackDiv++;
         } else {
             if (this._cell.parentElement.getElementsByClassName('enemy-td-element')[0].children.length !== 0) {
                 this._attack();
+                this._attackDiv = 0;
             }
-            this._attackDiv = def.plant.type[this._type].ATTACK_SPEED_DIV;
         }
     }
 

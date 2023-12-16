@@ -33,6 +33,7 @@ export class GameManager {
         this._itemRepository.addDynamite(500);
         this._itemRepository.addForks(500);
         this._itemRepository.addBoxes(500);
+        this._itemRepository.addCompost(1000);
     }
 
     _setStartingResources() {

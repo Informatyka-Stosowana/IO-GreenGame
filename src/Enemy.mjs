@@ -5,9 +5,20 @@ export class Enemy {
         this._type = type;
         this._objectRepository = objectRepository;
         this._hp = def.enemy.type[this._type].HP;
+        this._frozenTicks = 0;
+        this._poisonTicks = 0;
+
 
         this._cell = document.getElementById('enemy-td-element-' + row);
         this._createImg();
+    }
+
+    set frozenTicks(value) {
+        this._frozenTicks = value;
+    }
+
+    set poisonTicks(value) {
+        this._poisonTicks = value;
     }
 
     get img() {
@@ -17,6 +28,22 @@ export class Enemy {
     // TODO figure out a way to define difficulty with multiplier/multipliers
 
     update() {
+
+        if (this._frozenTicks > 0 && this._poisonTicks > 0) {
+            this._poisonTicks--;
+            this._frozenTicks--;
+            this.img.className = def.enemy.type[this._type].CLASS_NAME + ' blue-purple-img';
+        } else if (this._frozenTicks > 0) {
+            this._frozenTicks--;
+            this.img.className = def.enemy.type[this._type].CLASS_NAME + ' blue-img';
+        } else if (this._poisonTicks > 0) {
+            this._poisonTicks--;
+            this.removeHp(def.bullet.type[1].POISON_DMG);
+            this.img.className = def.enemy.type[this._type].CLASS_NAME + ' purple-img';
+        } else {
+            this.img.className = def.enemy.type[this._type].CLASS_NAME;
+        }
+
         let collisionObj = this._checkCollision();
         if (collisionObj) {
             collisionObj.removeHp(def.enemy.type[this._type].DAMAGE);
@@ -39,7 +66,10 @@ export class Enemy {
 
     _move() {
         let posX = parseFloat(this._img.style.left);
-        this._img.style.left = (posX - def.enemy.type[this._type].SPEED / 100) + 'vw';
+        let move = def.enemy.type[this._type].SPEED / 100;
+        if (this._frozenTicks > 0) move /= 2;
+
+        this._img.style.left = (posX - move) + 'vw';
         if (posX < -68) {
             def.game.ALIVE = false;
         }
@@ -49,7 +79,7 @@ export class Enemy {
         this._img = document.createElement("img");
         this._img.src = def.enemy.type[this._type].IMG_SRC;
         this._img.style.pointerEvents = 'none';
-        this._img.className = 'enemy-0-img';
+        this._img.className = def.enemy.type[this._type].CLASS_NAME;
         this._img.style.left = 15 + 'vw';
         this._img.style.top = 1 + 'vw';
         this._img.style.margin = '0';
