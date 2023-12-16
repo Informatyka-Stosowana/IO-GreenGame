@@ -33,6 +33,15 @@ export class Trash {
                 this._img.src = def.compostableTrash[2].IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
+            case 4:
+                this._img.src = def.dynamite.IMG_SRC;
+                this._img.style.width = '3vw';
+                break;
+            case 5:
+                this._img.src = def.fork.IMG_SRC;
+                this._img.style.width = '4vw';
+                break;
+
         }
 
         this._img.style.left = posX + 'vw';
@@ -63,6 +72,8 @@ export class Trash {
         if (this._type === 1) this._itemRepository.addCompostableTrash(0);
         if (this._type === 2) this._itemRepository.addCompostableTrash(1);
         if (this._type === 3) this._itemRepository.addCompostableTrash(2);
+        if (this._type === 4) this._itemRepository.addDynamite(1)
+        if (this._type === 5) this._itemRepository.addForks(1);
         this._selfDelete()
     }
 

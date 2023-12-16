@@ -63,7 +63,7 @@ export class GarbageTruckManager {
         this._trashSpawned++;
 
         // TODO add all possible trash, add animations etc.
-        let type = Math.floor(Math.random() * 4);
+        let type = Math.floor(Math.random() * 6);
         let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
 
         this._objectRepository.addTrash(trash);

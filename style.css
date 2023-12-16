@@ -224,7 +224,7 @@ td {
 }
 
 .blue-purple-img {
-    filter: brightness(1.2) saturate(1.2) hue-rotate(200deg) sepia(0.2);
+    filter: brightness(1.2) saturate(1.2) hue-rotate(200deg) sepia(0.4);
 }
 
 .mouse-trap-fork-td-element, .enemy-td-element {
