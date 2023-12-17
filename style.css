@@ -24,7 +24,13 @@ td {
     left: 85vw;
     width: 15vw;
     height: 10vh;
-    background: rgb(128, 128, 128);
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #7c3f00;
+    color: white;
+    font-weight: bolder;
 }
 
 
