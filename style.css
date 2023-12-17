@@ -212,7 +212,6 @@ td {
 }
 
 /* enemy */
-/* TODO make this nice and scalable */
 .enemy-0-img {
     scale: 0.7;
     width: 13vw;

@@ -122,7 +122,6 @@ export class ShopManager {
         this._addCellEventListeners();
     }
 
-    // TODO maybe move to a different class
     _clearCursorImg() {
         let image = document.getElementById('cursor-image-el');
         if (image) {
@@ -131,7 +130,6 @@ export class ShopManager {
         }
     }
 
-    // TODO maybe move to a different class
     _handleCursorImg(event) {
         let image = document.getElementById('cursor-image-el');
         image.style.left = event.clientX + "px";

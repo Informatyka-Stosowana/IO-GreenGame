@@ -62,7 +62,6 @@ export class GarbageTruckManager {
             this._trashSpawned === this._spawnSpots.length) return;
         this._trashSpawned++;
 
-        // TODO add all possible trash, add animations etc.
         let type = Math.floor(Math.random() * 6);
         let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
 
@@ -70,8 +69,6 @@ export class GarbageTruckManager {
     }
 
     _newTruckPosX() {
-        // TODO come up with better, smoother truck speed control, maybe request animation frame
-
         // console.log('Truck speed: ', this._truckSpeedX);
         // console.log('Truck pos x: ', this._truckPosX);
 

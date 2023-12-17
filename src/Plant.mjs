@@ -59,7 +59,6 @@ export class Plant {
     }
 
     _attack() {
-        // TODO implement attack - spawn bullet behaviour
         // Enemies can appear on top of each other so only the first one should be damaged
         let position = def.getPos(this._img, 1);
         let bullet = new Bullet(this._type, position.left,

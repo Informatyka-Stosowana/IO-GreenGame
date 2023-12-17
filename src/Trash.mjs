@@ -2,12 +2,13 @@ import {Definitions as def} from "./Definitions.mjs";
 
 export class Trash {
 
-    // TODO add all possible trash
     // Types:
-    // 1 - box
-    // 2 - Compostable trash 1
-    // 3 - Compostable trash 2
-    // 4 - Compostable trash 3
+    // 0 - Box
+    // 1 - Compostable trash 1
+    // 2 - Compostable trash 2
+    // 3 - Compostable trash 3
+    // 4 - Dynamite
+    // 5 - Fork
 
     constructor(type, posX, posY, itemRepository, objectRepository) {
         this._itemRepository = itemRepository;

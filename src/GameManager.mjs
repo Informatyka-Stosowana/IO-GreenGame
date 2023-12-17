@@ -4,12 +4,8 @@ import {ComposterManager} from "./ComposterManager.mjs";
 import {ObjectRepository} from "./ObjectRepository.mjs";
 import {GarbageTruckManager} from "./GarbageTruckManager.mjs";
 import {EnemyManager} from "./EnemyManager.mjs";
+import {updateRanking} from "https://unpkg.com/greengame-api-client@latest";
 import {Definitions as def} from "./Definitions.mjs";
-
-// Game Manager:
-// Starts, pauses and restarts the game
-// Creates all the necessary managers and repositories
-// Manages main menu and pause menu
 
 export class GameManager {
     constructor() {
@@ -52,12 +48,17 @@ export class GameManager {
         this._intervalId = setInterval(() => this.gameLoop(), def.GAME_LOOP_INTERVAL);
     }
 
+    async sendDataToMainDataBaseThatHoldsAllTheDataThatIsNecessary(score) {
+        await updateRanking({gameID: 4, score: score});
+    }
+
     stopGame() {
         clearInterval(this._intervalId);
-        // TODO show menu screen
-        // TODO send data to main something
 
-        let end = this._endButton();
+        if (def.game.SCORE >= 500) {
+            this.sendDataToMainDataBaseThatHoldsAllTheDataThatIsNecessary(def.game.SCORE);
+        }
+
         let restart = this._restartButton();
 
         // Create empty div to center end screen
@@ -260,7 +261,6 @@ export class GameManager {
         if (this._gamePaused) {
             document.title = "Green Game - PAUSED";
 
-            // TODO show pause screen
             // Create background element
             let cover = document.createElement('div');
             cover.id = 'cover-el';

@@ -51,7 +51,6 @@ export class ObjectRepository {
             return null;
         }
 
-        // TODO uncomment
         let object = null;
         object = searchArray(this._plants);
         if (object) return object;
