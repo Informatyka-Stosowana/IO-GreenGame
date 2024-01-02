@@ -219,6 +219,40 @@ export class GameManager {
         return resume;
     }
 
+    _infoButton() {
+        let info = document.createElement('button');
+        info.id = 'info-el';
+        info.className = 'btn btn-primary';
+        info.type = 'button';
+        info.style.backgroundColor = '#562b00';
+        info.style.fontWeight = 'bold';
+        info.style.color = 'white';
+        info.style.height = '8vh';
+        info.style.border = '3px solid white';
+        info.style.borderRadius = '40px'
+        info.style.margin = '3vh 0';
+        info.textContent = 'INFO';
+
+        info.addEventListener('mouseover', () => {
+            // Change the button's border color
+            info.style.border = '3px solid green';
+            info.style.color = 'green';
+        });
+        info.addEventListener('mouseout', () => {
+            // Change the button's border color
+            info.style.border = '3px solid white';
+            info.style.color = 'white';
+        });
+
+        info.addEventListener('click', () => {
+            let cover = document.getElementById('cover-el');
+            document.body.removeChild(cover);
+            this.showInfo();
+        })
+
+        return info;
+    }
+
     _endButton() {
         let end = document.createElement('button');
         end.id = 'end-el';
@@ -256,6 +290,88 @@ export class GameManager {
         return end;
     }
 
+    _infoText(text, isBold) {
+        let info = document.createElement('p');
+        info.textContent = text;
+        info.style.textAlign = 'center';
+        info.style.color = 'white';
+        info.style.fontSize = '0.9rem';
+        if (isBold) {
+            info.style.fontWeight = 'bolder';
+        }
+
+        return info;
+    }
+
+    showInfo() {
+        // Create empty div to center end screen
+        let infoBackground = document.createElement('div');
+        infoBackground.id = 'info-background-el';
+        infoBackground.style.height = '100vh';
+        infoBackground.style.width = '100vw';
+        infoBackground.style.position = 'absolute';
+        infoBackground.style.display = 'flex';
+        infoBackground.style.alignItems = 'center';
+        infoBackground.style.justifyContent = 'center';
+
+        // Create frame
+        let infoScreenBackground = document.createElement('div');
+        infoScreenBackground.style.height = '84vh';
+        infoScreenBackground.style.width = '62vw';
+        infoScreenBackground.style.position = 'absolute';
+        infoScreenBackground.style.display = 'flex';
+        infoScreenBackground.style.alignItems = 'center';
+        infoScreenBackground.style.justifyContent = 'center';
+        infoScreenBackground.style.border = '3px solid black';
+        infoScreenBackground.style.borderRadius = '60px';
+        infoScreenBackground.style.background = '#7c3f00';
+
+        // Create end screen
+        let infoScreen = document.createElement('div');
+        infoScreen.className = 'd-grid gap-2 col-6 mx-auto';
+        infoScreen.style.height = '80vh';
+        infoScreen.style.width = '60vw';
+        infoScreen.style.position = 'absolute';
+        infoScreen.style.display = 'flex'
+        infoScreen.style.alignItems = 'center';
+        infoScreen.style.justifyContent = 'center';
+        infoScreen.style.border = '3px solid #1A1A1A';
+        infoScreen.style.borderRadius = '50px';
+        infoScreen.style.background = '#633200';
+
+        let infoText = document.createElement('div');
+        infoText.className = 'd-grid gap-2 col-6 mx-auto';
+        infoText.style.width = '45vw';
+
+        // Create p elements for info
+        let title = this._infoText('GREEN GAME', true);
+        let description = this._infoText('Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
+            ' Quisque mollis id odio ut laoreet. Ut in ex a dolor laoreet tempus a vel turpis. Ut efficitur vestibulum metus' +
+            ' non pulvinar. Aliquam vitae eros eu ex interdum condimentum ac eu lectus. Aliquam id lacus nec odio semper mattis.' +
+            ' Fusce blandit cursus blandit. Aliquam id nulla non neque hendrerit dignissim. Etiam malesuada arcu sapien,' +
+            ' at cursus nibh eleifend vitae. Morbi sit amet interdum sapien, id pellentesque nisi.', false);
+        let espInfo = this._infoText('ESC/RESUME button -> resume game', true);
+
+        // Create end options
+        let infoOptions = document.createElement('div');
+        infoOptions.className = 'd-grid gap-2 col-6 mx-auto';
+        infoOptions.style.width = '30vw';
+
+        // Create resume button
+        let resume = this._resumeButton();
+
+
+        infoOptions.appendChild(resume);
+        infoText.appendChild(title);
+        infoText.appendChild(description);
+        infoText.appendChild(espInfo);
+        infoScreen.appendChild(infoText);
+        infoScreen.appendChild(infoOptions);
+        infoScreenBackground.appendChild(infoScreen);
+        infoBackground.appendChild(infoScreenBackground);
+        document.body.appendChild(infoBackground);
+    }
+
     pauseGame() {
         this._gamePaused = !this._gamePaused;
         if (this._gamePaused) {
@@ -287,18 +403,28 @@ export class GameManager {
             // Create end game button
             let end = this._endButton();
 
+            // Create info button
+            let info = this._infoButton();
+
             // Append pause elements
             options.appendChild(resume);
             options.appendChild(restart);
             options.appendChild(end);
+            options.appendChild(info);
             options.appendChild(resume);
             cover.appendChild(options);
             document.body.appendChild(cover);
 
         } else {
             document.title = "Green Game";
-            let cover = document.getElementById('cover-el');
-            document.body.removeChild(cover);
+            if (document.getElementById('cover-el')) {
+                let cover = document.getElementById('cover-el');
+                document.body.removeChild(cover);
+            }
+            if (document.getElementById('info-background-el')) {
+                let infoBackground = document.getElementById('info-background-el');
+                document.body.removeChild(infoBackground);
+            }
         }
 
     }
