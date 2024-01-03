@@ -35,8 +35,37 @@ td {
 
 
 /* Items menu*/
+#progress-bar-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 #wave-info-el {
     width: 30vw;
+}
+
+#progress-bar-border-el {
+    width: 80%;
+    height: 30%;
+    margin-bottom: 3%;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-top: 0;
+}
+
+#progress-bar-text {
+
+}
+
+#progress-bar-el {
+    width: 5%;
+    height: 100%;
+    background: #7c3f00;
+    border-radius: 20px;
 }
 
 #items-menu-table-el {

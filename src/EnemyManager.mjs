@@ -16,14 +16,43 @@ export class EnemyManager {
         this._roundNo = 0;
         this._waveEnemySpawnDiv = def.enemyManager.WAVE_ENEMY_SPAWN_DIV;
         this._waveDiv = def.enemyManager.WAVE_DIV;
+        this._width = 5;
+    }
+
+    updateProgressBar() {
+        // Progress bar
+        let i = 0;
+        if (i === 0) {
+            i = 1;
+            let bar = document.getElementById('progress-bar-el');
+            let width = 0;
+            let id = setInterval(frame, this._waveDiv / 100);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                } else {
+                    width+=0.9;
+                    bar.style.width = width + '%';
+                }
+            }
+        }
     }
 
     update() {
         // Wave info
-        if (this._waveDiv % 100 === 0) {
-            document.getElementById('wave-info-el').innerText = 'Next wave in ' + this._waveDiv / 100 + ' s';
+        // document.getElementById('wave-info-el').innerText = 'Next wave in ' + this._waveDiv / 100 + ' s';
+
+        let bar = document.getElementById('progress-bar-el');
+        if (this._width >= 100) {
+            bar.style.width = '5%';
+            this._width = 5;
+        } else {
+            this._width += (95/9000);
+            bar.style.width = this._width + '%';
         }
 
+        
         // TODO finish waves, more time between, better scaling
         // Wave spawn
         if (this._waveDiv > 0) {
