@@ -62,16 +62,13 @@ export class GarbageTruckManager {
             this._trashSpawned === this._spawnSpots.length) return;
         this._trashSpawned++;
 
-        let type = Math.floor(Math.random() * 6);
+        let type = Math.floor(Math.random() * 7);
         let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
 
         this._objectRepository.addTrash(trash);
     }
 
     _newTruckPosX() {
-        // console.log('Truck speed: ', this._truckSpeedX);
-        // console.log('Truck pos x: ', this._truckPosX);
-
         if (this._truckPosX > 90) this._truckSpeedX += 0.03;
         else if (this._truckPosX > 60) this._truckSpeedX += 0.0055;
         if (this._truckPosX < 20) this._truckSpeedX -= 0.005;

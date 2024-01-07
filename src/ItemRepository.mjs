@@ -4,7 +4,12 @@ export class ItemRepository {
         this._forks = 0;
         this._boxes = 0;
         this._dynamite = 0;
+        this._mousetraps = 0;
         this._compostableTrash = [];
+    }
+
+    get mousetraps() {
+        return this._mousetraps;
     }
 
     get dynamite() {
@@ -73,6 +78,18 @@ export class ItemRepository {
         this._dynamite -= value;
         document.getElementById('dynamite-amount-el').innerText = this._dynamite;
         console.info('[INFO] Dynamite removed, total: ', this.dynamite);
+    }
+
+    addMousetrap(value) {
+        this._mousetraps += value;
+        document.getElementById('mousetrap-amount-el').innerText = this._mousetraps;
+        console.info('[INFO] Mousetrap added, total: ', this.dynamite);
+    }
+
+    removeMousetrap(value) {
+        this._mousetraps -= value;
+        document.getElementById('mousetrap-amount-el').innerText = this._mousetraps;
+        console.info('[INFO] Mousetrap removed, total: ', this.dynamite);
     }
 
     addCompostableTrash(compostableTrashType) {

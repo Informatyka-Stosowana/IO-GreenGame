@@ -3,6 +3,7 @@ import {Box} from "./Box.mjs";
 import {Dynamite} from "./Dynamite.mjs";
 import {Fork} from "./Fork.mjs";
 import {Plant} from "./Plant.mjs";
+import {Mousetrap} from "./Mousetrap.mjs";
 
 export class ShopManager {
     constructor(itemRepository, objectRepository) {
@@ -23,7 +24,6 @@ export class ShopManager {
         document.getElementById('plant-0-price-el').innerText = def.plant.type[0].PRICE;
         document.getElementById('plant-1-price-el').innerText = def.plant.type[1].PRICE;
         document.getElementById('plant-2-price-el').innerText = def.plant.type[2].PRICE;
-        document.getElementById('plant-3-price-el').innerText = def.plant.type[3].PRICE;
     }
 
     _handleShopClick(event) {
@@ -68,15 +68,15 @@ export class ShopManager {
             }
             image.style.width = '4.5vw';
             image.src = def.plant.type[2].IMG_SRC;
-        } else if (event.target.id === "plant-3-shop-el") {
-            this._thing = new Plant(3, this._objectRepository);
-            if (this._itemRepository.compost < def.plant.type[3].PRICE) {
-                console.info('[INFO] Insufficient compost')
+        } else if (event.target.id === "mousetrap-shop-el") {
+            this._thing = new Mousetrap(this._objectRepository);
+            if (this._itemRepository.mousetraps <= 0) {
+                console.info('[INFO] Insufficient mousetraps')
                 this._isInBuyingMode = false;
                 return;
             }
-            image.style.width = '4.5vw';
-            image.src = def.plant.type[3].IMG_SRC;
+            image.style.width = '5vw';
+            image.src = def.mousetrap.IMG_SRC;
         } else if (event.target.id === "box-shop-el") {
             this._thing = new Box(this._objectRepository);
             if (this._itemRepository.boxes <= 0) {
@@ -158,6 +158,12 @@ export class ShopManager {
             this._thing.cell = cell;
             this._thing.createImage();
 
+        }
+        if (this._thing instanceof Mousetrap) {
+            this._itemRepository.removeMousetrap(1);
+            this._thing.cell = cell;
+            this._thing.createImg();
+            this._objectRepository.addMousetrap(this._thing);
         }
         if (this._thing instanceof Box) {
             this._itemRepository.removeBoxes(1);

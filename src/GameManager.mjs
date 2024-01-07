@@ -37,6 +37,8 @@ export class GameManager {
         this._itemRepository.addBoxes(5);
         this._itemRepository.addForks(5);
         this._itemRepository.addDynamite(5);
+        this._itemRepository.addMousetrap(5);
+
 
         // TODO remove this
         // this.forTesting();

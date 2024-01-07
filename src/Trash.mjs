@@ -42,6 +42,10 @@ export class Trash {
                 this._img.src = def.fork.IMG_SRC;
                 this._img.style.width = '4vw';
                 break;
+            case 6:
+                this._img.src = def.mousetrap.IMG_SRC;
+                this._img.style.width = '5vw';
+                break;
 
         }
 
@@ -65,7 +69,6 @@ export class Trash {
         } else {
             this._selfDelete();
         }
-        // TODO add animation? would be cool
     }
 
     _collect(event) {
@@ -75,6 +78,7 @@ export class Trash {
         if (this._type === 3) this._itemRepository.addCompostableTrash(2);
         if (this._type === 4) this._itemRepository.addDynamite(1)
         if (this._type === 5) this._itemRepository.addForks(1);
+        if (this._type === 6) this._itemRepository.addMousetrap(1);
         this._selfDelete()
     }
 

@@ -7,6 +7,7 @@ export class ObjectRepository {
         this._forks = [];
         this._dynamite = [];
         this._bullets = [];
+        this._mousetraps = [];
     }
 
     get enemies() {
@@ -29,10 +30,10 @@ export class ObjectRepository {
         this._updateArray(this._trash);
         this._updateArray(this._enemies);
         this._updateArray(this._plants);
-        // this._updateArray(this._boxes);
         this._updateArray(this._forks);
         this._updateArray(this._dynamite);
         this._updateArray(this._bullets);
+        this._updateArray(this._mousetraps);
     }
 
     _updateArray(array) {
@@ -55,6 +56,8 @@ export class ObjectRepository {
         object = searchArray(this._plants);
         if (object) return object;
         object = searchArray(this._boxes);
+        if (object) return object;
+        object = searchArray(this._mousetraps);
         if (object) return object;
     }
 
@@ -159,6 +162,21 @@ export class ObjectRepository {
             if (this._dynamite[i] === dynamite) {
                 this._dynamite.splice(i, 1);
                 console.info('[INFO] Dynamite removed: ', dynamite);
+                return;
+            }
+        }
+    }
+
+    addMousetrap(mousetrap) {
+        this._mousetraps.push(mousetrap);
+        console.info('[INFO] Mousetrap added: ', mousetrap);
+    }
+
+    removeMousetrap(mousetrap) {
+        for (let i = 0; i < this._mousetraps.length; i++) {
+            if (this._mousetraps[i] === mousetrap) {
+                this._mousetraps.splice(i, 1);
+                console.info('[INFO] Mousetrap removed: ', mousetrap);
                 return;
             }
         }

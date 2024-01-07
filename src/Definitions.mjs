@@ -12,6 +12,12 @@ export const Definitions = {
         HP: 5000,
     },
 
+    mousetrap: {
+        IMG_SRC: './resources/mouse_trap.png',
+        SOUND_SRC: './resources/sounds/mousetrap.mp3',
+        DAMAGE: 100_000,
+    },
+
     fork: {
         IMG_SRC: './resources/frok.png',
         DAMAGE: 100,
@@ -161,7 +167,7 @@ export const Definitions = {
         // Type 2 - rotten cabbage
         {
             IMG_SRC: './resources/rotten_cabbage.png',
-            COMPOST_AMOUNT: 15,
+            COMPOST_AMOUNT: 30,
             COMPOSTING_TIME: 2000,
         }
     ],
