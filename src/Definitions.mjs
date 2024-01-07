@@ -9,7 +9,7 @@ export const Definitions = {
 
     box: {
         IMG_SRC: './resources/box_1.png',
-        HP: 5000,
+        HP: 10_000,
     },
 
     mousetrap: {
@@ -93,7 +93,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/plant_0.png',
                 HP: 1000,
-                ATTACK_SPEED_DIV: 300,
+                ATTACK_SPEED_DIV: 250,
                 PRICE: 20
             },
             {
@@ -105,14 +105,8 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/plant_2.png',
                 HP: 1000,
-                ATTACK_SPEED_DIV: 500,
+                ATTACK_SPEED_DIV: 200,
                 PRICE: 60
-            },
-            {
-                IMG_SRC: './resources/plant_2.png',
-                HP: 1000,
-                ATTACK_SPEED_DIV: 500,
-                PRICE: 80
             }
         ]
     },
@@ -130,16 +124,16 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/bullet_1.png',
                 HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
-                DAMAGE: 15,
+                DAMAGE: 40,
                 SPEED: 13, // In vw divided by 100
                 POISON_TIME: 500,
-                POISON_DMG: 0.1,
+                POISON_DMG: 0.12,
             },
             // Type 2 - frozen
             {
                 IMG_SRC: './resources/bullet_2.png',
                 HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
-                DAMAGE: 15,
+                DAMAGE: 20,
                 SPEED: 13, // In vw divided by 100
                 FREEZE_TIME: 200
             }

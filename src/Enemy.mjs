@@ -67,7 +67,7 @@ export class Enemy {
     _move() {
         let posX = parseFloat(this._img.style.left);
         let move = def.enemy.type[this._type].SPEED / 100;
-        if (this._frozenTicks > 0) move /= 2;
+        if (this._frozenTicks > 0) move /= 3;
 
         this._img.style.left = (posX - move) + 'vw';
         if (posX < -68) {
