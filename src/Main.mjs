@@ -187,23 +187,22 @@ beginBackground.appendChild(beginScreenBackground);
 document.body.appendChild(beginBackground);
 
 easyLevelButton.addEventListener('click', () => {
-    // modify game pace
+    def.game.DIFFICULTY = 1;
     beginBackground.style.display = 'none';
     gm.startGame();
 })
 
 mediumLevelButton.addEventListener('click', () => {
-    // modify game pace
+    def.game.DIFFICULTY = 2;
     beginBackground.style.display = 'none';
     gm.startGame();
 })
 
 hardLevelButton.addEventListener('click', () => {
-    // modify game pace
+    def.game.DIFFICULTY = 3;
     beginBackground.style.display = 'none';
     gm.startGame();
 })
-
 
 
 let gm = new GameManager();

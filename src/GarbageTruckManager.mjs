@@ -46,15 +46,15 @@ export class GarbageTruckManager {
         this._img = document.createElement('img');
         this._img.id = 'garbage-truck-el';
         this._img.src = def.garbageTruck.IMG_SRC;
-        this._img.style.backgroundColor = "#FFFF00"; // Temporary
+        // this._img.style.backgroundColor = "#FFFF00"; // Temporary
         this._img.style.pointerEvents = 'none';
         this._img.style.position = 'absolute';
-        this._img.style.width = '20vw';
-        this._img.style.height = '20vh';
+        this._img.style.width = '30vw';
+        this._img.style.height = '30vh';
         this._img.style.margin = '0';
 
         this._img.style.left = 100 + 'vw';
-        this._img.style.top = '69vh';
+        this._img.style.top = '60vh';
     }
 
     _spawnTrash() {
@@ -63,7 +63,7 @@ export class GarbageTruckManager {
         this._trashSpawned++;
 
         let type = Math.floor(Math.random() * 7);
-        let trash = new Trash(type, this._truckPosX, 69, this._itemRepository, this._objectRepository);
+        let trash = new Trash(type, this._truckPosX + 4, 69, this._itemRepository, this._objectRepository);
 
         this._objectRepository.addTrash(trash);
     }

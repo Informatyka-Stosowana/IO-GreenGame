@@ -7,10 +7,22 @@ export class Enemy {
         this._hp = def.enemy.type[this._type].HP;
         this._frozenTicks = 0;
         this._poisonTicks = 0;
-
+        this._speedModifier = 1;
 
         this._cell = document.getElementById('enemy-td-element-' + row);
         this._createImg();
+    }
+
+    get hp() {
+        return this._hp;
+    }
+
+    set hp(value) {
+        this._hp = value;
+    }
+
+    set speedModifier(value) {
+        this._speedModifier = value;
     }
 
     set frozenTicks(value) {
@@ -66,7 +78,7 @@ export class Enemy {
 
     _move() {
         let posX = parseFloat(this._img.style.left);
-        let move = def.enemy.type[this._type].SPEED / 100;
+        let move = (def.enemy.type[this._type].SPEED * this._speedModifier) / 100;
         if (this._frozenTicks > 0) move /= 3;
 
         this._img.style.left = (posX - move) + 'vw';

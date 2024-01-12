@@ -5,6 +5,7 @@ export const Definitions = {
     game: {
         SCORE: 0,
         ALIVE: true,
+        DIFFICULTY: undefined,
     },
 
     box: {
@@ -46,8 +47,8 @@ export const Definitions = {
 
     garbageTruck: {
         TRASH_SPAWN_DIV: 1500, // how many ticks it takes for truck to appear, randomized in GarbageTruckManager
-        IMG_SRC: null,
-        IMG_OFFSET_X: 25, // In vw
+        IMG_SRC: './resources/garbagetruck.png',
+        IMG_OFFSET_X: 50, // In vw
     },
 
     dynamite: {
@@ -105,7 +106,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/plant_2.png',
                 HP: 1000,
-                ATTACK_SPEED_DIV: 200,
+                ATTACK_SPEED_DIV: 150,
                 PRICE: 60
             }
         ]
@@ -124,7 +125,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/bullet_1.png',
                 HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
-                DAMAGE: 40,
+                DAMAGE: 50,
                 SPEED: 13, // In vw divided by 100
                 POISON_TIME: 500,
                 POISON_DMG: 0.12,
@@ -133,7 +134,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/bullet_2.png',
                 HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
-                DAMAGE: 20,
+                DAMAGE: 30,
                 SPEED: 13, // In vw divided by 100
                 FREEZE_TIME: 200
             }

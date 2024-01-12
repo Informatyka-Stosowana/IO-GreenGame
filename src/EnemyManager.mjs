@@ -27,12 +27,13 @@ export class EnemyManager {
             let bar = document.getElementById('progress-bar-el');
             let width = 0;
             let id = setInterval(frame, this._waveDiv / 100);
+
             function frame() {
                 if (width >= 100) {
                     clearInterval(id);
                     i = 0;
                 } else {
-                    width+=0.9;
+                    width += 0.9;
                     bar.style.width = width + '%';
                 }
             }
@@ -48,11 +49,11 @@ export class EnemyManager {
             bar.style.width = '5%';
             this._width = 5;
         } else {
-            this._width += (95/9000);
+            this._width += (95 / 9000);
             bar.style.width = this._width + '%';
         }
 
-        
+
         // TODO finish waves, more time between, better scaling
         // Wave spawn
         if (this._waveDiv > 0) {
@@ -114,6 +115,11 @@ export class EnemyManager {
 
     spawnRandomStrongEnemy() {
         let newEnemy = new Enemy(Math.floor(Math.random() * 2) + 2, this._objectRepositroy, Math.floor(Math.random() * 5));
+        // Random super strong enemy
+        if (Math.floor(Math.random() * 20) < def.game.DIFFICULTY) {
+            newEnemy.hp = newEnemy.hp * 2;
+            newEnemy.speedModifier = 3;
+        }
         this._objectRepositroy.addEnemy(newEnemy);
     }
 }

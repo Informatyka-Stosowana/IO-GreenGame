@@ -33,15 +33,13 @@ export class GameManager {
     }
 
     _setStartingResources() {
-        this._itemRepository.addCompost(100);
-        this._itemRepository.addBoxes(5);
-        this._itemRepository.addForks(5);
-        this._itemRepository.addDynamite(5);
-        this._itemRepository.addMousetrap(5);
-
-
-        // TODO remove this
-        // this.forTesting();
+        for (let i = def.game.DIFFICULTY; i <= 3; i++) {
+            this._itemRepository.addCompost(50);
+            this._itemRepository.addBoxes(3);
+            this._itemRepository.addForks(3);
+            this._itemRepository.addDynamite(3);
+            this._itemRepository.addMousetrap(3);
+        }
     }
 
     startGame() {
@@ -50,7 +48,7 @@ export class GameManager {
         this._intervalId = setInterval(() => this.gameLoop(), def.GAME_LOOP_INTERVAL);
     }
 
-    async sendDataToMainDataBaseThatHoldsAllTheDataThatIsNecessary(score) {
+    async sendScore(score) {
         await updateRanking({gameID: 4, score: score});
     }
 
@@ -58,7 +56,7 @@ export class GameManager {
         clearInterval(this._intervalId);
 
         if (def.game.SCORE >= 500) {
-            this.sendDataToMainDataBaseThatHoldsAllTheDataThatIsNecessary(def.game.SCORE);
+            this.sendScore(def.game.SCORE);
         }
 
         let restart = this._restartButton();
@@ -454,7 +452,7 @@ export class GameManager {
 
             // Increment score over time
             if (this._scoreIncrementInterval === def.SCORE_INCREMENT_DIV) {
-                def.game.SCORE++;
+                def.game.SCORE += def.game.DIFFICULTY;
                 this._scoreIncrementInterval = 0;
                 console.log('Score: ', def.game.SCORE);
             } else this._scoreIncrementInterval++;
