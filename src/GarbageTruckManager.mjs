@@ -46,7 +46,6 @@ export class GarbageTruckManager {
         this._img = document.createElement('img');
         this._img.id = 'garbage-truck-el';
         this._img.src = def.garbageTruck.IMG_SRC;
-        // this._img.style.backgroundColor = "#FFFF00"; // Temporary
         this._img.style.pointerEvents = 'none';
         this._img.style.position = 'absolute';
         this._img.style.width = '30vw';

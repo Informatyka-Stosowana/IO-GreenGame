@@ -21,7 +21,12 @@ export class Mousetrap {
 
     update() {
         if (this.damageEnemy()) {
-            new Audio(def.mousetrap.SOUND_SRC).play();
+            let audio = new Audio(def.mousetrap.SOUND_SRC);
+            audio.play();
+            setTimeout(() => {
+                audio.remove();
+                audio.srcObject = null;
+            }, 2000);
             this.removeHp(1);
         }
     }

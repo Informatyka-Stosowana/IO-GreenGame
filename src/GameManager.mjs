@@ -21,17 +21,6 @@ export class GameManager {
         this._enemyManager = null;
     }
 
-    // TODO remove this
-    forTesting() {
-        this._itemRepository.addCompostableTrash(0);
-        this._itemRepository.addCompostableTrash(1);
-        this._itemRepository.addCompostableTrash(2);
-        this._itemRepository.addDynamite(500);
-        this._itemRepository.addForks(500);
-        this._itemRepository.addBoxes(500);
-        this._itemRepository.addCompost(1000);
-    }
-
     _setStartingResources() {
         for (let i = def.game.DIFFICULTY; i <= 3; i++) {
             this._itemRepository.addCompost(50);

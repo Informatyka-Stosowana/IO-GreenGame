@@ -46,8 +46,10 @@ export class EnemyManager {
 
         let bar = document.getElementById('progress-bar-el');
         if (this._width >= 100) {
-            bar.style.width = '5%';
-            this._width = 5;
+            if (this._waveDiv > 0) {
+                bar.style.width = '5%';
+                this._width = 5;
+            }
         } else {
             this._width += (95 / 9000);
             bar.style.width = this._width + '%';

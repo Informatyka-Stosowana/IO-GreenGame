@@ -51,7 +51,12 @@ export class Dynamite {
 
         // Play sound & delete last frame img
         if (this._animationFrame === 0) {
-            new Audio(def.dynamite.EXPLOSION_SOUND_SRC).play();
+            let audio = new Audio(def.dynamite.EXPLOSION_SOUND_SRC);
+            audio.play();
+            setTimeout(() => {
+                audio.remove();
+                audio.srcObject = null;
+            }, 2000);
         } else {
             document.body.removeChild(document.getElementById('explosion-img-el'));
         }

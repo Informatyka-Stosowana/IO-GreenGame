@@ -100,14 +100,14 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/plant_1.png',
                 HP: 1500,
-                ATTACK_SPEED_DIV: 500,
+                ATTACK_SPEED_DIV: 400,
                 PRICE: 40
             },
             {
                 IMG_SRC: './resources/plant_2.png',
                 HP: 1000,
                 ATTACK_SPEED_DIV: 150,
-                PRICE: 60
+                PRICE: 80
             }
         ]
     },
@@ -118,7 +118,7 @@ export const Definitions = {
             {
                 IMG_SRC: './resources/bullet_0.png',
                 HIT_SOUND_SRC: './resources/sounds/slimeball_hit.mp3',
-                DAMAGE: 30,
+                DAMAGE: 20,
                 SPEED: 15 // In vw divided by 100
             },
             // Type 1 - poison
@@ -255,6 +255,4 @@ export const Definitions = {
         currentPositionInViewPort = (currentPositionInPixels / viewportHeight) * 100;
         element.style.top = currentPositionInViewPort + 'vh';
     }
-
-
 };

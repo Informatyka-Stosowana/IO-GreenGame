@@ -43,7 +43,12 @@ export class Bullet {
             }
 
             // Play sound
-            new Audio(def.bullet.type[this._type].HIT_SOUND_SRC).play();
+            let audio = new Audio(def.bullet.type[this._type].HIT_SOUND_SRC);
+            audio.play();
+            setTimeout(() => {
+                audio.remove();
+                audio.srcObject = null;
+            }, 2000);
 
             // Remove img & self from objRepo
             this._objectRepository.removeBullet(this);

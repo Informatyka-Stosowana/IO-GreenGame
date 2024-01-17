@@ -23,7 +23,7 @@ td {
     position: absolute;
     left: 85vw;
     width: 15vw;
-    height: 10vh;
+    height: 11vh;
     border: 2px solid black;
     display: flex;
     align-items: center;
@@ -71,7 +71,7 @@ td {
 #items-menu-table-el {
     position: absolute;
     width: 80vw;
-    height: 10vh;
+    height: 11vh;
     margin-left: 5vw;
     background: aquamarine;
 }
@@ -135,7 +135,7 @@ td {
 /* Composter */
 #composter-el {
     position: absolute;
-    height: 10vh;
+    height: 11vh;
     width: 5vw;
     background-image: url('./resources/composter.png');
     background-repeat: no-repeat;
@@ -152,7 +152,7 @@ td {
     position: absolute;
     width: 5vw;
     height: 65vh;
-    margin-top: 10vh;
+    margin-top: 11vh;
     background: saddlebrown;
 }
 
@@ -173,7 +173,7 @@ td {
     position: absolute;
     width: 15vw;
     height: 65vh;
-    margin-top: 10vh;
+    margin-top: 11vh;
     margin-left: 5vw;
 
     background-image: url('./resources/students.jpg');
@@ -185,7 +185,7 @@ td {
     position: absolute;
     width: 15vw;
     height: 65vh;
-    margin-top: 10vh;
+    margin-top: 11vh;
     margin-left: 85vw;
 
     background-image: url('./resources/attack-image.png');
@@ -198,7 +198,7 @@ td {
     position: absolute;
     width: 65vw;
     height: 65vh;
-    margin-top: 10vh;
+    margin-top: 11vh;
     margin-left: 20vw;
 
     background-image: url('./resources/grass_tile_background.jpg');
