@@ -2,8 +2,8 @@ import {Definitions as def} from "./Definitions.mjs";
 
 export class Bullet {
     constructor(type, posX, posY, objectRepository) {
-        this._type = type;
         this._objectRepository = objectRepository;
+        this._type = type;
         this._img = null;
         this._createImg(posX, posY);
     }
@@ -67,9 +67,10 @@ export class Bullet {
     }
 
     _checkCollision() {
-        let array = this._objectRepository.enemies;
-        for (let i = 0; i < array.length; i++) {
-            if (def.checkCollision(this._img, array[i].img, 1)) return array[i];
+        for (let i = 0; i < this._objectRepository.enemies.length; i++) {
+            if (def.checkCollision(this._img, this._objectRepository.enemies[i].img, 1)) {
+                return this._objectRepository.enemies[i];
+            }
         }
         return null;
     }

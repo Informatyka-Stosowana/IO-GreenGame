@@ -37,7 +37,7 @@ export class GameManager {
         this._intervalId = setInterval(() => this.gameLoop(), def.GAME_LOOP_INTERVAL);
     }
 
-    async sendScore(score) {
+    async _sendScore(score) {
         await updateRanking({gameID: 4, score: score});
     }
 
@@ -45,7 +45,7 @@ export class GameManager {
         clearInterval(this._intervalId);
 
         if (def.game.SCORE >= 500) {
-            this.sendScore(def.game.SCORE);
+            this._sendScore(def.game.SCORE);
         }
 
         let restart = this._restartButton();

@@ -52,7 +52,7 @@ export class ObjectRepository {
             return null;
         }
 
-        let object = null;
+        let object;
         object = searchArray(this._plants);
         if (object) return object;
         object = searchArray(this._boxes);

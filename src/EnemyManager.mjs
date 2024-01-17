@@ -19,27 +19,6 @@ export class EnemyManager {
         this._width = 5;
     }
 
-    updateProgressBar() {
-        // Progress bar
-        let i = 0;
-        if (i === 0) {
-            i = 1;
-            let bar = document.getElementById('progress-bar-el');
-            let width = 0;
-            let id = setInterval(frame, this._waveDiv / 100);
-
-            function frame() {
-                if (width >= 100) {
-                    clearInterval(id);
-                    i = 0;
-                } else {
-                    width += 0.9;
-                    bar.style.width = width + '%';
-                }
-            }
-        }
-    }
-
     update() {
         // Wave info
         // document.getElementById('wave-info-el').innerText = 'Next wave in ' + this._waveDiv / 100 + ' s';
@@ -55,8 +34,6 @@ export class EnemyManager {
             bar.style.width = this._width + '%';
         }
 
-
-        // TODO finish waves, more time between, better scaling
         // Wave spawn
         if (this._waveDiv > 0) {
             this._waveDiv--;
@@ -72,8 +49,6 @@ export class EnemyManager {
                 this._waveDiv--;
             }
 
-            // TODO stronk snail after round 3
-            // TODO very stronk snail after round 6
             // Spawn delay
             if (this._waveEnemySpawnDiv > 0) {
                 this._waveEnemySpawnDiv--;
@@ -81,12 +56,12 @@ export class EnemyManager {
                 // Spawn weak enemies
                 if (this._weakEnemyCount > 0) {
                     this._weakEnemyCount--;
-                    this.spawnRandomWeakEnemy();
+                    this._spawnRandomWeakEnemy();
                 }
                 // Spawn strong enemies
                 if (this._strongEnemyCount > 0) {
                     this._strongEnemyCount--;
-                    this.spawnRandomStrongEnemy();
+                    this._spawnRandomStrongEnemy();
                 }
 
                 this._waveEnemySpawnDiv = def.enemyManager.WAVE_ENEMY_SPAWN_DIV;
@@ -105,17 +80,17 @@ export class EnemyManager {
             this._weakEnemyDiv--;
 
         } else {
-            this.spawnRandomWeakEnemy();
+            this._spawnRandomWeakEnemy();
             this._weakEnemyDiv = def.enemyManager.AMBIENT_DIV - this._weakEnemyDivIncDiv;
         }
     }
 
-    spawnRandomWeakEnemy() {
+    _spawnRandomWeakEnemy() {
         let newEnemy = new Enemy(Math.floor(Math.random() * 2), this._objectRepositroy, Math.floor(Math.random() * 5));
         this._objectRepositroy.addEnemy(newEnemy);
     }
 
-    spawnRandomStrongEnemy() {
+    _spawnRandomStrongEnemy() {
         let newEnemy = new Enemy(Math.floor(Math.random() * 2) + 2, this._objectRepositroy, Math.floor(Math.random() * 5));
         // Random super strong enemy
         if (Math.floor(Math.random() * 20) < def.game.DIFFICULTY) {

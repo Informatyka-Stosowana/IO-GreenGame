@@ -2,7 +2,6 @@ import {Definitions as def} from "./Definitions.mjs";
 import {Bullet} from "./Bullet.mjs";
 
 export class Plant {
-    // TODO add last plant
     constructor(type, objectRepository) {
         this._type = type;
         this._cell = null;
