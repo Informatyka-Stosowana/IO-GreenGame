@@ -145,42 +145,10 @@ hardLevelButton.addEventListener('mouseout', () => {
     hardLevelButton.style.color = 'white';
 });
 
-// Create exit button
-let exit = document.createElement('button');
-exit.id = 'exit-el';
-exit.className = 'btn btn-primary';
-exit.type = 'button';
-exit.style.backgroundColor = 'gray';
-exit.style.color = 'black';
-exit.style.fontWeight = 'bold';
-exit.style.height = '8vh';
-exit.style.border = '3px solid black';
-exit.style.borderRadius = '40px';
-exit.style.margin = '3vh 0';
-exit.textContent = 'EXIT GAME';
-
-// Hover effect on mouseover
-exit.addEventListener('mouseover', () => {
-    // Change the button's border color
-    exit.style.border = '3px solid green';
-    exit.style.color = 'green';
-});
-exit.addEventListener('mouseout', () => {
-    // Change the button's border color
-    exit.style.border = '3px solid black';
-    exit.style.color = 'black';
-});
-
-// Return to main menu
-exit.addEventListener('click', () => {
-    // TODO add exit to main menu
-})
-
 beginOptions.appendChild(levelText);
 beginOptions.appendChild(easyLevelButton);
 beginOptions.appendChild(mediumLevelButton);
 beginOptions.appendChild(hardLevelButton);
-beginOptions.appendChild(exit);
 beginScreen.appendChild(beginOptions);
 beginScreenBackground.appendChild(beginScreen);
 beginBackground.appendChild(beginScreenBackground);

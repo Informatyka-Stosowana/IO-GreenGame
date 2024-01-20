@@ -97,40 +97,7 @@ export class GameManager {
         endOptions.className = 'd-grid gap-2 col-6 mx-auto';
         endOptions.style.width = '30vw';
 
-        // Create exit button
-        let exit = document.createElement('button');
-        exit.id = 'exit-el';
-        exit.className = 'btn btn-primary';
-        exit.type = 'button';
-        exit.style.backgroundColor = '#562b00';
-        exit.style.color = 'white';
-        exit.style.fontWeight = 'bold';
-        exit.style.height = '8vh';
-        exit.style.border = '3px solid white';
-        exit.style.borderRadius = '40px';
-        exit.style.margin = '3vh 0';
-        exit.textContent = 'EXIT GAME';
-
-        // Hover effect on mouseover
-        exit.addEventListener('mouseover', () => {
-            // Change the button's border color
-            exit.style.border = '3px solid green';
-            exit.style.color = 'green';
-        });
-        exit.addEventListener('mouseout', () => {
-            // Change the button's border color
-            exit.style.border = '3px solid white';
-            exit.style.color = 'white';
-        });
-
-        // Return to main menu
-        exit.addEventListener('click', () => {
-            // TODO add exit to main menu
-        })
-
-
         endOptions.appendChild(restart);
-        endOptions.appendChild(exit);
         endScreen.appendChild(scoreText);
         endScreen.appendChild(endOptions);
         endScreenBackground.appendChild(endScreen);
