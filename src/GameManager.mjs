@@ -279,12 +279,17 @@ export class GameManager {
         return end;
     }
 
-    _infoText(text, isBold) {
+    _infoText(text, isBold, isCenter) {
         let info = document.createElement('p');
         info.textContent = text;
-        info.style.textAlign = 'center';
+        if (isCenter) {
+            info.style.textAlign = 'center';
+        }
+        else {
+            info.style.textAlign = 'left';
+        }
         info.style.color = 'white';
-        info.style.fontSize = '0.9rem';
+        info.style.fontSize = '0.8rem';
         if (isBold) {
             info.style.fontWeight = 'bolder';
         }
@@ -305,7 +310,7 @@ export class GameManager {
 
         // Create frame
         let infoScreenBackground = document.createElement('div');
-        infoScreenBackground.style.height = '84vh';
+        infoScreenBackground.style.height = '90vh';
         infoScreenBackground.style.width = '62vw';
         infoScreenBackground.style.position = 'absolute';
         infoScreenBackground.style.display = 'flex';
@@ -318,7 +323,7 @@ export class GameManager {
         // Create end screen
         let infoScreen = document.createElement('div');
         infoScreen.className = 'd-grid gap-2 col-6 mx-auto';
-        infoScreen.style.height = '80vh';
+        infoScreen.style.height = '86vh';
         infoScreen.style.width = '60vw';
         infoScreen.style.position = 'absolute';
         infoScreen.style.display = 'flex'
@@ -333,13 +338,18 @@ export class GameManager {
         infoText.style.width = '45vw';
 
         // Create p elements for info
-        let title = this._infoText('GREEN GAME', true);
-        let description = this._infoText('Lorem ipsum dolor sit amet, consectetur adipiscing elit.' +
-            ' Quisque mollis id odio ut laoreet. Ut in ex a dolor laoreet tempus a vel turpis. Ut efficitur vestibulum metus' +
-            ' non pulvinar. Aliquam vitae eros eu ex interdum condimentum ac eu lectus. Aliquam id lacus nec odio semper mattis.' +
-            ' Fusce blandit cursus blandit. Aliquam id nulla non neque hendrerit dignissim. Etiam malesuada arcu sapien,' +
-            ' at cursus nibh eleifend vitae. Morbi sit amet interdum sapien, id pellentesque nisi.', false);
-        let espInfo = this._infoText('ESC/RESUME button -> resume game', true);
+        let title = this._infoText('GREEN GAME', true, true);
+        let description = this._infoText('Gra jest typu tower defense. ' +
+            'Gracz broni określonego terytorium wyznaczonego na końcu planszy przed przeciwnikami, ' +
+            'sadząc różnorodne rośliny, z których każda ma unikalne zdolności bojowe oraz używając ' +
+            'zebranych śmieci okresowo pojawiających się na planszy (ponowne wykorzystanie). Celem ' +
+            'jest przetrwanie fal atakujących przeciwników, korzystając ze strategicznego rozmieszczania ' +
+            'roślin oraz zebranych śmieci (pudełko, dynamit, pułapka, widelec) na planszy.' +
+            ' Gra kończy się po osiągnięciu przez pierwszego przeciwnika chronionego terenu, ' +
+            'czyli końca planszy.', false, true);
+        let buyPlantInfo = this._infoText('ZAKUP ROŚLINY -> wybierz roślinę' +
+            ' ze sklepu i ustaw na wolnym polu na planszy', true, false);
+        let espInfo = this._infoText('ESC/RESUME -> wznów grę', true, false);
 
         // Create end options
         let infoOptions = document.createElement('div');
@@ -353,6 +363,12 @@ export class GameManager {
         infoOptions.appendChild(resume);
         infoText.appendChild(title);
         infoText.appendChild(description);
+        infoText.appendChild(buyPlantInfo);
+        infoText.appendChild(this._infoText('PUDEŁKO -> blokuje przeciwników', true, false));
+        infoText.appendChild(this._infoText('WIDELEC -> jednorazowo odbiera określoną ilość życia wszystkim ' +
+            'przeciwnikom w wierszu planszy', true, false));
+        infoText.appendChild(this._infoText('DYNAMIT -> niszczy przeciwników w zasięgu swojego rażenia ' +
+            'oraz usuwa przedmioty i rośliny ustawione na danym miejscu na planszy', true, false));
         infoText.appendChild(espInfo);
         infoScreen.appendChild(infoText);
         infoScreen.appendChild(infoOptions);
