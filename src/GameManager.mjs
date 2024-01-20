@@ -277,7 +277,7 @@ export class GameManager {
 
         // Create frame
         let infoScreenBackground = document.createElement('div');
-        infoScreenBackground.style.height = '90vh';
+        infoScreenBackground.style.height = '94vh';
         infoScreenBackground.style.width = '62vw';
         infoScreenBackground.style.position = 'absolute';
         infoScreenBackground.style.display = 'flex';
@@ -290,7 +290,7 @@ export class GameManager {
         // Create end screen
         let infoScreen = document.createElement('div');
         infoScreen.className = 'd-grid gap-2 col-6 mx-auto';
-        infoScreen.style.height = '86vh';
+        infoScreen.style.height = '90vh';
         infoScreen.style.width = '60vw';
         infoScreen.style.position = 'absolute';
         infoScreen.style.display = 'flex'
@@ -336,6 +336,7 @@ export class GameManager {
             'przeciwnikom w wierszu planszy', true, false));
         infoText.appendChild(this._infoText('DYNAMIT -> niszczy przeciwników w zasięgu swojego rażenia ' +
             'oraz usuwa przedmioty i rośliny ustawione na danym miejscu na planszy', true, false));
+        infoText.appendChild(this._infoText('PUŁAPKA -> niszczy przeciwnika w momencie dotknięcia', true, false));
         infoText.appendChild(espInfo);
         infoScreen.appendChild(infoText);
         infoScreen.appendChild(infoOptions);
